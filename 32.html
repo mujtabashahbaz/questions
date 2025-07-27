@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRCR Part 1 Radiology Physics Quiz - Chapter 2</title>
+    <style>
+        body {
+            background-color: #1a1a1a; /* Black background */
+            color: #f0f0f0; /* White/light-gray text */
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Clean sans-serif font */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top for longer content */
+            min-height: 100vh;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .quiz-container {
+            background-color: #2a2a2a;
+            padding: 30px;
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Soft shadows */
+            max-width: 800px;
+            width: 100%;
+            margin: auto; /* Centered layout */
+            box-sizing: border-box;
+        }
+        h1 {
+            color: #4CAF50; /* A touch of color for headings */
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        .question {
+            background-color: #333;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .question p {
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #e0e0e0;
+        }
+        .question label {
+            display: inline-flex; /* Use inline-flex for better alignment of radio and text */
+            align-items: center;
+            margin-right: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            color: #d0d0d0;
+        }
+        .question input[type="radio"] {
+            margin-right: 8px;
+            transform: scale(1.2); /* Slightly larger radio buttons */
+            accent-color: #4CAF50; /* Green accent color for radio buttons */
+        }
+        .feedback {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+        }
+        .feedback.correct {
+            background-color: rgba(76, 175, 80, 0.2); /* Green for correct */
+            color: #4CAF50;
+        }
+        .feedback.incorrect {
+            background-color: rgba(244, 67, 54, 0.2); /* Red for incorrect */
+            color: #F44336;
+        }
+        .feedback.unanswered {
+            background-color: rgba(3, 169, 244, 0.2); /* Blue for unanswered, if applicable */
+            color: #03A9F4;
+        }
+        details {
+            margin-top: 20px;
+            background-color: #444;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid #555;
+            color: #ddd;
+        }
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #81D4FA; /* Light blue for summary */
+            font-size: 1.05em;
+        }
+        summary:hover {
+            color: #A7EDFF;
+        }
+        details p {
+            margin-top: 10px;
+            padding-left: 10px;
+            border-left: 3px solid #666;
+            color: #c0c0c0;
+            font-size: 0.95em;
+        }
+        .citation {
+            font-size: 0.8em;
+            color: #999;
+            font-style: italic;
+            margin-left: 5px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        button {
+            background-color: #007bff; /* Blue button */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+        button:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>FRCR Part 1 Radiology Physics Quiz</h1>
+        <p>Test your deep understanding of Chapter 2: Radiation Hazards and Protection, from Farr's Physics for Medical Imaging, 3rd edition.</p>
+
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question" data-correct-answer="False">
+                <p>1. The energy deposited by the ionization of a single atom (approximately 35 eV) is insufficient to break a covalent bond in a DNA strand (around 4 eV).</p>
+                <label><input type="radio" name="q1" value="True"> True</label>
+                <label><input type="radio" name="q1" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. The energy generated by the ionization of a single atom (approximately 35 eV) is significantly greater than the energy of a covalent bond in a DNA strand (around 4 eV), indicating it is sufficient to cause such damage.</p>
+                </details>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" data-correct-answer="True">
+                <p>2. Cluster ionization events, which cause significant damage at the atomic scale, are most common when alpha particles interact with tissue compared to beta particles or gamma/X-rays.</p>
+                <label><input type="radio" name="q2" value="True"> True</label>
+                <label><input type="radio" name="q2" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. Ionization events, often known as clusters, are common when alpha particles interact with tissue, less common when beta particles interact, and rare when gamma or X-rays interact with tissue.</p>
+                </details>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" data-correct-answer="False">
+                <p>3. The absorbed dose, measured in grays (Gy), is the primary quantity used in medical imaging applications, where doses are generally of the order of Sv or mSv.</p>
+                <label><input type="radio" name="q3" value="True"> True</label>
+                <label><input type="radio" name="q3" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. The absorbed dose is measured in grays (Gy), but in medical imaging applications, the doses encountered are generally of the order of mGy or μGy, not Sv or mSv. Equivalent dose (Sv) and effective dose (Sv) are calculated parameters related to biological effectiveness and risk, respectively.</p>
+                </details>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" data-correct-answer="False">
+                <p>4. Cell survival curves typically show that more cells are killed per unit dose at low dose rates, as this allows for cumulative damage to overwhelm tissue repair mechanisms.</p>
+                <label><input type="radio" name="q4" value="True"> True</label>
+                <label><input type="radio" name="q4" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. At **high** dose rates, cumulative damage defeats tissue repair mechanisms, making cell death more likely to occur. Therefore, more cells are killed per unit dose at **high** dose rates [101, 102f]. At low dose rates, tissue repair mechanisms can repair DNA damage prior to the next exposure.</p>
+                </details>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" data-correct-answer="True">
+                <p>5. Fractionation, the delivery of high doses into numerous smaller fractions with fixed time intervals, is utilized in radiotherapy to maximize tumor killing while sparing damage to surrounding healthy tissues, as healthy tissues generally have more effective repair mechanisms than tumors.</p>
+                <label><input type="radio" name="q5" value="True"> True</label>
+                <label><input type="radio" name="q5" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. The distribution of a high dose into numerous smaller fractions delivered with fixed time intervals between them, known as fractionation, allows for tissue repair to occur between exposures. This can be utilised in radiotherapy to maximize tumour killing while sparing damage to surrounding healthy tissues, as healthy tissues generally have more effective repair mechanisms than tumors.</p>
+                </details>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question" data-correct-answer="False">
+                <p>6. The effective dose to a patient can be directly measured using devices like the dose-area product (DAP) meter for X-ray examinations, providing a highly accurate individual patient exposure assessment.</p>
+                <label><input type="radio" name="q6" value="True"> True</label>
+                <label><input type="radio" name="q6" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. The effective dose can only be **computed**; it cannot be measured directly. Mathematical modeling techniques are used to derive coefficients that enable organ doses to be calculated using measurable quantities like DAP for X-ray examinations, but there are uncertainties in the modeling, leading to a relative accuracy of around ±50% for any individual patient exposure.</p>
+                </details>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question" data-correct-answer="True">
+                <p>7. For diagnostic radiological procedures, the three main tenets of radiation protection guidance (justification, optimization, and dose limits) all apply, including dose limits for the patient.</p>
+                <label><input type="radio" name="q7" value="True"> True</label>
+                <label><input type="radio" name="q7" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. While justification and optimization (ALARP) apply to patient exposures, dose limits **do not apply to patients** undergoing medical exposures, or to those looking after them (carers and comforters). Patient exposures are minimized through diagnostic reference levels (DRLs) and optimization, not dose limits.</p>
+                </details>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question" data-correct-answer="False">
+                <p>8. The dose to staff and the public is primarily due to stochastic effects, which are immediately observable following high-dose exposures, such as erythema or radiation sickness.</p>
+                <label><input type="radio" name="q8" value="True"> True</label>
+                <label><input type="radio" name="q8" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. Erythema and radiation sickness are **deterministic effects**, which occur rapidly (hours to weeks) after exposure to high doses [110, 112t, 113t]. Stochastic effects, such as cancer induction, occur many years after exposure, if at all, and their probability increases with dose. The dose to staff and the public is managed to prevent stochastic effects, which is why dose limits are set.</p>
+                </details>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question" data-correct-answer="True">
+                <p>9. The Inverse Square Law is a fundamental principle in practical radiation protection, stating that doubling the distance from a radiation source reduces the dose to one-quarter.</p>
+                <label><input type="radio" name="q9" value="True"> True</label>
+                <label><input type="radio" name="q9" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. The Inverse Square Law states that radiation dose decreases with the square of the distance from a point source. Therefore, if you double the distance, the dose drops to one-quarter. This is one of the three principles of practical radiation protection, along with time and shielding.</p>
+                </details>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question" data-correct-answer="False">
+                <p>10. Under the Ionising Radiation Regulations (IRR) 2017, the Radiation Protection Supervisor (RPS) is legally responsible for advising the employer on how to comply with the regulations and must hold a certificate of competence from an approved body like RPA 2000.</p>
+                <label><input type="radio" name="q10" value="True"> True</label>
+                <label><input type="radio" name="q10" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. The employer must appoint a **Radiation Protection Adviser (RPA)** to advise them on how to comply with the regulations. The RPA must hold a certificate of competence from an approved body (RPA 2000 in the UK). The **RPS** is responsible for ensuring that the local rules are followed in practical terms within their area of responsibility.</p>
+                </details>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question" data-correct-answer="True">
+                <p>11. The Ionising Radiation (Medical Exposure) Regulations (IR(ME)R) 2017 apply to all medical exposures, including those carried out for health screening, medical research, and even non-medical exposures using medical radiological equipment.</p>
+                <label><input type="radio" name="q11" value="True"> True</label>
+                <label><input type="radio" name="q11" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. IR(ME)R 2017 is the fundamental legislation for protecting the patient. It covers diagnostic and therapeutic medical exposures, health screening exposures, medical research exposures, exposures of carers and comforters, exposures of asymptomatic persons, and non-medical exposures carried out using medical radiological equipment.</p>
+                </details>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question" data-correct-answer="False">
+                <p>12. Under IR(ME)R 2017, the "Operator" is primarily responsible for justifying all medical exposures, ensuring that the benefit to the patient outweighs the radiation detriment.</p>
+                <label><input type="radio" name="q12" value="True"> True</label>
+                <label><input type="radio" name="q12" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. Under IR(ME)R, the **Practitioner** is required to justify all medical exposures. The **Operator** is responsible for the optimization of the exposures and can authorise exposures if following written guidance from a practitioner and appropriately entitled.</p>
+                </details>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question" data-correct-answer="True">
+                <p>13. A "Medical Physics Expert" (MPE) is required to be appointed by the employer for all areas involving medical exposures, and their scope of practice must be formally certificated through a scheme administered by RPA 2000.</p>
+                <label><input type="radio" name="q13" value="True"> True</label>
+                <label><input type="radio" name="q13" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. IR(ME)R 2017 clarified the role and requirement for recognition of MPEs. The employer must appoint suitably qualified MPEs, and all MPEs are required to be formally certificated through a scheme administered by RPA 2000.</p>
+                </details>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question" data-correct-answer="False">
+                <p>14. National Diagnostic Reference Levels (NDRLs) are set at the 90th centile of mean dose from national surveys to ensure that the majority of examinations fall below this level, promoting dose minimization.</p>
+                <label><input type="radio" name="q14" value="True"> True</label>
+                <label><input type="radio" name="q14" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. NDRLs are generally set at the **75th centile** of the mean dose obtained from national surveys. Local DRLs are generally below the associated NDRLs and should compare results across different systems for the same examination.</p>
+                </details>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question" data-correct-answer="True">
+                <p>15. A "Significant Accidental or Unintended Exposure" (SAUE) requires immediate investigation and, depending on its magnitude, may necessitate reporting to the appropriate regulatory bodies and informing the patient under the duty of candour.</p>
+                <label><input type="radio" name="q15" value="True"> True</label>
+                <label><input type="radio" name="q15" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. Incidents, including accidental or unintended exposures, should be investigated immediately. Depending on the magnitude, they may be deemed SAUE or Clinically Significant Accidental or Unintended Exposure (CSAUE), requiring reporting to regulatory bodies, and the patient must always be appropriately informed under the duty of candour.</p>
+                </details>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question" data-correct-answer="False">
+                <p>16. In the UK, radionuclide imaging (nuclear medicine) now exclusively falls under the Ionising Radiation Regulations (IRR) 2017, having been entirely removed from the scope of the Medicines (Administration of Radioactive Substances) Regulations (MARS) 1978.</p>
+                <label><input type="radio" name="q16" value="True"> True</label>
+                <label><input type="radio" name="q16" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. All medical uses of radioactive substances now fall under the **IR(ME)R 2017 legislation**. Radionuclide imaging (nuclear medicine) previously fell under the MARS regulations, but IR(ME)R 2017 superseded it. The IRR 2017 governs the protection of staff and the public.</p>
+                </details>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question" data-correct-answer="True">
+                <p>17. An area must be designated as a "controlled area" if anyone working there is likely to receive an effective dose greater than 6 mSv per year, or if special procedures are required to mitigate significant exposure to ionising radiation.</p>
+                <label><input type="radio" name="q17" value="True"> True</label>
+                <label><input type="radio" name="q17" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. An area must be designated as a controlled area if anyone working in the area is likely to receive an effective dose greater than 6 mSv per year or if any person entering or working in the area is required to follow special procedures to mitigate against significant exposure to ionising radiation or reduce the likelihood or severity of radiation accidents.</p>
+                </details>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question" data-correct-answer="False">
+                <p>18. According to the ICRP's linear-no threshold (LNT) model, there is a clear threshold dose below which there is no risk of cancer induction from radiation exposure, supporting the concept of a safe dose.</p>
+                <label><input type="radio" name="q18" value="True"> True</label>
+                <label><input type="radio="q18" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. The LNT model, recommended by the ICRP, **implies that there is no safe dose of radiation**, which contradicts evidence of a threshold dose (100-200 mSv) from atomic bomb data. The model suggests that any dose, no matter how small, carries some risk, with the risk increasing in an almost linear fashion for solid tumours above certain thresholds.</p>
+                </details>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question" data-correct-answer="True">
+                <p>19. Pregnant staff must notify their employer in writing as soon as they have confirmed their pregnancy or if they are breastfeeding upon returning to work, to ensure that the employer can take appropriate measures to minimize foetal dose or risks to the nursing infant.</p>
+                <label><input type="radio" name="q19" value="True"> True</label>
+                <label><input type="radio" name="q19" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. It is a duty of the pregnant employee to notify their employer in writing as soon as they have confirmed their pregnancy or if they are breastfeeding when they return to work. The employer is then responsible for ensuring the equivalent dose to the foetus is less than 1 mSv for the remainder of the pregnancy, and for considering risks to the breastfeeding infant.</p>
+                </details>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question" data-correct-answer="False">
+                <p>20. The average person in the UK receives an effective dose of 2.7 mSv per year, with the majority of this coming from medical exposures, rather than natural background sources.</p>
+                <label><input type="radio" name="q20" value="True"> True</label>
+                <label><input type="radio" name="q20" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. The average person in the UK is exposed to an effective dose of 2.7 mSv per year from background radiation. However, around **2.3 mSv of this is from natural sources** in the environment (cosmic, terrestrial, radon, food), and the remainder is from medical exposures.</p>
+                </details>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const questions = document.querySelectorAll('.question');
+            const resetButton = document.getElementById('resetQuiz');
+
+            // Function to check answers and show feedback
+            function checkAnswer(questionDiv) {
+                const radios = questionDiv.querySelectorAll('input[type="radio"]');
+                const feedbackDiv = questionDiv.querySelector('.feedback');
+                const correctAnswer = questionDiv.dataset.correctAnswer;
+                let selectedValue = null;
+
+                radios.forEach(radio => {
+                    if (radio.checked) {
+                        selectedValue = radio.value;
+                    }
+                    radio.disabled = true; // Disable radios after selection
+                });
+
+                feedbackDiv.style.display = 'block'; // Show feedback div
+
+                if (selectedValue === null) {
+                    feedbackDiv.className = 'feedback unanswered';
+                    feedbackDiv.textContent = 'Please select an answer.';
+                } else if (selectedValue === correctAnswer) {
+                    feedbackDiv.className = 'feedback correct';
+                    feedbackDiv.textContent = 'Correct!';
+                } else {
+                    feedbackDiv.className = 'feedback incorrect';
+                    feedbackDiv.textContent = 'Incorrect.';
+                }
+            }
+
+            // Add event listeners for radio buttons
+            questions.forEach(questionDiv => {
+                const radios = questionDiv.querySelectorAll('input[type="radio"]');
+                radios.forEach(radio => {
+                    radio.addEventListener('change', () => {
+                        checkAnswer(questionDiv);
+                    });
+                });
+
+                // Ensure details are closed by default on load, then open if an answer is selected (for persistent state)
+                const detailsElement = questionDiv.querySelector('details');
+                if (detailsElement) {
+                    detailsElement.open = false; // Start closed
+                }
+            });
+
+            // Reset quiz functionality
+            resetButton.addEventListener('click', () => {
+                quizForm.reset(); // Clear all radio button selections
+                questions.forEach(questionDiv => {
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    const radios = questionDiv.querySelectorAll('input[type="radio"]');
+                    const detailsElement = questionDiv.querySelector('details');
+
+                    feedbackDiv.style.display = 'none'; // Hide feedback
+                    feedbackDiv.textContent = ''; // Clear feedback text
+                    feedbackDiv.className = 'feedback'; // Reset feedback class
+
+                    radios.forEach(radio => {
+                        radio.disabled = false; // Re-enable radios
+                    });
+
+                    if (detailsElement) {
+                        detailsElement.open = false; // Close explanation details
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
