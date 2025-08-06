@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3 Physics for Medical Imaging Quiz</title>
+    <style>
+        /* Dark Theme Styles */
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .quiz-container {
+            background-color: #2b2b2b;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #f0f0f0;
+            margin-bottom: 15px;
+            font-size: 2.2em;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            background-color: #3a3a3a;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .question:hover {
+            transform: translateY(-3px);
+        }
+
+        .question p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #d0d0d0;
+        }
+
+        .question label {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            color: #c0c0c0;
+            transition: color 0.2s ease;
+        }
+
+        .question label:hover {
+            color: #f0f0f0;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 8px;
+            transform: scale(1.2);
+            accent-color: #6a9bd8; /* Accent color for radio buttons */
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+            font-size: 0.95em;
+        }
+
+        .feedback.correct {
+            background-color: rgba(67, 160, 71, 0.2);
+            color: #4CAF50; /* Green */
+        }
+
+        .feedback.incorrect {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: #F44336; /* Red */
+        }
+
+        .feedback.neutral {
+            background-color: rgba(33, 150, 243, 0.2);
+            color: #2196F3; /* Blue */
+        }
+
+        details {
+            margin-top: 15px;
+            background-color: #4a4a4a;
+            border-radius: 6px;
+            padding: 10px 15px;
+            border: 1px solid #555;
+            transition: background-color 0.3s ease;
+        }
+
+        details[open] {
+            background-color: #5a5a5a;
+        }
+
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #a0a0a0;
+            padding: 5px 0;
+            outline: none;
+            transition: color 0.2s ease;
+        }
+
+        summary:hover {
+            color: #e0e0e0;
+        }
+
+        details p {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #b0b0b0;
+        }
+
+        .citation {
+            font-style: italic;
+            font-size: 0.8em;
+            color: #888;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #resetQuiz {
+            background-color: #6a9bd8;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #resetQuiz:hover {
+            background-color: #557cb0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Farr's Physics for Medical Imaging Quiz: Chapter 3</h1>
+        <p>Test your knowledge on X-Ray Imaging, Mammography, and Fluoroscopy from "Farr's Physics for Medical Imaging, 3rd edition – Chapter 3".</p>
+
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question" data-correct-answer="False">
+                <p>1. The original analogue X-ray systems have been entirely phased out and are no longer mentioned in "Farr's Physics for Medical Imaging".</p>
+                <label><input type="radio" name="q1" value="True"> True</label>
+                <label><input type="radio" name="q1" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. While analogue systems have been largely superseded by digital systems, the book still includes information about them to demonstrate underlying concepts and principles <span class="citation">[Source: p. 185]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" data-correct-answer="False">
+                <p>2. In an X-ray tube, approximately 99% of the kinetic energy of fast-moving electrons is converted into X-rays.</p>
+                <label><input type="radio" name="q2" value="True"> True</label>
+                <label><input type="radio" name="q2" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. When fast-moving electrons interact with a metal target in an X-ray tube, only approximately 1% of their kinetic energy is converted to X-rays, with the remaining 99% converted to heat <span class="citation">[Source: p. 41, 186]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" data-correct-answer="True">
+                <p>3. The tungsten filament within the cathode is heated until incandescent to enable thermionic emission.</p>
+                <label><input type="radio" name="q3" value="True"> True</label>
+                <label><input type="radio" name="q3" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. Thermionic emission, the process where free electrons overcome the positive attraction of metal anions, is enabled by heating the tungsten filament within the cathode until it is incandescent (>2200 ºC) <span class="citation">[Source: p. 4, 186]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" data-correct-answer="False">
+                <p>4. The focusing cup in an X-ray tube is positively charged to attract electrons to the anode target.</p>
+                <label><input type="radio" name="q4" value="True"> True</label>
+                <label><input type="radio" name="q4" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. The focusing cup is negatively charged to direct electrons to the anode, while the anode itself attracts the electrons <span class="citation">[Source: p. 4, 187]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" data-correct-answer="False">
+                <p>5. A smaller target angle on the anode produces a wider X-ray spectrum and larger field.</p>
+                <label><input type="radio" name="q5" value="True"> True</label>
+                <label><input type="radio" name="q5" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. By using a smaller target angle, a narrower X-ray spectrum and a smaller field are produced <span class="citation">[Source: p. 187]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question" data-correct-answer="True">
+                <p>6. The actual focal spot determines the tube rating and is the area over which heat is produced.</p>
+                <label><input type="radio" name="q6" value="True"> True</label>
+                <label><input type="radio" name="q6" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. The actual focal spot is the area where heat is produced and determines the tube rating <span class="citation">[Source: p. 189]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question" data-correct-answer="False">
+                <p>7. Increased kV (kilovoltage) in an X-ray tube increases the quantity of photons only, without shifting the spectrum.</p>
+                <label><input type="radio" name="q7" value="True"> True</label>
+                <label><input type="radio" name="q7" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. Increased kV shifts the spectrum upwards and to the right, leading to increased maximum and effective energy, and an increased total number of photons. Increased mA (milliamperage) is what increases the quantity of photons only <span class="citation">[Source: p. 5]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question" data-correct-answer="False">
+                <p>8. Filtration moves the continuous X-ray spectrum to the left and reduces minimum photon energy.</p>
+                <label><input type="radio" name="q8" value="True"> True</label>
+                <label><input type="radio" name="q8" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. Filtration moves the continuous spectrum to the right, increases minimum and effective energy, and reduces the total number of photons <span class="citation">[Source: p. 7, 33]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question" data-correct-answer="True">
+                <p>9. In mammography, the anode heel effect is utilized by aligning the higher-energy beam over the chest wall side.</p>
+                <label><input type="radio" name="q9" value="True"> True</label>
+                <label><input type="radio" name="q9" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. In mammography, the anode heel effect is utilized to align the higher-energy beam over the chest wall side <span class="citation">[Source: p. 238]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question" data-correct-answer="False">
+                <p>10. To reduce scatter in X-ray imaging, increasing the irradiated volume is a recommended method.</p>
+                <label><input type="radio" name="q10" value="True"> True</label>
+                <label><input type="radio" name="q10" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. To reduce scatter, it is recommended to decrease the irradiated volume (i.e., use tight collimation) <span class="citation">[Source: p. 43]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question" data-correct-answer="True">
+                <p>11. An air gap in X-ray imaging reduces scatter hitting the image detector plate, but it also produces a magnified image.</p>
+                <label><input type="radio" name="q11" value="True"> True</label>
+                <label><input type="radio" name="q11" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. An air gap reduces scatter and produces a magnified image, requiring increased kV or mA to maintain photon flux <span class="citation">[Source: p. 43]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question" data-correct-answer="False">
+                <p>12. A higher grid ratio (depth:width) generally means the grid is less effective at absorbing scattered radiation.</p>
+                <label><input type="radio" name="q12" value="True"> True</label>
+                <label><input type="radio" name="q12" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. A higher grid ratio (usually at least 8:1, up to 16:1) means the grid is more effective at absorbing scattered radiation <span class="citation">[Source: p. 44]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question" data-correct-answer="False">
+                <p>13. For computed radiography (CR) systems, the photostimulable phosphor plate requires heat input to release trapped energy.</p>
+                <label><input type="radio" name="q13" value="True"> True</label>
+                <label><input type="radio" name="q13" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. The photostimulable phosphor plate in CR systems requires light input (specifically, a laser beam) to release trapped energy <span class="citation">[Source: p. 200, 201]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question" data-correct-answer="True">
+                <p>14. Digital Radiography (DR) systems can achieve a Detective Quantum Efficiency (DQE) of approximately 65%.</p>
+                <label><input type="radio" name="q14" value="True"> True</label>
+                <label><input type="radio" name="q14" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. DR systems can achieve a DQE of approximately 65%, which is higher than CR systems (around 30%) <span class="citation">[Source: p. 208]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question" data-correct-answer="False">
+                <p>15. In direct conversion DR, electrons released by the photoconductor migrate to the surface electrode with significant lateral diffusion, leading to image blur.</p>
+                <label><input type="radio" name="q15" value="True"> True</label>
+                <label><input type="radio" name="q15" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. In direct conversion DR using amorphous selenium, the released electrons migrate to the surface electrode with minimal lateral diffusion <span class="citation">[Source: p. 209]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question" data-correct-answer="True">
+                <p>16. Windowing in image processing alters the image contrast, while the window alters image brightness.</p>
+                <label><input type="radio" name="q16" value="True"> True</label>
+                <label><input type="radio" name="q16" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. Window width alters image contrast, while the window (level) alters image brightness <span class="citation">[Source: p. 218]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question" data-correct-answer="False">
+                <p>17. Low-pass filtering in image processing enhances edges by increasing the weighting of pixels at boundaries.</p>
+                <label><input type="radio" name="q17" value="True"> True</label>
+                <label><input type="radio" name="q17" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. Low-pass filtering smooths the image by averaging pixel values with surrounding pixels, blurring small details or edges. High-pass filtering is used for edge enhancement <span class="citation">[Source: p. 221, 222]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question" data-correct-answer="True">
+                <p>18. In fluoroscopy, the image intensifier's input screen is curved to ensure electrons travel the same distance to the output screen.</p>
+                <label><input type="radio" name="q18" value="True"> True</label>
+                <label><input type="radio" name="q18" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. The input screen of the image intensifier is curved, based on the radius from the focal point of the electron beam, to ensure electrons travel the same distance to the output screen <span class="citation">[Source: p. 249]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question" data-correct-answer="True">
+                <p>19. Digital Subtraction Angiography (DSA) is prone to movement artifacts, which can sometimes be compensated for with pixel shifting software.</p>
+                <label><input type="radio" name="q19" value="True"> True</label>
+                <label><input type="radio" name="q19" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. DSA is prone to movement artifacts that cause misregistration between mask and contrast images, which can be compensated with pixel shifting software <span class="citation">[Source: p. 268]</span>.</p>
+                </details>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question" data-correct-answer="False">
+                <p>20. Increasing filtration in X-ray imaging increases the total number of photons and reduces the receptor:skin ratio (exit dose:entry dose).</p>
+                <label><input type="radio" name="q20" value="True"> True</label>
+                <label><input type="radio" name="q20" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. Increasing filtration reduces the total number of photons and increases the receptor:skin ratio (exit dose:entry dose) by removing lower-energy photons that contribute mostly to skin dose <span class="citation">[Source: p. 7, 33]</span>.</p>
+                </details>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const resetButton = document.getElementById('resetQuiz');
+
+            quizForm.addEventListener('change', (event) => {
+                const target = event.target;
+                if (target.type === 'radio') {
+                    const questionDiv = target.closest('.question');
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    const detailsElement = questionDiv.querySelector('details');
+                    const correctAnswer = questionDiv.dataset.correctAnswer;
+                    const userAnswer = target.value;
+                    const explanationParagraph = detailsElement.querySelector('p');
+
+                    // Update feedback div
+                    feedbackDiv.style.display = 'block';
+                    feedbackDiv.classList.remove('correct', 'incorrect');
+                    if (userAnswer === correctAnswer) {
+                        feedbackDiv.classList.add('correct');
+                        feedbackDiv.textContent = 'Correct!';
+                        explanationParagraph.innerHTML = `<strong>Correct Answer:</strong> ${correctAnswer}. You were right! ${explanationParagraph.innerHTML.split('. You were right! ') || explanationParagraph.innerHTML}`;
+                    } else {
+                        feedbackDiv.classList.add('incorrect');
+                        feedbackDiv.textContent = 'Incorrect!';
+                        explanationParagraph.innerHTML = `<strong>Correct Answer:</strong> ${correctAnswer}. You were incorrect. ${explanationParagraph.innerHTML.split('. You were incorrect. ') || explanationParagraph.innerHTML}`;
+                    }
+
+                    // Open the explanation details
+                    detailsElement.open = true;
+                }
+            });
+
+            resetButton.addEventListener('click', () => {
+                quizForm.reset(); // Clears all radio button selections
+
+                // Hide all feedback divs and close all details
+                document.querySelectorAll('.feedback').forEach(feedbackDiv => {
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.classList.remove('correct', 'incorrect', 'neutral');
+                });
+
+                document.querySelectorAll('details').forEach(detailsElement => {
+                    detailsElement.open = false;
+                    // Reset the explanation text to its original state if it was modified
+                    const originalExplanation = detailsElement.dataset.originalExplanation;
+                    if (originalExplanation) {
+                        detailsElement.querySelector('p').innerHTML = originalExplanation;
+                    }
+                });
+
+                // Store original explanations on first load to easily reset
+                document.querySelectorAll('.question').forEach(questionDiv => {
+                    const detailsElement = questionDiv.querySelector('details');
+                    if (!detailsElement.dataset.originalExplanation) {
+                        detailsElement.dataset.originalExplanation = detailsElement.querySelector('p').innerHTML;
+                    }
+                });
+            });
+
+            // Initial setup to store original explanations for reset
+            document.querySelectorAll('.question').forEach(questionDiv => {
+                const detailsElement = questionDiv.querySelector('details');
+                if (!detailsElement.dataset.originalExplanation) {
+                    detailsElement.dataset.originalExplanation = detailsElement.querySelector('p').innerHTML;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

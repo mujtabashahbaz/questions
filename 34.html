@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farr's Physics - Chapter 2 Quiz</title>
+    <style>
+        body {
+            background-color: #1a1a1a; /* Black background */
+            color: #f0f0f0; /* White/light-gray text */
+            font-family: 'Arial', sans-serif; /* Clean sans-serif font */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .quiz-container {
+            background-color: #2c2c2c; /* Slightly lighter dark background for container */
+            padding: 30px;
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Soft shadows */
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #00bcd4; /* A light blue for emphasis */
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .quiz-container p {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #b0b0b0;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #444; /* Subtle border */
+            border-radius: 8px;
+            background-color: #3a3a3a; /* Darker background for individual questions */
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .question p {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: #f0f0f0;
+            text-align: left; /* Align question text left */
+        }
+
+        .question label {
+            display: inline-flex; /* Use flex for alignment */
+            align-items: center;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+            background-color: #4a4a4a;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            color: #e0e0e0;
+            font-weight: bold;
+        }
+
+        .question label:hover {
+            background-color: #5a5a5a;
+            transform: translateY(-1px); /* Slight lift on hover */
+        }
+
+        .question input[type="radio"] {
+            margin-right: 8px; /* Space between radio button and text */
+            transform: scale(1.1); /* Slightly larger radio buttons */
+        }
+
+        .question input[type="radio"]:checked + label {
+            background-color: #555; /* Darker background when checked */
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none; /* Hidden by default */
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .feedback.correct {
+            background-color: #28a745; /* Green for correct */
+            color: white;
+        }
+
+        .feedback.incorrect {
+            background-color: #dc3545; /* Red for incorrect */
+            color: white;
+        }
+        
+        details {
+            margin-top: 10px;
+            background-color: #444;
+            border-radius: 5px;
+            overflow: hidden; /* Ensures inner content respects border-radius */
+            border: 1px solid #555;
+        }
+
+        summary {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #555;
+            color: #c0c0c0;
+            font-weight: bold;
+            border-bottom: 1px solid #666;
+            transition: background-color 0.2s ease;
+        }
+
+        summary:hover {
+            background-color: #6a6a6a;
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid #777;
+        }
+
+        details p {
+            padding: 10px;
+            margin: 0;
+            color: #e0e0e0;
+            text-align: left; /* Align explanation text left */
+            font-size: 0.95em;
+        }
+
+        .citation {
+            font-size: 0.85em;
+            color: #bbb;
+            display: block; /* Ensures citation is on its own line */
+            margin-top: 5px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        #resetQuiz {
+            background-color: #007bff; /* Blue for reset button */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        #resetQuiz:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px); /* Lift effect */
+        }
+
+        #resetQuiz:active {
+            transform: translateY(0); /* Press effect */
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Farr's Physics for Medical Imaging: Chapter 2 Quiz</h1>
+        <p>Test your knowledge on Radiation Hazards and Protection. Select True or False for each statement. Feedback and explanations will appear immediately!</p>
+
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question" data-correct-answer="True">
+                <p>1. Ionising radiation is particularly hazardous to tissue because its interactions occur on the atomic scale.</p>
+                <input type="radio" id="q1_true" name="q1" value="True">
+                <label for="q1_true">True</label>
+                <input type="radio" id="q1_false" name="q1" value="False">
+                <label for="q1_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: True</strong><br>
+                    The source states that ionising radiation is particularly hazardous to tissue because its interactions occur on the atomic scale, enabling it to cause significant damage.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" data-correct-answer="False">
+                <p>2. The energy generated by the ionisation of a single atom is roughly equivalent to the energy of a hydrogen bond in DNA.</p>
+                <input type="radio" id="q2_true" name="q2" value="True">
+                <label for="q2_true">True</label>
+                <input type="radio" id="q2_false" name="q2" value="False">
+                <label for="q2_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: False</strong><br>
+                    The ionisation of a single atom generates approximately 35 eV of energy, which is significantly greater than the 0.4 eV of a hydrogen bond in DNA.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" data-correct-answer="False">
+                <p>3. Ionisation events, which can cause significant damage, are most common when X-rays interact with tissue.</p>
+                <input type="radio" id="q3_true" name="q3" value="True">
+                <label for="q3_true">True</label>
+                <input type="radio" id="q3_false" name="q3" value="False">
+                <label for="q3_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: False</strong><br>
+                    Ionisation events are common with alpha particles, less common with beta particles, and rare when gamma or X-rays interact with tissue.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" data-correct-answer="False">
+                <p>4. In medical imaging applications, radiation doses typically encountered are on the order of Grays (Gy).</p>
+                <input type="radio" id="q4_true" name="q4" value="True">
+                <label for="q4_true">True</label>
+                <input type="radio" id="q4_false" name="q4" value="False">
+                <label for="q4_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: False</strong><br>
+                    In medical imaging, doses are generally on the order of mGy or µGy, while 1 Gy is a high dose typically found in radiotherapy for tissue destruction.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" data-correct-answer="False">
+                <p>5. X-rays are classified as high-LET radiation, causing damage to both DNA strands.</p>
+                <input type="radio" id="q5_true" name="q5" value="True">
+                <label for="q5_true">True</label>
+                <input type="radio" id="q5_false" name="q5" value="False">
+                <label for="q5_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: False</strong><br>
+                    X-rays are low-LET radiation (0.2-10 keV/mm), typically damaging only a single DNA strand, which the body can more readily repair. High-LET radiation like alpha particles and neutrons cause double-strand damage.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question" data-correct-answer="False">
+                <p>6. Alpha particles have a radiation weighting factor (wR) of 1, similar to X-rays and gamma rays.</p>
+                <input type="radio" id="q6_true" name="q6" value="True">
+                <label for="q6_true">True</label>
+                <input type="radio" id="q6_false" name="q6" value="False">
+                <label for="q6_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: False</strong><br>
+                    Alpha particles have a wR of 20, whereas X-rays and gamma rays have a wR of 1, indicating alpha particles are significantly more effective at causing biological damage per unit of absorbed dose.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question" data-correct-answer="False">
+                <p>7. Alpha particles pose a significant external hazard due to their deep skin penetration.</p>
+                <input type="radio" id="q7_true" name="q7" value="True">
+                <label for="q7_true">True</label>
+                <input type="radio" id="q7_false" name="q7" value="False">
+                <label for="q7_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: False</strong><br>
+                    Alpha particles do not penetrate far through the skin, so they do not present a great external hazard. However, they can cause considerable internal damage if ingested or inhaled.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question" data-correct-answer="False">
+                <p>8. Tissue repair mechanisms are more effective at repairing DNA damage at high radiation dose rates.</p>
+                <input type="radio" id="q8_true" name="q8" value="True">
+                <label for="q8_true">True</label>
+                <input type="radio" id="q8_false" name="q8" value="False">
+                <label for="q8_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: False</strong><br>
+                    At low dose rates, tissue repair mechanisms can repair DNA damage effectively. However, at higher dose rates, cumulative damage can defeat these mechanisms, making cell death more likely.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question" data-correct-answer="False">
+                <p>9. Bone marrow is considered to have a low radiosensitivity.</p>
+                <input type="radio" id="q9_true" name="q9" value="True">
+                <label for="q9_true">True</label>
+                <input type="radio" id="q9_false" name="q9" value="False">
+                <label for="q9_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: False</strong><br>
+                    Bone marrow is listed as having high radiosensitivity due to its high rate of cell division. Tissues with slower cell division, like muscle or bone, have lower radiosensitivity.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question" data-correct-answer="False">
+                <p>10. The majority of the average person's annual background radiation exposure in the UK comes from medical exposures.</p>
+                <input type="radio" id="q10_true" name="q10" value="True">
+                <label for="q10_true">True</label>
+                <input type="radio" id="q10_false" name="q10" value="False">
+                <label for="q10_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: False</strong><br>
+                    Of the average 2.7 mSv per year from background radiation in the UK, approximately 2.3 mSv comes from natural sources (cosmic, terrestrial, radon, food), with the remainder from medical exposures.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question" data-correct-answer="True">
+                <p>11. Radon gas is a significant contributor to the average person's annual background radiation exposure in the UK.</p>
+                <input type="radio" id="q11_true" name="q11" value="True">
+                <label for="q11_true">True</label>
+                <input type="radio" id="q11_false" name="q11" value="False">
+                <label for="q11_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: True</strong><br>
+                    Radon, an alpha-particle emitter, accounts for around 50% of an average person’s annual background exposure in the UK.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question" data-correct-answer="False">
+                <p>12. Deterministic effects of radiation exposure occur many years after exposure and do not have a threshold dose.</p>
+                <input type="radio" id="q12_true" name="q12" value="True">
+                <label for="q12_true">True</label>
+                <input type="radio" id="q12_false" name="q12" value="False">
+                <label for="q12_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: False</strong><br>
+                    Deterministic effects, also known as tissue effects, occur rapidly (hours to weeks) after exposure to high doses of radiation and generally occur above a threshold dose.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question" data-correct-answer="True">
+                <p>13. Skin erythema is an example of a deterministic effect that can occur at doses of 2-5 Gy.</p>
+                <input type="radio" id="q13_true" name="q13" value="True">
+                <label for="q13_true">True</label>
+                <input type="radio" id="q13_false" name="q13" value="False">
+                <label for="q13_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: True</strong><br>
+                    Skin erythema is a direct deterministic effect that occurs at doses of around 2-5 Gy [111, 112t].
+                    <span class="citation">[111, 112t]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question" data-correct-answer="False">
+                <p>14. Cataracts in the lens of the eye are a stochastic effect with no clear threshold dose.</p>
+                <input type="radio" id="q14_true" name="q14" value="True">
+                <label for="q14_true">True</label>
+                <input type="radio" id="q14_false" name="q14" value="False">
+                <label for="q14_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: False</strong><br>
+                    Cataracts are a deterministic effect, occurring at doses over 2 Gy, and are cumulative [113, 112t].
+                    <span class="citation">[113, 112t]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question" data-correct-answer="False">
+                <p>15. According to the Linear No-Threshold (LNT) model, there is a safe dose of radiation below which no stochastic effects will occur.</p>
+                <input type="radio" id="q15_true" name="q15" value="True">
+                <label for="q15_true">True</label>
+                <input type="radio" id="q15_false" name="q15" value="False">
+                <label for="q15_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: False</strong><br>
+                    The LNT model, recommended by ICRP for risk calculation, implies that there is no safe dose of radiation, meaning any exposure carries some risk, however small.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question" data-correct-answer="False">
+                <p>16. Effective dose can be directly measured for individual patients to precisely determine their radiation risk.</p>
+                <input type="radio" id="q16_true" name="q16" value="True">
+                <label for="q16_true">True</label>
+                <input type="radio" id="q16_false" name="q16" value="False">
+                <label for="q16_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: False</strong><br>
+                    Effective dose can only be computed using mathematical modeling techniques and conversion coefficients; it cannot be measured directly, and its accuracy for an individual patient is around ±50%.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question" data-correct-answer="False">
+                <p>17. Dose limits for specific organs, like the lens of the eye, are defined using the effective dose.</p>
+                <input type="radio" id="q17_true" name="q17" value="True">
+                <label for="q17_true">True</label>
+                <input type="radio" id="q17_false" name="q17" value="False">
+                <label for="q17_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: False</strong><br>
+                    Dose limits for particular organs (e.g., fingers, lens of the eye) are defined using the equivalent dose, whereas effective dose is used for whole-body exposures.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question" data-correct-answer="False">
+                <p>18. For employees over 18 years of age, the annual whole-body effective dose limit is 6 mSv.</p>
+                <input type="radio" id="q18_true" name="q18" value="True">
+                <label for="q18_true">True</label>
+                <input type="radio" id="q18_false" name="q18" value="False">
+                <label for="q18_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: False</strong><br>
+                    The annual whole-body effective dose limit for employees over 18 years is 20 mSv. The 6 mSv limit applies to trainees under 18.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question" data-correct-answer="False">
+                <p>19. An area is designated as a controlled area if any person working there is likely to receive an effective dose greater than 1 mSv per year.</p>
+                <input type="radio" id="q19_true" name="q19" value="True">
+                <label for="q19_true">True</label>
+                <input type="radio" id="q19_false" name="q19" value="False">
+                <label for="q19_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: False</strong><br>
+                    An area is designated as a controlled area if the effective dose is likely to exceed 6 mSv per year. An effective dose greater than 1 mSv per year indicates a supervised area.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question" data-correct-answer="False">
+                <p>20. The Ionising Radiation (Medical Exposure) Regulations (IR(ME)R) 2017 primarily focuses on protecting staff and the public from ionising radiation.</p>
+                <input type="radio" id="q20_true" name="q20" value="True">
+                <label for="q20_true">True</label>
+                <input type="radio" id="q20_false" name="q20" value="False">
+                <label for="q20_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct answer: False</strong><br>
+                    The IR(ME)R 2017 is the fundamental legislation for protecting the **patient**, based on the principles of justification and optimisation. The Ionising Radiation Regulations (IRR) 2017 deal with the protection of staff and the public.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="button-container">
+        <button id="resetQuiz">Reset Quiz</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const questions = quizForm.querySelectorAll('.question');
+            const resetButton = document.getElementById('resetQuiz');
+
+            questions.forEach(questionDiv => {
+                const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                const feedbackDiv = questionDiv.querySelector('.feedback');
+                const explanationDetails = questionDiv.querySelector('details');
+                const explanationParagraph = explanationDetails.querySelector('p');
+                const correctAnswer = questionDiv.dataset.correctAnswer;
+
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', (event) => {
+                        const selectedAnswer = event.target.value;
+
+                        // Display feedback
+                        feedbackDiv.style.display = 'block';
+                        if (selectedAnswer === correctAnswer) {
+                            feedbackDiv.textContent = 'Correct!';
+                            feedbackDiv.classList.add('correct');
+                            feedbackDiv.classList.remove('incorrect');
+                            explanationParagraph.innerHTML = `<strong>Correct answer: ${correctAnswer}</strong><br>` + explanationParagraph.innerHTML.substring(explanationParagraph.innerHTML.indexOf('<br>') + 4);
+                        } else {
+                            feedbackDiv.textContent = 'Incorrect!';
+                            feedbackDiv.classList.add('incorrect');
+                            feedbackDiv.classList.remove('correct');
+                            explanationParagraph.innerHTML = `<strong>Correct answer: ${correctAnswer}</strong> (You chose ${selectedAnswer})<br>` + explanationParagraph.innerHTML.substring(explanationParagraph.innerHTML.indexOf('<br>') + 4);
+                        }
+
+                        // Expand explanation
+                        explanationDetails.open = true;
+
+                        // Disable radio buttons for this question
+                        radioButtons.forEach(rb => {
+                            rb.disabled = true;
+                        });
+                    });
+                });
+            });
+
+            resetButton.addEventListener('click', () => {
+                questions.forEach(questionDiv => {
+                    const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    const explanationDetails = questionDiv.querySelector('details');
+
+                    // Uncheck radio buttons
+                    radioButtons.forEach(radio => {
+                        radio.checked = false;
+                        radio.disabled = false; // Re-enable radio buttons
+                    });
+
+                    // Reset feedback
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.textContent = '';
+                    feedbackDiv.classList.remove('correct', 'incorrect');
+
+                    // Collapse explanation
+                    explanationDetails.open = false;
+
+                    // Restore original explanation text (without "You chose...")
+                    const originalExplanation = explanationDetails.querySelector('p').innerHTML;
+                    explanationDetails.querySelector('p').innerHTML = originalExplanation.replace(/\(You chose .*?\)<br>/, '<br>');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

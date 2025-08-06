@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics for Medical Imaging Quiz - Chapter 3</title>
+    <style>
+        body {
+            background-color: #1a1a1a; /* Black background */
+            color: #f0f0f0; /* White/light-gray text */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Clean sans-serif font */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top */
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .quiz-container {
+            background-color: #2c2c2c; /* Darker gray for container */
+            padding: 30px;
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Soft shadows */
+            max-width: 800px;
+            width: 100%;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #a0c0ff; /* Light blue heading */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .quiz-container > p {
+            line-height: 1.6;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #d0d0d0;
+        }
+
+        .question {
+            background-color: #3b3b3b; /* Slightly lighter gray for questions */
+            padding: 18px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease; /* Smooth transition for hover */
+        }
+
+        .question:hover {
+            transform: translateY(-3px); /* Subtle lift on hover */
+        }
+
+        .question p {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #e0e0e0; /* Lighter text for questions */
+        }
+
+        input[type="radio"] {
+            margin-right: 8px;
+            transform: scale(1.1); /* Slightly larger radio buttons */
+            cursor: pointer;
+        }
+
+        label {
+            margin-right: 20px;
+            cursor: pointer;
+            color: #d0d0d0;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+        }
+
+        .feedback.correct {
+            background-color: #4CAF50; /* Green */
+            color: #fff;
+        }
+
+        .feedback.incorrect {
+            background-color: #f44336; /* Red */
+            color: #fff;
+        }
+
+        .feedback.neutral {
+            background-color: #2196F3; /* Blue */
+            color: #fff;
+        }
+
+        details {
+            margin-top: 10px;
+            background-color: #4a4a4a; /* Darker background for details */
+            border-radius: 6px;
+            overflow: hidden; /* Ensures rounded corners are visible */
+        }
+
+        summary {
+            padding: 10px 12px;
+            cursor: pointer;
+            color: #b0d0ff; /* Light blue for summary text */
+            font-weight: bold;
+            outline: none; /* Remove default focus outline */
+            transition: background-color 0.3s ease;
+        }
+
+        summary:hover {
+            background-color: #5a5a5a; /* Slightly lighter on hover */
+        }
+
+        details[open] summary {
+            background-color: #5a5a5a;
+        }
+
+        details p {
+            padding: 10px 12px 12px;
+            margin: 0;
+            background-color: #3f3f3f; /* Even darker for explanation text */
+            border-top: 1px solid #555;
+            font-size: 0.9em;
+            color: #c0c0c0;
+        }
+
+        .citation {
+            font-style: italic;
+            font-size: 0.8em;
+            color: #999;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: #007bff; /* Blue button */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Farr's Physics for Medical Imaging Quiz</h1>
+        <p><strong>Chapter 3: X-Ray Imaging - True/False Questions</strong></p>
+
+        <form id="quizForm">
+            <div class="question" data-correct-answer="False">
+                <p>1. X-rays are produced when fast-moving electrons interact with a metal target, converting approximately 99% of kinetic energy into X-rays and 1% into heat.</p>
+                <label><input type="radio" name="q1" value="True"> True</label>
+                <label><input type="radio" name="q1" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: False.</strong>
+                        Approximately 1% of the kinetic energy is converted into X-rays, while about 99% is converted into heat.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>2. The tungsten filament within the cathode of an X-ray tube is heated until incandescent to enable thermionic emission.</p>
+                <label><input type="radio" name="q2" value="True"> True</label>
+                <label><input type="radio" name="q2" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True.</strong>
+                        Thermionic emission, the process of releasing free electrons from a metal surface, is achieved by heating the tungsten filament until it glows brightly (incandescent).
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>3. A larger focal spot size is generally used to minimize geometric and movement unsharpness in X-ray production.</p>
+                <label><input type="radio" name="q3" value="True"> True</label>
+                <label><input type="radio" name="q3" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: False.</strong>
+                        To minimize geometric and movement unsharpness, the focal spot size should be as small as possible.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>4. The anode heel effect means that the intensity of the X-ray beam is greatest towards the anode edge of the field.</p>
+                <label><input type="radio" name="q4" value="True"> True</label>
+                <label><input type="radio" name="q4" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: False.</strong>
+                        Due to the anode heel effect, X-rays travelling towards the anode edge of the field are attenuated more, resulting in decreased intensity compared to the cathode edge. Therefore, the intensity is greatest towards the cathode.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>5. An air gap between the patient and the image detector plate reduces scatter, but it also produces a magnified image.</p>
+                <label><input type="radio" name="q5" value="True"> True</label>
+                <label><input type="radio" name="q5" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True.</strong>
+                        An air gap increases the distance secondary radiation has to travel, reducing scatter reaching the detector. However, by increasing the distance between the object and the detector, it also results in image magnification.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>6. For computed radiography (CR) systems, the photostimulable phosphor plate is commonly composed of barium fluorohalide doped with europium.</p>
+                <label><input type="radio" name="q6" value="True"> True</label>
+                <label><input type="radio" name="q6" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True.</strong>
+                        This specific chemical composition (BaFX:Eu) is used in CR phosphor plates to store the energy from incident X-rays, which is then released as light upon laser scanning.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>7. The spatial resolution of computed radiography (CR) is generally superior to that of analogue film-screen radiography.</p>
+                <label><input type="radio" name="q7" value="True"> True</label>
+                <label><input type="radio" name="q7" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: False.</strong>
+                        CR systems typically have lower spatial resolution compared to analogue film-screen radiography.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>8. In direct conversion digital radiography (DR), incident X-ray photons are first converted into light photons, which are then converted into an electronic signal.</p>
+                <label><input type="radio" name="q8" value="True"> True</label>
+                <label><input type="radio" name="q8" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: False.</strong>
+                        Direct conversion DR systems convert X-ray photons directly into an electrical signal, without an intermediate light conversion step. This intermediate step occurs in indirect conversion systems.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>9. For image processing in digital radiography, auto-ranging is a manual process where the user defines the histogram analysis.</p>
+                <label><input type="radio" name="q9" value="True"> True</label>
+                <label><input type="radio" name="q9" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: False.</strong>
+                        Auto-ranging is an automated process that analyzes the image histogram to optimize display contrast and brightness by excluding extreme values.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>10. Increasing the number of X-rays (N) detected can increase the signal-to-noise ratio (SNR) in an X-ray image.</p>
+                <label><input type="radio" name="q10" value="True"> True</label>
+                <label><input type="radio" name="q10" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True.</strong>
+                        A higher number of detected photons (N) reduces quantum mottle, which is a form of noise, thereby increasing the signal-to-noise ratio.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>11. For mammography, the anode heel effect is utilized by positioning the chest wall side towards the cathode edge of the X-ray source.</p>
+                <label><input type="radio" name="q11" value="True"> True</label>
+                <label><input type="radio" name="q11" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True.</strong>
+                        In mammography, the chest wall side, which is thicker, is positioned towards the cathode of the X-ray tube to take advantage of the anode heel effect, as the beam intensity is higher on the cathode side.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>12. The most common target material in mammography X-ray tubes is tungsten.</p>
+                <label><input type="radio" name="q12" value="True"> True</label>
+                <label><input type="radio" name="q12" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: False.</strong>
+                        While tungsten is common in general X-ray tubes, molybdenum is the most common target material in mammography due to its ability to produce low-keV characteristic X-rays suitable for breast tissue imaging.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>13. In fluoroscopy, the image intensifier converts electrons back into light using a zinc cadmium sulphide doped with silver (ZnCdS:Ag) material at the output screen.</p>
+                <label><input type="radio" name="q13" value="True"> True</label>
+                <label><input type="radio" name="q13" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True.</strong>
+                        The output screen of an image intensifier uses ZnCdS:Ag to convert the accelerated electrons into visible light for image display.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>14. Pulsed fluoroscopy, used in angiographic imaging, reduces the patient dose rate compared to continuous fluoroscopy.</p>
+                <label><input type="radio" name="q14" value="True"> True</label>
+                <label><input type="radio" name="q14" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True.</strong>
+                        By switching the X-ray generator on and off to supply pulses, pulsed fluoroscopy significantly reduces the overall exposure time and thus the dose rate to the patient compared to continuous fluoroscopy.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>15. In digital subtraction angiography (DSA), a non-contrast mask image is acquired and then *added* pixel by pixel to subsequent contrast images to enhance contrast-filled vessels.</p>
+                <label><input type="radio" name="q15" value="True"> True</label>
+                <label><input type="radio" name="q15" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: False.</strong>
+                        In DSA, the non-contrast mask image is *subtracted* pixel by pixel from the contrast images to isolate and highlight the contrast-filled vessels, removing static background structures.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>16. In conventional X-ray rooms, the room is sealed during radiograph acquisition to prevent any scattered radiation from escaping.</p>
+                <label><input type="radio" name="q16" value="True"> True</label>
+                <label><input type="radio" name="q16" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True.</strong>
+                        Sealing the room ensures that scattered radiation from the X-ray exposure is contained within the lead-lined room, protecting personnel and adjacent areas.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>17. The grid ratio in X-ray imaging represents the width:depth (w:d) of the lead strips to the interspace material.</p>
+                <label><input type="radio" name="q17" value="True"> True</label>
+                <label><input type="radio" name="q17" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: False.</strong>
+                        The grid ratio is defined as the depth (d) of the lead strips to the width (w) of the interspace material.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>18. The contrast improvement factor for a grid is typically a value between 2 and 4.</p>
+                <label><input type="radio" name="q18" value="True"> True</label>
+                <label><input type="radio" name="q18" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True.</strong>
+                        This factor quantifies how much a grid improves image contrast by absorbing scattered radiation, and values between 2 and 4 are typical.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>19. When using a computed radiography (CR) reader, photomultiplier tubes are used to measure the light intensity emitted from the scanned plate.</p>
+                <label><input type="radio" name="q19" value="True"> True</label>
+                <label><input type="radio" name="q19" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True.</strong>
+                        Photomultiplier tubes (PMTs) are crucial components in CR readers, converting the light emitted by the phosphor plate into an electrical signal for digital image formation.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>20. The effective focal spot in an X-ray tube refers to the area over which heat is produced and determines the tube rating.</p>
+                <label><input type="radio" name="q20" value="True"> True</label>
+                <label><input type="radio" name="q20" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: False.</strong>
+                        The actual focal spot is the area where heat is produced and determines the tube rating, while the effective focal spot is the apparent beam area exiting the tube.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const questions = quizForm.querySelectorAll('.question');
+            const resetButton = document.getElementById('resetQuiz');
+
+            questions.forEach(questionDiv => {
+                const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                const feedbackDiv = questionDiv.querySelector('.feedback');
+                const detailsElement = questionDiv.querySelector('details');
+                const explanationParagraph = detailsElement.querySelector('p');
+                const correctAnswer = questionDiv.dataset.correctAnswer;
+
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', (event) => {
+                        const selectedAnswer = event.target.value;
+                        let userWasRight = false;
+
+                        // Clear previous feedback classes
+                        feedbackDiv.classList.remove('correct', 'incorrect', 'neutral');
+
+                        if (selectedAnswer === correctAnswer) {
+                            feedbackDiv.textContent = "Correct! Well done.";
+                            feedbackDiv.classList.add('correct');
+                            userWasRight = true;
+                        } else {
+                            feedbackDiv.textContent = "Incorrect. Please review the explanation.";
+                            feedbackDiv.classList.add('incorrect');
+                        }
+
+                        // Update explanation text with user's correctness
+                        const citationSpan = explanationParagraph.querySelector('.citation');
+                        let newExplanationText = explanationParagraph.innerHTML.split('<br>').split('<span').trim(); // Get original text without user feedback or citation
+
+                        explanationParagraph.innerHTML = `
+                            ${newExplanationText}
+                            <br><strong>Your Answer:</strong> ${selectedAnswer}. You were ${userWasRight ? 'right' : 'wrong'}.
+                            ${citationSpan ? citationSpan.outerHTML : ''}
+                        `;
+
+                        feedbackDiv.style.display = 'block'; // Show feedback
+                        detailsElement.open = true; // Open explanation
+
+                        // Disable all radio buttons for this question after selection
+                        radioButtons.forEach(rb => rb.disabled = true);
+                    });
+                });
+            });
+
+            resetButton.addEventListener('click', () => {
+                questions.forEach(questionDiv => {
+                    const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    const detailsElement = questionDiv.querySelector('details');
+                    const explanationParagraph = detailsElement.querySelector('p');
+
+                    // Reset radio buttons
+                    radioButtons.forEach(radio => {
+                        radio.checked = false;
+                        radio.disabled = false; // Enable them
+                    });
+
+                    // Hide feedback
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.textContent = '';
+                    feedbackDiv.classList.remove('correct', 'incorrect', 'neutral');
+
+                    // Close details
+                    detailsElement.open = false;
+
+                    // Restore original explanation text
+                    const citationSpan = explanationParagraph.querySelector('.citation');
+                    const originalTextParts = explanationParagraph.innerHTML.split('<br>').split('<strong>Your Answer:</strong>').trim();
+                    explanationParagraph.innerHTML = `
+                        ${originalTextParts}
+                        ${citationSpan ? citationSpan.outerHTML : ''}
+                    `;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

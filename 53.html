@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRCR Part 1 Physics Quiz - Chapter 5</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 20px 0;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        .quiz-container {
+            background-color: #2a2a2a;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #7fffd4; /* Aqua color */
+            margin-bottom: 15px;
+            font-size: 2.2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .intro-text {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #b0b0b0;
+        }
+
+        .question {
+            background-color: #333;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid #444;
+            position: relative;
+        }
+
+        .question p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            line-height: 1.5;
+            color: #e0e0e0;
+        }
+
+        .question label {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            color: #c0c0c0;
+            transition: color 0.2s ease;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 8px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        .question label:hover {
+            color: #7fffd4;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .feedback.correct {
+            background-color: rgba(0, 255, 0, 0.2);
+            color: #4CAF50;
+        }
+
+        .feedback.incorrect {
+            background-color: rgba(255, 0, 0, 0.2);
+            color: #F44336;
+        }
+
+        details {
+            margin-top: 15px;
+            background-color: #444;
+            border-radius: 6px;
+            padding: 10px 15px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+            border: 1px solid #555;
+        }
+
+        summary {
+            font-weight: bold;
+            color: #7fffd4;
+            cursor: pointer;
+            padding: 5px 0;
+            outline: none;
+        }
+
+        details p {
+            margin-top: 10px;
+            line-height: 1.5;
+            color: #d0d0d0;
+        }
+
+        .citation {
+            font-size: 0.85em;
+            color: #888;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #resetQuiz {
+            background-color: #6a5acd; /* MediumSlateBlue */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #resetQuiz:hover {
+            background-color: #483d8b; /* DarkSlateBlue */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        #resetQuiz:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>FRCR Part 1 Radiology Physics Quiz</h1>
+        <p class="intro-text">
+            Test your deep understanding of Nuclear Imaging, specifically Chapter 5 of "Farr's Physics for Medical Imaging, 3rd edition," with these 20 challenging True/False questions.
+        </p>
+
+        <form id="quizForm">
+            <div class="question" data-correct-answer="False">
+                <p>1. Low-energy high-resolution (LEHR) collimators achieve superior spatial resolution primarily by having wider septa compared to low-energy general-purpose (LEGP) collimators.</p>
+                <label><input type="radio" name="q1" value="True"> True</label>
+                <label><input type="radio" name="q1" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        LEHR collimators achieve better spatial resolution by having narrower holes, which improves their ability to distinguish closely spaced sources. Thicker septa are designed for higher energy photons (like <sup>131</sup>I) to prevent septal penetration, not primarily to improve resolution for low-energy isotopes like <sup>99m</sup>Tc.
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>2. A 12 mm thick NaI(Tl) scintillation crystal would generally provide better intrinsic spatial resolution than a 9 mm thick crystal in a gamma camera system.</p>
+                <label><input type="radio" name="q2" value="True"> True</label>
+                <label><input type="radio" name="q2" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        A thicker NaI(Tl) crystal (e.g., 12 mm vs. 9 mm) leads to worse intrinsic spatial resolution. This is due to a greater variation in the depth at which scintillations occur and a higher probability of multiple Compton scatter events within the crystal, which spreads the light distribution among the photomultiplier tubes (PMTs).
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>3. The amplification (gain) of a photomultiplier tube (PMT) is solely dependent on the intensity of the incident light photons it receives.</p>
+                <label><input type="radio" name="q3" value="True"> True</label>
+                <label><input type="radio" name="q3" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        While the amount of light received does influence the signal, the amplification (gain) of a PMT is primarily and strongly influenced by the high voltage applied to its internal dynodes, which accelerate and multiply the electrons.
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>4. Using a narrower photopeak acceptance window in pulse height analysis (PHA) for <sup>99m</sup>Tc imaging will always result in improved image contrast without any reduction in sensitivity.</p>
+                <label><input type="radio" name="q4" value="True"> True</label>
+                <label><input type="radio" name="q4" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        Narrower photopeak windows do help exclude more scattered radiation, which improves image contrast. However, they also inevitably reduce the overall sensitivity of the gamma camera as fewer photopeak events (unscattered photons) are accepted for image formation.
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>5. Cadmium-zinc-telluride (CZT) solid-state detectors fully replace scintillation crystals in modern digital PET systems due to their superior stopping power for 511-keV photons.</p>
+                <label><input type="radio" name="q5" value="True"> True</label>
+                <label><input type="radio" name="q5" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        In digital PET systems, CZT detectors replace the photomultiplier tubes (PMTs) and improve light detection, but the *scintillation crystals* themselves (e.g., LSO/LYSO) are *maintained*. This is because solid-state detectors alone generally have insufficient stopping power for the high-energy 511-keV annihilation photons.
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>6. Modern gamma cameras featuring circular gantries typically allow for unlimited continuous rotation during tomographic imaging due to slip-ring technology.</p>
+                <label><input type="radio" name="q6" value="True"> True</label>
+                <label><input type="radio" name="q6" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        While slip-ring technology significantly enhances rotational flexibility, enabling continuous data acquisition, it is not truly unlimited. Most systems are designed to rotate "up to 540° before the system must be reset to the origin position".
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>7. Spatial non-linearity corrections in gamma cameras are performed periodically as part of daily quality control, as these distortions can change over time due to environmental factors.</p>
+                <label><input type="radio" name="q7" value="True"> True</label>
+                <label><input type="radio" name="q7" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        Spatial non-linearity (and energy variations) are inherent to the camera's physical construction and "do not vary in time." Therefore, they are measured once in the factory and corrected in real-time using pre-defined look-up tables; they are not part of routine daily quality control.
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>8. The overall system spatial resolution of a gamma camera is always better than the intrinsic spatial resolution of its detector, because the collimator significantly improves overall image sharpness.</p>
+                <label><input type="radio" name="q8" value="True"> True</label>
+                <label><input type="radio" name="q8" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        The system resolution (R<sub>S</sub>) is derived from the sum of squares of its components (R<sub>S</sub><sup>2</sup> = R<sub>I</sub><sup>2</sup> + R<sub>C</sub><sup>2</sup>), meaning the system resolution is always *worse* than the best individual component. The collimator, while crucial for image formation, actually *degrades* the intrinsic resolution in the overall system resolution calculation due to its own inherent limitations.
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>9. For a parallel-hole collimator, the measured sensitivity significantly decreases as the distance between the radioactive source and the collimator face increases.</p>
+                <label><input type="radio" name="q9" value="True"> True</label>
+                <label><input type="radio" name="q9" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        For parallel-hole collimators, the sensitivity remains "approximately constant" with distance. This is because the decrease in detected gamma photons from a point source (due to the inverse square law) is compensated by the increasing number of collimator holes that the photons can pass through as the distance from the source increases.
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>10. In cardiac gated nuclear imaging, a higher number of frames per cardiac cycle (e.g., 32 frames) leads to higher temporal resolution and reduced image noise.</p>
+                <label><input type="radio" name="q10" value="True"> True</label>
+                <label><input type="radio" name="q10" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        A higher number of frames (e.g., 32 vs. 16 or 8) *does* lead to higher temporal resolution because the cardiac cycle is divided into more discrete time bins. However, this also means there are fewer counts per frame, resulting in *increased* image noise due to reduced signal-to-noise ratio in each individual frame.
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>11. To maximize image spatial resolution in planar radionuclide imaging, it is generally recommended to use an image matrix with the smallest possible pixel size, regardless of the count density.</p>
+                <label><input type="radio" name="q11" value="True"> True</label>
+                <label><input type="radio" name="q11" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        While a smaller pixel size (larger matrix) can theoretically improve resolution, there is a crucial compromise. It also leads to fewer counts per pixel, which significantly increases image noise. The choice of matrix size depends on the count density in the organ of interest to ensure acceptable image quality and signal-to-noise ratio (SNR).
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>12. Nuclear medicine imaging is often described as "noise-limited" primarily because the signal-to-noise ratio (SNR) is inherently very high due to the large number of administered radioactive counts.</p>
+                <label><input type="radio" name="q12" value="True"> True</label>
+                <label><input type="radio" name="q12" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        Nuclear medicine imaging is described as "noise-limited" precisely because of the *low sensitivity* of the gamma camera system and the *limit on the radiopharmaceutical activity* that may be administered to the patient. This often results in a relatively low number of acquired counts, making random noise a predominant factor in image quality.
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>13. For all SPECT scans, acquiring projection data over a full 360° angular range is always preferred to minimize artifacts and geometrical distortion.</p>
+                <label><input type="radio" name="q13" value="True"> True</label>
+                <label><input type="radio" name="q13" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        While a 360° acquisition generally helps reduce artifacts and geometrical distortion by averaging projections, myocardial perfusion imaging is a specific exception. For cardiac imaging, a 180° angular range is often preferred "due to the amount of scatter present in the projections from the posterior of the patient," which can degrade image quality with a full 360° acquisition.
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>14. The Chang method for attenuation correction in SPECT is universally applicable to all body regions, as it accurately models uniform attenuation across diverse tissues.</p>
+                <label><input type="radio" name="q14" value="True"> True</label>
+                <label><input type="radio" name="q14" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        The Chang method assumes that attenuation is uniform within the object, which is a significant limitation. It is primarily reliable and accurate only in regions like the head, where the attenuation values of different tissues (e.g., grey matter, white matter, CSF) are approximately equal. It is not suitable for regions with heterogeneous attenuation properties.
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>15. Positron Emission Tomography (PET) systems generally exhibit significantly lower sensitivity than Single-Photon Emission Computed Tomography (SPECT) systems due to the higher energy of annihilation photons.</p>
+                <label><input type="radio" name="q15" value="True"> True</label>
+                <label><input type="radio" name="q15" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        PET systems have "much greater sensitivity than SPECT (by a factor of ~100)." This is primarily because PET utilizes thicker detection crystals and does not require physical collimators (which significantly reduce sensitivity in SPECT) due to its annihilation coincidence detection principle.
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>16. The positron range in tissue is a negligible factor in determining the fundamental spatial resolution limit of a PET imaging system.</p>
+                <label><input type="radio" name="q16" value="True"> True</label>
+                <label><input type="radio" name="q16" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        The positron range, which is the distance between the point of emission and the point of annihilation (typically a "few millimeters" in tissue), is explicitly stated to introduce "a fundamental limit to the spatial resolution of a PET imaging system as it can never be less than the positron range". Therefore, it is a significant, not negligible, factor.
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>17. Filtered Back Projection (FBP) is the preferred reconstruction method for clinical PET data due to its computational simplicity and superior noise handling compared to iterative reconstruction (IR) techniques.</p>
+                <label><input type="radio" name="q17" value="True"> True</label>
+                <label><input type="radio" name="q17" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        Clinical PET data is "now generally reconstructed using IR with accelerated algorithms (i.e., OSEM), as these allow the inclusion of all corrections" and "converge to an optimal solution." While FBP is simpler, IR methods are preferred due to their better noise handling and ability to incorporate corrections, despite being computationally more complex.
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>18. PET/MRI systems simplify attenuation correction for PET data because MRI tissue signal directly correlates with 511-keV photon attenuation properties.</p>
+                <label><input type="radio" name="q18" value="True"> True</label>
+                <label><input type="radio" name="q18" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        The source explicitly states that PET/MRI systems make it *more difficult* to attenuation-correct PET data because "there is no clear correlation between MRI tissue signal and attenuation properties for 511-keV photons," unlike CT where Hounsfield Units provide direct attenuation information.
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>19. For nuclear medicine examinations, any additional SPECT acquisitions or CT acquisitions performed after the initial radiopharmaceutical injection do not contribute to the patient's radiation dose, as the radionuclide has already been administered.</p>
+                <label><input type="radio" name="q19" value="True"> True</label>
+                <label><input type="radio" name="q19" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        While additional SPECT acquisitions after the initial injection do not add further patient dose (as the radiopharmaceutical is already administered and decaying), "any CT acquisitions obtained in conjunction with SPECT imaging will add an additional dose, and this must be considered carefully".
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>20. Automated injector systems in PET are primarily beneficial for increasing patient throughput, with minimal impact on staff radiation exposure.</p>
+                <label><input type="radio" name="q20" value="True"> True</label>
+                <label><input type="radio" name="q20" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False.<br>
+                        Automated injector systems in PET offer dual benefits: they can increase patient throughput *and* they "reduce staff exposure and especially minimise finger doses from the handling of active syringes," making their impact on staff radiation exposure significant.
+                    </p>
+                </details>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const questions = document.querySelectorAll('.question');
+            const resetButton = document.getElementById('resetQuiz');
+
+            function checkAnswer(event) {
+                const questionDiv = event.target.closest('.question');
+                const selectedValue = event.target.value;
+                const correctAnswer = questionDiv.dataset.correctAnswer;
+                const feedbackDiv = questionDiv.querySelector('.feedback');
+                const detailsSummary = questionDiv.querySelector('details summary');
+                const detailsContent = questionDiv.querySelector('details p');
+
+                // Disable all radio buttons for this question
+                questionDiv.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.disabled = true;
+                });
+
+                // Determine if correct
+                const isCorrect = (selectedValue === correctAnswer);
+
+                // Update feedback div
+                feedbackDiv.classList.remove('correct', 'incorrect');
+                feedbackDiv.textContent = '';
+                feedbackDiv.style.display = 'block';
+
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.textContent = 'Correct!';
+                } else {
+                    feedbackDiv.classList.add('incorrect');
+                    feedbackDiv.textContent = 'Incorrect!';
+                }
+
+                // Update explanation
+                const explanationText = detailsContent.innerHTML;
+                let userStatus = '';
+                if (isCorrect) {
+                    userStatus = 'You were <strong>Right</strong>.';
+                } else {
+                    userStatus = 'You were <strong>Wrong</strong>.';
+                }
+                detailsContent.innerHTML = `Correct Answer: <strong>${correctAnswer}</strong>.<br>${userStatus}<br>` + explanationText.substring(explanationText.indexOf('<br>') + 4);
+                
+                // Open details for immediate feedback
+                questionDiv.querySelector('details').open = true;
+            }
+
+            questions.forEach(question => {
+                question.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.addEventListener('change', checkAnswer);
+                });
+                // Ensure explanations are hidden by default
+                question.querySelector('details').open = false;
+            });
+
+            resetButton.addEventListener('click', () => {
+                quizForm.reset(); // Clears all selected radio buttons
+                questions.forEach(question => {
+                    // Hide feedback
+                    const feedbackDiv = question.querySelector('.feedback');
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.classList.remove('correct', 'incorrect');
+
+                    // Close explanations
+                    question.querySelector('details').open = false;
+
+                    // Re-enable radio buttons
+                    question.querySelectorAll('input[type="radio"]').forEach(radio => {
+                        radio.disabled = false;
+                    });
+
+                    // Reset explanation text to original
+                    const originalExplanation = question.querySelector('details p').innerHTML;
+                    const defaultText = `Correct Answer: ${question.dataset.correctAnswer}.<br>${originalExplanation.substring(originalExplanation.indexOf('<br>') + 4)}`;
+                    question.querySelector('details p').innerHTML = defaultText;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

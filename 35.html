@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farr's Physics for Medical Imaging: Chapter 6 Quiz</title>
+    <style>
+        body {
+            background-color: #1a1a1a; /* Dark background */
+            color: #f0f0f0; /* Light text */
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .quiz-container {
+            background-color: #2a2a2a;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #e0e0e0;
+            margin-bottom: 15px;
+            font-size: 2.2em;
+        }
+
+        .intro-text {
+            color: #b0b0b0;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .question {
+            background-color: #3a3a3a;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .question p {
+            margin-top: 0;
+            font-size: 1.05em;
+            line-height: 1.5;
+        }
+
+        .question label {
+            display: inline-block;
+            margin-right: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            color: #c0c0c0;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 5px;
+            accent-color: #007bff; /* Accent color for radio buttons */
+            cursor: pointer;
+        }
+
+        .question input[type="radio"]:hover + label {
+            color: #f0f0f0;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.95em;
+        }
+
+        .feedback.correct {
+            background-color: #28a74533; /* Green with transparency */
+            color: #28a745; /* Green */
+            border: 1px solid #28a745;
+        }
+
+        .feedback.incorrect {
+            background-color: #dc354533; /* Red with transparency */
+            color: #dc3545; /* Red */
+            border: 1px solid #dc3545;
+        }
+
+        details {
+            margin-top: 10px;
+            background-color: #4a4a4a;
+            border-radius: 5px;
+            padding: 10px;
+            color: #a0a0ff; /* Blue for explanation text */
+            font-size: 0.9em;
+        }
+
+        details summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #e0e0ff; /* Lighter blue for summary text */
+            transition: color 0.2s ease-in-out;
+        }
+
+        details summary:hover {
+            color: #fff;
+        }
+
+        details p {
+            margin-top: 10px;
+            margin-bottom: 0;
+            color: #b0b0e0; /* Slightly desaturated blue for explanation details */
+        }
+
+        .citation {
+            font-style: italic;
+            font-size: 0.85em;
+            color: #808080;
+        }
+
+        .button-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        #resetQuiz {
+            background-color: #007bff; /* Blue button */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        #resetQuiz:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
+        }
+
+        #resetQuiz:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>MRI Physics Quiz: Chapter 6</h1>
+        <p class="intro-text">
+            Test your knowledge of Magnetic Resonance Imaging (MRI) safety, signal principles, and image characteristics based on *Farr's Physics for Medical Imaging, 3rd edition – Chapter 6*.
+            Select True or False for each statement, and immediate feedback will be provided.
+        </p>
+
+        <form id="quizForm">
+            <div class="question" data-correct-answer="False">
+                <p>1. Most clinical MRI scanners primarily utilize permanent magnet designs for their strong magnetic fields.</p>
+                <input type="radio" id="q1_true" name="q1" value="True">
+                <label for="q1_true">True</label>
+                <input type="radio" id="q1_false" name="q1" value="False">
+                <label for="q1_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: False.
+                        <br>You were <span class="result"></span>.
+                        <br>The sources state that most clinical MRI scanners use a **superconducting magnet design**, as permanent and resistive magnets are limited in the magnetic field strength they can achieve [6, p. 124].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>2. During a quench, the liquid helium that turns into gas is not potentially dangerous as it does not displace oxygen.</p>
+                <input type="radio" id="q2_true" name="q2" value="True">
+                <label for="q2_true">True</label>
+                <input type="radio" id="q2_false" name="q2" value="False">
+                <label for="q2_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: False.
+                        <br>You were <span class="result"></span>.
+                        <br>The source explicitly states that the gas produced during a quench **can displace oxygen, making it potentially dangerous** [6, p. 124].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>3. The main magnet (B0) in an MRI scanner is always present and poses hazards even when the scanner is not actively scanning patients.</p>
+                <input type="radio" id="q3_true" name="q3" value="True">
+                <label for="q3_true">True</label>
+                <input type="radio" id="q3_false" name="q3" value="False">
+                <label for="q3_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: True.
+                        <br>You were <span class="result"></span>.
+                        <br>The magnetic field of superconducting magnets, once created, is **always present**, and thus the associated hazards are also always present [6, p. 124].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>4. The MR Environment is defined as the volume surrounding the MRI scanner that includes both the 0.5 mT magnetic-field contour and the Faraday shielded volume.</p>
+                <input type="radio" id="q4_true" name="q4" value="True">
+                <label for="q4_true">True</label>
+                <input type="radio" id="q4_false" name="q4" value="False">
+                <label for="q4_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: True.
+                        <br>You were <span class="result"></span>.
+                        <br>The source defines the **MR Environment** precisely as the volume containing the 0.5 mT magnetic-field contour and the Faraday shielded volume [6, p. 125].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>5. MR Safe items are typically made of materials that are electrically conductive, metallic, and magnetic, as they pose no known hazard.</p>
+                <input type="radio" id="q5_true" name="q5" value="True">
+                <label for="q5_true">True</label>
+                <input type="radio" id="q5_false" name="q5" value="False">
+                <label for="q5_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: False.
+                        <br>You were <span class="result"></span>.
+                        <br>MR Safe items are specifically defined as being **electrically non-conductive, nonmetallic, and nonmagnetic** to pose no known hazard in the MR Environment [6, p. 125].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>6. The primary nucleus utilized in clinical MRI is Carbon-13, selected for its large magnetic moment and widespread abundance in the human body.</p>
+                <input type="radio" id="q6_true" name="q6" value="True">
+                <label for="q6_true">True</label>
+                <input type="radio" id="q6_false" name="q6" value="False">
+                <label for="q6_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: False.
+                        <br>You were <span class="result"></span>.
+                        <br>Most clinical MRI utilizes **hydrogen** nuclei (protons) due to their large magnetic moment and abundance in the body, not Carbon-13 [6, p. 129].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>7. The Larmor frequency, which describes the precession of spins in a magnetic field, is inversely proportional to the applied magnetic field (B0).</p>
+                <input type="radio" id="q7_true" name="q7" value="True">
+                <label for="q7_true">True</label>
+                <input type="radio" id="q7_false" name="q7" value="False">
+                <label for="q7_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: False.
+                        <br>You were <span class="result"></span>.
+                        <br>The Larmor frequency is **directly proportional** to the applied magnetic field (B0), as shown by the equation u0 = gB0 [6, p. 129].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>8. A 180° RF pulse is also known as an inversion pulse because it completely inverts the magnetization of the spins.</p>
+                <input type="radio" id="q8_true" name="q8" value="True">
+                <label for="q8_true">True</label>
+                <input type="radio" id="q8_false" name="q8" value="False">
+                <label for="q8_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: True.
+                        <br>You were <span class="result"></span>.
+                        <br>A 180° RF pulse is indeed referred to as an **inversion pulse** because it completely inverts the magnetisation [6, p. 130, Fig 6.11].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>9. To achieve slice selection in MRI, a magnetic field gradient is applied perpendicular to the desired slice direction.</p>
+                <input type="radio" id="q9_true" name="q9" value="True">
+                <label for="q9_true">True</label>
+                <input type="radio" id="q9_false" name="q9" value="False">
+                <label for="q9_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: False.
+                        <br>You were <span class="result"></span>.
+                        <br>In slice selection, the gradient is applied **in the slice direction** itself, causing the magnetic field to vary along that axis [6, p. 130].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>10. Two-dimensional (2D) MRI scans typically offer good in-plane resolution but poor slice resolution, which means they cannot be accurately reconstructed into other planes.</p>
+                <input type="radio" id="q10_true" name="q10" value="True">
+                <label for="q10_true">True</label>
+                <input type="radio" id="q10_false" name="q10" value="False">
+                <label for="q10_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: True.
+                        <br>You were <span class="result"></span>.
+                        <br>2D scans are characterized by **poor slice resolution**, which limits their ability to be accurately reconstructed into different planes [6, p. 132].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>11. In T1-weighted (T1w) images, tissues with a long T1 relaxation time, such as fat, typically recover signal very quickly and therefore appear bright.</p>
+                <input type="radio" id="q11_true" name="q11" value="True">
+                <label for="q11_true">True</label>
+                <input type="radio" id="q11_false" name="q11" value="False">
+                <label for="q11_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: False.
+                        <br>You were <span class="result"></span>.
+                        <br>In T1-weighted images, **tissues with *short* T1 relaxation times (like fat) appear bright**, while tissues with longer T1 values (like CSF) appear darker [6, p. 133].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>12. Gadolinium-based contrast agents (GBCAs) typically reduce T1 relaxation time in tissues where they accumulate, causing those areas to appear brighter on T1-weighted images.</p>
+                <input type="radio" id="q12_true" name="q12" value="True">
+                <label for="q12_true">True</label>
+                <input type="radio" id="q12_false" name="q12" value="False">
+                <label for="q12_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: True.
+                        <br>You were <span class="result"></span>.
+                        <br>Gadolinium is paramagnetic and, when accumulated in tissues, it **reduces the T1 relaxation time**, leading to a brighter appearance on T1-weighted images [6, p. 134].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>13. The total scan time for a basic Spin Echo (SE) sequence is calculated by multiplying the Repetition Time (TR), the number of phase-encoding steps (NPE), and the number of averages (NSA).</p>
+                <input type="radio" id="q13_true" name="q13" value="True">
+                <label for="q13_true">True</label>
+                <input type="radio" id="q13_false" name="q13" value="False">
+                <label for="q13_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: True.
+                        <br>You were <span class="result"></span>.
+                        <br>The scan time for a basic SE sequence is indeed **calculated by multiplying TR, NPE, and NSA**, indicating a direct proportionality [6, p. 134].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>14. Gradient Echo (GRE) sequences are generally slower than Spin Echo (SE) sequences but are typically more robust to artefacts.</p>
+                <input type="radio" id="q14_true" name="q14" value="True">
+                <label for="q14_true">True</label>
+                <input type="radio" id="q14_false" name="q14" value="False">
+                <label for="q14_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: False.
+                        <br>You were <span class="result"></span>.
+                        <br>GRE sequences are **typically *faster*** than SE sequences but are **more prone to artefacts** and usually have a lower signal-to-noise ratio [6, p. 135].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>15. Fat saturation (FS) techniques are easier to implement at lower magnetic field strengths due to a smaller chemical shift difference between fat and water.</p>
+                <input type="radio" id="q15_true" name="q15" value="True">
+                <label for="q15_true">True</label>
+                <input type="radio" id="q15_false" name="q15" value="False">
+                <label for="q15_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: False.
+                        <br>You were <span class="result"></span>.
+                        <br>Fat saturation is **easier at *higher* field strengths** due to the greater separation in the resonance frequencies (chemical shift) between fat and water [6, p. 135].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>16. In Dixon imaging, adding the in-phase (SIP) and out-of-phase (SOP) signals effectively cancels out fat signals, resulting in an image primarily showing water signals.</p>
+                <input type="radio" id="q16_true" name="q16" value="True">
+                <label for="q16_true">True</label>
+                <input type="radio" id="q16_false" name="q16" value="False">
+                <label for="q16_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: True.
+                        <br>You were <span class="result"></span>.
+                        <br>By adding the in-phase and out-of-phase signals in Dixon imaging, the **fat signals cancel out**, effectively yielding a water-only image [6, p. 136].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>17. In k-space, the central region primarily holds information related to image resolution, while the outer edges contain information about image contrast.</p>
+                <input type="radio" id="q17_true" name="q17" value="True">
+                <label for="q17_true">True</label>
+                <input type="radio" id="q17_false" name="q17" value="False">
+                <label for="q17_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: False.
+                        <br>You were <span class="result"></span>.
+                        <br>The **center of k-space holds image *contrast* information**, and the **edges contain *resolution* information** [6, p. 138, Fig 6.23].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>18. Patient movement during an MRI scan primarily causes ghosting and blurring of images, with the frequency-encoding direction being the most affected.</p>
+                <input type="radio" id="q18_true" name="q18" value="True">
+                <label for="q18_true">True</label>
+                <input type="radio" id="q18_false" name="q18" value="False">
+                <label for="q18_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: False.
+                        <br>You were <span class="result"></span>.
+                        <br>Patient movement causes ghosting and blurring, but it **most significantly affects the *phase-encoding* direction**, not the frequency-encoding direction [6, p. 140].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>19. In diffusion-weighted imaging (DWI), tissues exhibiting restricted diffusion appear dark on DWI images and bright on Apparent Diffusion Coefficient (ADC) maps.</p>
+                <input type="radio" id="q19_true" name="q19" value="True">
+                <label for="q19_true">True</label>
+                <input type="radio" id="q19_false" name="q19" value="False">
+                <label for="q19_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: False.
+                        <br>You were <span class="result"></span>.
+                        <br>Tissues with restricted diffusion appear **bright on DWI images** and **dark on ADC maps** [6, p. 144, 144t].
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>20. Arterial Spin Labelling (ASL) is a non-contrast MRI technique known for its high signal-to-noise ratio (SNR), which typically allows for short acquisition times.</p>
+                <input type="radio" id="q20_true" name="q20" value="True">
+                <label for="q20_true">True</label>
+                <input type="radio" id="q20_false" name="q20" value="False">
+                <label for="q20_false">False</label>
+                <div class="feedback" style="display: none;"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct answer: False.
+                        <br>You were <span class="result"></span>.
+                        <br>ASL is a non-contrast technique, but it **suffers from *low* SNR**, which necessitates **longer acquisition times** to achieve acceptable image quality [6, p. 145].
+                    </p>
+                </details>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const questions = quizForm.querySelectorAll('.question');
+            const resetButton = document.getElementById('resetQuiz');
+
+            questions.forEach(questionDiv => {
+                const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                const feedbackDiv = questionDiv.querySelector('.feedback');
+                const explanationDetails = questionDiv.querySelector('details');
+                const resultSpan = explanationDetails.querySelector('.result');
+
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', (event) => {
+                        const selectedAnswer = event.target.value;
+                        const correctAnswer = questionDiv.dataset.correctAnswer;
+                        const isCorrect = selectedAnswer === correctAnswer;
+
+                        // Display feedback
+                        feedbackDiv.style.display = 'block';
+                        if (isCorrect) {
+                            feedbackDiv.textContent = 'Correct!';
+                            feedbackDiv.classList.add('correct');
+                            feedbackDiv.classList.remove('incorrect');
+                            resultSpan.textContent = 'right';
+                        } else {
+                            feedbackDiv.textContent = 'Incorrect. Try again!';
+                            feedbackDiv.classList.add('incorrect');
+                            feedbackDiv.classList.remove('correct');
+                            resultSpan.textContent = 'wrong';
+                        }
+
+                        // Expand explanation
+                        explanationDetails.open = true;
+
+                        // Disable radio buttons for this question
+                        radioButtons.forEach(rb => rb.disabled = true);
+                    });
+                });
+            });
+
+            resetButton.addEventListener('click', () => {
+                questions.forEach(questionDiv => {
+                    const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    const explanationDetails = questionDiv.querySelector('details');
+                    const resultSpan = explanationDetails.querySelector('.result');
+
+                    // Reset radio buttons
+                    radioButtons.forEach(rb => {
+                        rb.checked = false;
+                        rb.disabled = false;
+                    });
+
+                    // Hide feedback
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.classList.remove('correct', 'incorrect');
+                    feedbackDiv.textContent = '';
+
+                    // Close explanation
+                    explanationDetails.open = false;
+                    resultSpan.textContent = ''; // Clear result text
+                });
+            });
+        });
+    </script>
+</body>
+</html>

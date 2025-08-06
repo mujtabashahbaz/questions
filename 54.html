@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRCR Part 1 Radiology Physics Quiz - Chapter 7: Ultrasound Imaging</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #121212; /* Dark background */
+            color: #E0E0E0; /* Light gray text */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .quiz-container {
+            background-color: #1E1E1E; /* Slightly lighter dark background */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #BB86FC; /* Purple accent for headings */
+            margin-bottom: 15px;
+            font-size: 2.2em;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            background-color: #2C2C2C; /* Darker background for questions */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid #3A3A3A;
+        }
+
+        .question p {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .question label {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            user-select: none;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 8px;
+            accent-color: #03DAC6; /* Teal accent for radio buttons */
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+            font-size: 0.95em;
+        }
+
+        .feedback.correct {
+            background-color: #004d00; /* Dark green */
+            color: #66FF66; /* Bright green */
+        }
+
+        .feedback.incorrect {
+            background-color: #4d0000; /* Dark red */
+            color: #FF6666; /* Bright red */
+        }
+
+        .feedback.ambiguous {
+            background-color: #00004d; /* Dark blue */
+            color: #66CCFF; /* Bright blue */
+        }
+
+        details {
+            margin-top: 15px;
+            background-color: #3A3A3A; /* Slightly lighter than question bg */
+            border-radius: 8px;
+            padding: 10px 15px;
+            border: 1px solid #4A4A4A;
+        }
+
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #BB86FC;
+        }
+
+        details p {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #C0C0C0;
+        }
+
+        .citation {
+            font-style: italic;
+            font-size: 0.8em;
+            color: #888888;
+        }
+
+        .button-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #03DAC6; /* Teal accent for buttons */
+            color: #121212;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        button:hover {
+            background-color: #00BFA5; /* Darker teal on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>FRCR Part 1 Radiology Physics Quiz</h1>
+        <p><strong>Chapter 7: Ultrasound Imaging</strong></p>
+        <p>Test your understanding of advanced concepts in ultrasound imaging from Farr's Physics for Medical Imaging, 3rd edition.</p>
+
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question" data-correct-answer="False">
+                <p>1. Transverse shear waves are typically used in standard B-mode ultrasound imaging for anatomical visualization due to their superior propagation characteristics in fluid-like tissues.</p>
+                <label><input type="radio" name="q1" value="True"> True</label>
+                <label><input type="radio" name="q1" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong><br>
+                    **Explanation:** Longitudinal compression waves, which travel in the direction of particle movement, are the type of waves used in standard ultrasound imaging. Transverse shear waves travel perpendicular to particle motion and are primarily used in shear wave elastography, not standard anatomical imaging [1, p. 147].</p>
+                </details>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" data-correct-answer="True">
+                <p>2. The speed of sound in soft tissue is generally assumed to be constant at 1540 m/s, but in reality, it varies, influencing electronic focusing timings and potentially degrading spatial resolution if not compensated for.</p>
+                <label><input type="radio" name="q2" value="True"> True</label>
+                <label><input type="radio" name="q2" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong><br>
+                    **Explanation:** While 1540 m/s is the assumed speed of sound in soft tissue, the actual range can be between 1300 and 1800 m/s. Inaccurate assumptions about the speed of sound, particularly in fatty tissues, can lead to inaccurate electronic focusing timings, resulting in reduced spatial resolution and increased clutter in the image [1, p. 161].</p>
+                </details>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" data-correct-answer="False">
+                <p>3. A high Q (mechanical coefficient) transducer is ideal for producing short ultrasound pulses necessary for diagnostic imaging because it generates a wide range of frequencies.</p>
+                <label><input type="radio" name="q3" value="True"> True</label>
+                <label><input type="radio" name="q3" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong><br>
+                    **Explanation:** A high Q transducer produces a pure tone and only responds to a single frequency, characteristic of continuous wave (CW) ultrasound. For pulsed wave (PW) imaging, which requires short pulses and a wide range of frequencies, a low Q transducer is necessary, as it has a short ring-down time and produces a broad frequency spectrum [1, p. 152].</p>
+                </details>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" data-correct-answer="True">
+                <p>4. Damping in an ultrasound transducer is crucial for achieving better axial resolution, even though it reduces the overall output and Q factor of the transducer.</p>
+                <label><input type="radio" name="q4" value="True"> True</label>
+                <label><input type="radio" name="q4" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong><br>
+                    **Explanation:** Damping causes the loss (decay) of energy, which shortens the pulse length. Shorter pulses, in turn, produce better axial resolution. The disadvantages of damping are indeed a reduction in output and a reduced Q factor [1, p. 150, 163].</p>
+                </details>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" data-correct-answer="False">
+                <p>5. When an ultrasound beam encounters a structure much smaller than its wavelength, such as red blood corpuscles, it primarily undergoes specular reflection, contributing significantly to the B-mode image.</p>
+                <label><input type="radio" name="q5" value="True"> True</label>
+                <label><input type="radio" name="q5" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong><br>
+                    **Explanation:** When an ultrasound beam encounters structures much smaller than its wavelength, it undergoes (Rayleigh-like) scatter, where the beam is scattered in all directions. Specular reflection occurs when the beam strikes a large, smooth interface larger than the wavelength [1, p. 154]. Diffuse reflections contribute most to the ultrasound image, not specular reflections from tiny structures [1, p. 154].</p>
+                </details>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question" data-correct-answer="True">
+                <p>6. Imaging through bone is generally difficult in ultrasound primarily due to high levels of absorption and significant reflection, rather than primarily just reflection.</p>
+                <label><input type="radio" name="q6" value="True"> True</label>
+                <label><input type="radio" name="q6" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong><br>
+                    **Explanation:** Bone has a significantly higher acoustic impedance compared to soft tissue, leading to a large fraction of reflection (approximately 30% at a bone/muscle interface). Additionally, bone attenuates ultrasound much more effectively than soft tissue, with an attenuation value of 15 dB/cm at 1 MHz, making imaging through it very difficult due to both reflection and absorption [1, p. 154, 155t].</p>
+                </details>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question" data-correct-answer="False">
+                <p>7. Time Gain Compensation (TGC) in B-mode ultrasound typically uses a single, fixed amplification setting for all depths to ensure uniform brightness across the entire image.</p>
+                <label><input type="radio" name="q7" value="True"> True</label>
+                <label><input type="radio" name="q7" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong><br>
+                    **Explanation:** TGC is designed to compensate for the diminishing ultrasound energy with increasing depth due to attenuation. Therefore, it increases the amplification of received echoes as time (and thus depth) increases. In B-mode, the image is divided into multiple depth ranges, allowing the user to adjust amplification levels specifically for each range to optimize the image [1, p. 160].</p>
+                </details>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question" data-correct-answer="True">
+                <p>8. Increasing the frame rate in real-time ultrasound imaging can be achieved by either increasing the pulse repetition frequency (PRF) or reducing the line density of the scan.</p>
+                <label><input type="radio" name="q8" value="True"> True</label>
+                <label><input type="radio" name="q8" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong><br>
+                    **Explanation:** The formula for frame rate is `frame rate = PRF / lines per frame`. This directly implies that frame rate can be increased by either increasing the PRF (pulses per second) or by reducing the number of scan lines per frame (line density) [1, p. 157].</p>
+                </details>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question" data-correct-answer="False">
+                <p>9. A longer near field length in an ultrasound beam is achieved by decreasing the transducer frequency or reducing the aperture size (diameter).</p>
+                <label><input type="radio" name="q9" value="True"> True</label>
+                <label><input type="radio" name="q9" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong><br>
+                    **Explanation:** The near field length (N) is proportional to `fD^2` (frequency multiplied by the square of the aperture size). Therefore, to achieve a longer near field, one would need to *increase* the frequency or *increase* the aperture size [1, p. 152].</p>
+                </details>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question" data-correct-answer="True">
+                <p>10. Electronic focusing in the ultrasound slice plane can be improved by using a '1.5D transducer' with multiple layers of elements, thereby enhancing slice resolution.</p>
+                <label><input type="radio" name="q10" value="True"> True</label>
+                <label><input type="radio" name="q10" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong><br>
+                    **Explanation:** Standard electronic focusing occurs in the azimuthal (scan) plane. To achieve electronic focusing in the perpendicular (elevation) plane, a '1.5D transducer' uses multiple layers of elements instead of a single layer, which indeed improves slice resolution [1, p. 161].</p>
+                </details>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question" data-correct-answer="False">
+                <p>11. In harmonic imaging, the fundamental frequency is transmitted, and both the fundamental and higher-order harmonics are reflected back, with the image primarily formed from the fundamental frequency due to its higher intensity.</p>
+                <label><input type="radio" name="q11" value="True"> True</label>
+                <label><input type="radio" name="q11" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong><br>
+                    **Explanation:** While the fundamental frequency is transmitted and both fundamental and higher-order harmonics are reflected, harmonic imaging works by separating and imaging *only* the harmonic component (typically the second harmonic). The fundamental frequency is removed, as it contains more noise and artifacts due to propagation through superficial tissues, and the harmonic signal is stronger at depth. This is done via techniques like band filtering or pulse inversion [1, p. 167-168].</p>
+                </details>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question" data-correct-answer="True">
+                <p>12. The Mechanical Index (MI) provides an indication of the likelihood of mechanical bioeffects, and exposure times should be reduced if the MI reaches or exceeds a threshold of 0.7.</p>
+                <label><input type="radio" name="q12" value="True"> True</label>
+                <label><input type="radio" name="q12" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong><br>
+                    **Explanation:** The MI is calculated as the maximum amplitude of the pressure pulse divided by the square root of the ultrasound frequency and estimates mechanical effects like cavitation. It is indeed recommended that exam times be reduced appropriately once the MI reaches the threshold of 0.7, as mechanical effects are thought to occur at or above this value [1, p. 172].</p>
+                </details>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question" data-correct-answer="False">
+                <p>13. When using a standard linear array transducer, the field of view (FOV) at depth automatically widens compared to the transducer's width due to beam divergence.</p>
+                <label><input type="radio" name="q13" value="True"> True</label>
+                <label><input type="radio" name="q13" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong><br>
+                    **Explanation:** For a standard linear array transducer, the size of the field of view is *limited* by the width of the probe itself. The scan lines are parallel, resulting in a rectangular image. A *curvilinear* array, where elements are arranged on a curved surface, is designed so that lines of sight spread out perpendicular to the transducer surface, covering a wider field of view at depth [1, p. 158].</p>
+                </details>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question" data-correct-answer="True">
+                <p>14. Increasing the density of scan lines in an ultrasound image improves lateral resolution but may necessitate a reduction in frame rate if the pulse repetition frequency (PRF) is kept constant.</p>
+                <label><input type="radio" name="q14" value="True"> True</label>
+                <label><input type="radio" name="q14" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong><br>
+                    **Explanation:** Lateral resolution is enhanced by a greater number of scan lines per unit distance (line density). However, since `frame rate = PRF / lines per frame`, increasing the `lines per frame` (line density) while keeping `PRF` constant will result in a lower frame rate [1, p. 157]. This highlights the balance required between image quality parameters.</p>
+                </details>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question" data-correct-answer="False">
+                <p>15. In Doppler ultrasound, aliasing occurs when the measured Doppler shift exceeds half the pulse repetition frequency (PRF), causing high-velocity flow to be displayed in the correct direction but with an exaggerated speed.</p>
+                <label><input type="radio" name="q15" value="True"> True</label>
+                <label><input type="radio" name="q15" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong><br>
+                    **Explanation:** Aliasing occurs when the Doppler shift exceeds half the PRF (Nyquist criterion). However, it manifests as flow being displayed in the *opposite* direction or as a colored mosaic for turbulent flow, not merely an exaggerated speed in the correct direction. For example, in PW Doppler, the top of the spectrum wraps around to the bottom [1, p. 171].</p>
+                </details>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question" data-correct-answer="True">
+                <p>16. The use of acoustic coupling gel in ultrasound imaging is critical because air between the transducer and skin leads to near-total reflection, preventing sound transmission into the tissue.</p>
+                <label><input type="radio" name="q16" value="True"> True</label>
+                <label><input type="radio" name="q16" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong><br>
+                    **Explanation:** Air has a negligible acoustic impedance compared to tissue, resulting in nearly total reflection (99.9%) and almost no transmission of the ultrasound beam. Acoustic coupling gel eliminates this air interface, allowing the sound to travel effectively from the transducer into the patient's body [1, p. 154, 154t].</p>
+                </details>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question" data-correct-answer="False">
+                <p>17. In pulse inversion harmonic imaging, two pulses are transmitted 90° out of phase to allow the fundamental components to constructively interfere and enhance the harmonic signal.</p>
+                <label><input type="radio" name="q17" value="True"> True</label>
+                <label><input type="radio" name="q17" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong><br>
+                    **Explanation:** In pulse inversion, two pulses are transmitted 180° out of phase from each other. On reception, the *fundamental* components of the signal destructively interfere and cancel each other out, while the *harmonic* components constructively interfere, effectively doubling their amplitude and allowing for harmonic-only imaging [1, p. 167-168].</p>
+                </details>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question" data-correct-answer="True">
+                <p>18. Power Doppler imaging is more sensitive to slow flow than color Doppler but does not provide information about the speed or direction of blood flow.</p>
+                <label><input type="radio" name="q18" value="True"> True</label>
+                <label><input type="radio" name="q18" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong><br>
+                    **Explanation:** Power Doppler maps the amplitude of the Doppler signal, which reflects the quantity of blood flow rather than speed or direction. This makes it much more sensitive to slow flow and enables visualization of smaller vessels compared to color Doppler, but at the cost of directional and velocity information [1, p. 171].</p>
+                </details>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question" data-correct-answer="False">
+                <p>19. Reverberation artifacts in ultrasound are always detrimental to image quality and never provide useful diagnostic information.</p>
+                <label><input type="radio" name="q19" value="True"> True</label>
+                <label><input type="radio" name="q19" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong><br>
+                    **Explanation:** While reverberation artifacts can obscure real anatomy (e.g., in the presence of calcifications, leading to comet-tail artifacts), the source also states that artifacts, when recognized, can *aid* in diagnosis [1, p. 166]. For example, ring-down artifact from small gas bubbles can confirm the presence of air [1, p. 166]. Therefore, they are not always detrimental and can sometimes be diagnostically useful.</p>
+                </details>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question" data-correct-answer="True">
+                <p>20. For optimal imaging of superficial tissues like the thyroid or breast, ultrasound transducers typically operate at higher frequencies (e.g., 5-18 MHz), which improves resolution despite reduced penetration depth.</p>
+                <label><input type="radio" name="q20" value="True"> True</label>
+                <label><input type="radio" name="q20" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong><br>
+                    **Explanation:** The choice of transducer frequency involves a compromise between penetration depth and image resolution. Higher frequencies offer improved resolution but reduced penetration. For superficial tissues like the thyroid, carotid, breast, and testis, frequencies of 5-18 MHz are commonly used to exploit this trade-off for better detail [1, p. 164].</p>
+                </details>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const questions = document.querySelectorAll('.question');
+            const resetButton = document.getElementById('resetQuiz');
+
+            const checkAnswer = (event) => {
+                const questionDiv = event.target.closest('.question');
+                const feedbackDiv = questionDiv.querySelector('.feedback');
+                const detailsElement = questionDiv.querySelector('details');
+                const summaryElement = questionDiv.querySelector('summary');
+
+                const correctAnswer = questionDiv.dataset.correctAnswer;
+                const selectedAnswer = event.target.value;
+
+                if (selectedAnswer === correctAnswer) {
+                    feedbackDiv.textContent = `Correct! Your answer was ${selectedAnswer}.`;
+                    feedbackDiv.className = 'feedback correct';
+                } else {
+                    feedbackDiv.textContent = `Incorrect. Your answer was ${selectedAnswer}.`;
+                    feedbackDiv.className = 'feedback incorrect';
+                }
+                feedbackDiv.style.display = 'block';
+                
+                // Optionally auto-open explanation if desired, or let user click
+                // detailsElement.open = true; // Uncomment to auto-open explanation
+            };
+
+            questions.forEach(questionDiv => {
+                const radioInputs = questionDiv.querySelectorAll('input[type="radio"]');
+                radioInputs.forEach(input => {
+                    input.addEventListener('change', checkAnswer);
+                });
+            });
+
+            resetButton.addEventListener('click', () => {
+                quizForm.reset(); // Resets all form elements
+                questions.forEach(questionDiv => {
+                    questionDiv.querySelector('.feedback').style.display = 'none';
+                    questionDiv.querySelector('details').open = false; // Close explanations
+                });
+            });
+        });
+    </script>
+</body>
+</html>

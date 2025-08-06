@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRCR Part 1 Radiology Physics Quiz - Chapter 2</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a; /* Black background */
+            color: #e0e0e0; /* White/light-gray text */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top */
+            min-height: 100vh; /* Full viewport height */
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .quiz-container {
+            background-color: #2c2c2c; /* Slightly lighter black for container */
+            padding: 30px;
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); /* Soft shadow */
+            max-width: 800px;
+            width: 100%;
+            margin: 20px auto; /* Centered layout with vertical margin */
+        }
+
+        h1 {
+            color: #f0f0f0;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            color: #cccccc;
+        }
+
+        .question {
+            background-color: #3a3a3a; /* Darker background for questions */
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid #4a4a4a; /* Subtle border */
+        }
+
+        .question p {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+
+        .question label {
+            display: inline-flex; /* Use flexbox for alignment */
+            align-items: center; /* Vertically align radio button with text */
+            margin-right: 25px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 8px;
+            appearance: none; /* Hide default radio button */
+            width: 18px;
+            height: 18px;
+            border: 2px solid #666;
+            border-radius: 50%;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+
+        .question input[type="radio"]:checked {
+            border-color: #42A5F5; /* Blue check */
+            background-color: #42A5F5;
+        }
+
+        .question input[type="radio"]:checked::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: #e0e0e0; /* White dot inside */
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+        }
+
+        .feedback.correct {
+            background-color: #335533; /* Darker green */
+            color: #8bc34a; /* Lime green */
+        }
+
+        .feedback.incorrect {
+            background-color: #553333; /* Darker red */
+            color: #FF5252; /* Red accent */
+        }
+
+        .feedback.info {
+            background-color: #334455; /* Darker blue */
+            color: #42A5F5; /* Blue */
+        }
+
+        details {
+            background-color: #4a4a4a; /* Darker background for details */
+            border-radius: 8px;
+            padding: 10px 20px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+            border: 1px solid #5a5a5a;
+        }
+
+        details summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #f0f0f0;
+            outline: none;
+            padding: 5px 0;
+        }
+
+        details p {
+            margin: 10px 0 0;
+            color: #ccc;
+            font-size: 0.95em;
+        }
+
+        .citation {
+            font-style: italic;
+            font-size: 0.85em;
+            color: #aaa;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #resetQuiz {
+            background-color: #42A5F5; /* Blue */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        #resetQuiz:hover {
+            background-color: #2196F3; /* Darker blue on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+
+        #score-display {
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #3a3a3a;
+            border-radius: 8px;
+            border: 1px solid #4a4a4a;
+            color: #f0f0f0;
+        }
+
+        /* Styles for disabled radio buttons */
+        .question input[type="radio"]:disabled + label {
+            cursor: not-allowed;
+            opacity: 0.7; /* Indicate disabled state */
+        }
+        .question input[type="radio"]:disabled {
+             cursor: not-allowed;
+        }
+
+        /* Specific feedback colors for correct/incorrect answers in explanations */
+        .explanation-correct {
+            color: #8bc34a; /* Lime green */
+        }
+        .explanation-incorrect {
+            color: #FF5252; /* Red accent */
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>FRCR Part 1 Radiology Physics Quiz</h1>
+        <p class="intro-text">
+            Test your deep understanding of **Chapter 2: Radiation Hazards and Protection** from Farr's Physics for Medical Imaging, 3rd edition. Answer True or False for each of the 20 challenging questions.
+        </p>
+
+        <form id="quizForm">
+            <div class="question" data-correct-answer="False">
+                <p>1. High-LET radiation, such as alpha particles, is primarily associated with single-strand DNA breaks that are readily repaired by the body's mechanisms.</p>
+                <label><input type="radio" name="q1" value="True"> True</label>
+                <label><input type="radio" name="q1" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">False</span>. You were <span class="user-status"></span>.</p>
+                    <p>High-LET radiation, specifically alpha particles and neutrons, is more likely to cause **double-strand DNA breaks**, which are difficult or impossible for the body to repair, leading to more significant biological damage. Single-strand breaks are more typical of low-LET radiations like X-rays.</p>
+                    <span class="citation">[Page 24]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>2. At lower radiation dose rates, the cumulative damage to cells is more likely to defeat tissue repair mechanisms, leading to a higher proportion of cell death per unit dose compared to higher dose rates.</p>
+                <label><input type="radio" name="q2" value="True"> True</label>
+                <label><input type="radio" name="q2" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">False</span>. You were <span class="user-status"></span>.</p>
+                    <p>The statement is inverted. At **low dose rates**, tissue repair mechanisms have more time to mend DNA damage between exposures, thus leading to *less* cell death per unit dose. Conversely, at **higher dose rates**, cumulative damage overcomes repair mechanisms, resulting in *more* cells killed per unit dose.</p>
+                    <span class="citation">[Page 26, Fig 2.2]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>3. The International Commission on Radiological Protection (ICRP) recommends the linear non-threshold (LNT) model, which inherently implies a safe dose of radiation below which no adverse stochastic effects occur.</p>
+                <label><input type="radio" name="q3" value="True"> True</label>
+                <label><input type="radio" name="q3" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">False</span>. You were <span class="user-status"></span>.</p>
+                    <p>The LNT model, as adopted by the ICRP, explicitly implies that **there is no safe dose of radiation**, meaning any dose, no matter how small, carries a proportional risk of stochastic effects.</p>
+                    <span class="citation">[Page 28]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>4. For any individual patient exposure, the relative accuracy of the calculated effective dose is generally considered to be around ±5% due to uncertainties in mathematical modeling techniques.</p>
+                <label><input type="radio" name="q4" value="True"> True</label>
+                <label><input type="radio" name="q4" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">False</span>. You were <span class="user-status"></span>.</p>
+                    <p>The source states that due to modeling uncertainties, the relative accuracy for any individual patient's effective dose is approximately **±50%**, not ±5%. This highlights the approximate nature of effective dose calculations for individuals.</p>
+                    <span class="citation">[Page 29]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>5. Under UK legislation, dose limits strictly apply to classified persons and employees, but do not apply to patients undergoing medical exposures, nor to carers and comforters.</p>
+                <label><input type="radio" name="q5" value="True"> True</label>
+                <label><input type="radio" name="q5" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">True</span>. You were <span class="user-status"></span>.</p>
+                    <p>The source explicitly states that "dose limits do not apply to patients undergoing medical exposures, or to those looking after them, who are known in the legislation as ‘carers and comforters’". Patients are instead protected by diagnostic reference levels (DRLs), and carers/comforters by constraints.</p>
+                    <span class="citation">[Page 30]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>6. In areas designated for the use of ionising radiation, the Radiation Protection Supervisor (RPS) is primarily responsible for drawing up the local rules, while the Radiation Protection Adviser (RPA) ensures their practical adherence within the area.</p>
+                <label><input type="radio" name="q6" value="True"> True</label>
+                <label><input type="radio" name="q6" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">False</span>. You were <span class="user-status"></span>.</p>
+                    <p>The **employer** is the main duty holder and is responsible for ensuring compliance, including the drawing up of local rules, advised by the **RPA**. The **RPS** is responsible for ensuring that the local rules are *followed in practical terms* within their area of responsibility, not for drawing them up.</p>
+                    <span class="citation">[Page 32]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>7. After a staff member formally notifies their employer in writing of their pregnancy, the employer must ensure the equivalent dose to the foetus is less than 1 mSv for the remainder of the pregnancy.</p>
+                <label><input type="radio" name="q7" value="True"> True</label>
+                <label><input type="radio" name="q7" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">True</span>. You were <span class="user-status"></span>.</p>
+                    <p>The source states this explicitly: "After a staff member has informed their employer that they are pregnant, the employer must ensure that the equivalent dose to the foetus is less than 1 mSv for the remainder of the duration of the pregnancy". Notification in writing is also specified as the duty of the pregnant employee.</p>
+                    <span class="citation">[Pages 32, 34-35]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>8. The annual whole-body effective dose limit for an employee over 18 years of age working with ionising radiation in the UK is 6 mSv.</p>
+                <label><input type="radio" name="q8" value="True"> True</label>
+                <label><input type="radio" name="q8" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">False</span>. You were <span class="user-status"></span>.</p>
+                    <p>For employees over 18 years of age, the limit on whole-body effective dose is **20 mSv per year**. The 6 mSv limit applies to trainees under 18 years of age.</p>
+                    <span class="citation">[Page 35]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>9. An area must be designated as a controlled area if the dose rate exceeds 7.5 mSv per hour averaged over 1 minute, even if the source of the radiation is a patient and staff without radiation protection training are likely to enter.</p>
+                <label><input type="radio" name="q9" value="True"> True</label>
+                <label><input type="radio" name="q9" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">False</span>. You were <span class="user-status"></span>.</p>
+                    <p>While a dose rate exceeding 7.5 mSv per hour averaged over 1 minute typically warrants a controlled area designation if untrained staff might enter, this rule **does not apply if the source of the radiation is a patient** (e.g., in nuclear medicine).</p>
+                    <span class="citation">[Page 36]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>10. The Medical and Dental Guidance Notes (MDGN) published by the Institute of Physics and Engineering in Medicine (IPEM) carry the same legal weight as an Approved Code of Practice (ACOP) under IRR, legally deeming an employer compliant if followed.</p>
+                <label><input type="radio" name="q10" value="True"> True</label>
+                <label><input type="radio" name="q10" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">False</span>. You were <span class="user-status"></span>.</p>
+                    <p>The MDGNs "describe good practice, but following them **does not legally deem that you are compliant** with the regulations in the way that following the ACOP does". The ACOP is explicitly designed for legal compliance.</p>
+                    <span class="citation">[Page 31]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>11. The effective dose to a patient from an X-ray examination can be directly measured from quantities such as the Dose-Area Product (DAP) using standard conversion factors.</p>
+                <label><input type="radio" name="q11" value="True"> True</label>
+                <label><input type="radio" name="q11" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">False</span>. You were <span class="user-status"></span>.</p>
+                    <p>The source explicitly states that "effective dose to a patient **cannot be directly measured** and can only be approximated using conversions from measured parameters such as entrance surface dose and DAP for planar X-ray examinations". This emphasizes that it is a computed, not directly measured, quantity.</p>
+                    <span class="citation">[Pages 38-39]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>12. Data from survivors of nuclear incidents, such as Hiroshima and Chernobyl, has conclusively shown a statistically significant increase in the risk of genetic abnormalities in their offspring compared to the general population.</p>
+                <label><input type="radio" name="q12" value="True"> True</label>
+                <label><input type="radio" name="q12" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">False</span>. You were <span class="user-status"></span>.</p>
+                    <p>The source states that available data "indicates that there are **no discernible effects at the level of statistical significance** obtainable from the population sizes available" regarding heritable effects (genetic abnormalities) in offspring from those exposed in Japan and Chernobyl.</p>
+                    <span class="citation">[Page 28]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>13. For acute whole-body exposures, an absorbed dose of 1-2 Gy is generally considered the lowest level likely to cause death from radiation sickness in the absence of medical treatment.</p>
+                <label><input type="radio" name="q13" value="True"> True</label>
+                <label><input type="radio" name="q13" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">False</span>. You were <span class="user-status"></span>.</p>
+                    <p>While doses in the 1-6 Gy range affect bone marrow and can lead to death, the text specifies that "the lowest dose likely to cause death is around **3-5 Sv**" in the absence of treatment. For X-rays/gamma rays, 1 Sv ≈ 1 Gy, making 1-2 Gy typically below the dose considered *likely* to cause death.</p>
+                    <span class="citation">[Page 28, Table 2.5]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>14. Thermoluminescent dosimeters (TLDs) designed as finger rings for extremity dose measurement are typically worn on the outside surface of the base of a finger to ensure optimal accuracy and hygiene compliance.</p>
+                <label><input type="radio" name="q14" value="True"> True</label>
+                <label><input type="radio" name="q14" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">False</span>. You were <span class="user-status"></span>.</p>
+                    <p>TLD finger rings are "commonly worn on the **inside surface of the base of a finger**" and "may not provide sufficient accuracy to meet regulatory requirements due to uncertainty in calculation of the correction factors". Also, finger stalls (worn on the tip) are noted to "not comply with local hand hygiene regulations" due to dexterity interference.</p>
+                    <span class="citation">[Page 38]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>15. The risk of cancer induction from radiation exposure is consistently highest in individuals between the ages of 30 and 60, as this age range represents a plateau in radiosensitivity before a subsequent decline.</p>
+                <label><input type="radio" name="q15" value="True"> True</label>
+                <label><input type="radio" name="q15" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">False</span>. You were <span class="user-status"></span>.</p>
+                    <p>The risk of cancer induction is **highest in children under 10 years** of age due to higher cell division rates and longer remaining lifetime. The risk then drops with increasing age and only "effectively plateaus between the ages of 30 and 60".</p>
+                    <span class="citation">[Page 29]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>16. Cosmic radiation exposure is typically highest for individuals living at sea level due to the minimal atmospheric shielding at lower altitudes.</p>
+                <label><input type="radio" name="q16" value="True"> True</label>
+                <label><input type="radio" name="q16" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">False</span>. You were <span class="user-status"></span>.</p>
+                    <p>Cosmic radiation **increases with altitude**. Therefore, exposures are highest during long-haul flights or in mountainous regions, not at sea level where atmospheric shielding is maximal.</p>
+                    <span class="citation">[Page 27]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>17. With the implementation of the Ionising Radiation (Medical Exposure) Regulations (IR(ME)R) 2017, all medical uses of radioactive substances, including radionuclide imaging, now fall under this legislation, superseding the former MARS regulations.</p>
+                <label><input type="radio" name="q17" value="True"> True</label>
+                <label><input type="radio" name="q17" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">True</span>. You were <span class="user-status"></span>.</p>
+                    <p>The source confirms: "All medical uses of radioactive substances now fall under the IR(ME)R 2017 legislation. This now includes radionuclide imaging, or nuclear medicine, which previously fell under the Medicines (Administration of Radioactive Substances) Regulations 1978. This was commonly known as the MARS regulations".</p>
+                    <span class="citation">[Page 40]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>18. According to the suggested risk terminology, an effective dose of 0.5 mSv is categorized as "Very low" risk.</p>
+                <label><input type="radio" name="q18" value="True"> True</label>
+                <label><input type="radio" name="q18" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">False</span>. You were <span class="user-status"></span>.</p>
+                    <p>According to Table 2.6, an effective dose between 0.1 mSv and 1 mSv is classified as "**Minimal**" risk. "Very low" risk is assigned to doses between 1 mSv and 10 mSv.</p>
+                    <span class="citation">[Page 29, Table 2.6]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>19. The ALARP (As Low As Reasonably Practicable) principle states that doses should primarily be restricted through the provision of personal protective equipment (PPE) as the first and most effective hierarchy of control.</p>
+                <label><input type="radio" name="q19" value="True"> True</label>
+                <label><input type="radio" name="q19" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">False</span>. You were <span class="user-status"></span>.</p>
+                    <p>The hierarchy of control for ALARP prioritizes **engineering controls and design features** first (e.g., shielding, safety devices), followed by systems of work, and only then by personal protective equipment (PPE).</p>
+                    <span class="citation">[Page 34]</span>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>20. In SPECT imaging, patient motion exceeding the dimension of 2 pixels can introduce artifacts into the reconstructed images.</p>
+                <label><input type="radio" name="q20" value="True"> True</label>
+                <label><input type="radio" name="q20" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct Answer: <span class="explanation-correct">True</span>. You were <span class="user-status"></span>.</p>
+                    <p>The source states: "Any motion of greater than the dimension of 2 pixels may introduce artefacts into the reconstructed images". This highlights the sensitivity of SPECT to patient movement.</p>
+                    <span class="citation">[Page 113]</span>
+                </details>
+            </div>
+
+            <div id="score-display">
+                Score: 0 / 20
+            </div>
+
+            <div class="button-container">
+                <button type="button" id="resetQuiz">Reset Quiz</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const quizForm = document.getElementById('quizForm');
+            const questions = quizForm.querySelectorAll('.question');
+            const scoreDisplay = document.getElementById('score-display');
+            let score = 0;
+
+            // Function to update the score display
+            function updateScore() {
+                scoreDisplay.textContent = `Score: ${score} / ${questions.length}`;
+            }
+
+            // Function to handle answer selection
+            function handleAnswer(event) {
+                const selectedRadio = event.target;
+                if (selectedRadio.type === 'radio') {
+                    const questionDiv = selectedRadio.closest('.question');
+                    const correctAnswer = questionDiv.dataset.correctAnswer;
+                    const userAnswer = selectedRadio.value;
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    const userStatusSpan = questionDiv.querySelector('.user-status');
+
+                    // Disable all radio buttons for this question after selection
+                    questionDiv.querySelectorAll('input[type="radio"]').forEach(radio => {
+                        radio.disabled = true;
+                    });
+
+                    // Update feedback and score
+                    if (userAnswer === correctAnswer) {
+                        feedbackDiv.textContent = 'Correct!';
+                        feedbackDiv.className = 'feedback correct';
+                        userStatusSpan.textContent = 'Right';
+                        userStatusSpan.className = 'explanation-correct'; // Apply correct color class
+                        score++;
+                    } else {
+                        feedbackDiv.textContent = 'Incorrect.';
+                        feedbackDiv.className = 'feedback incorrect';
+                        userStatusSpan.textContent = 'Wrong';
+                        userStatusSpan.className = 'explanation-incorrect'; // Apply incorrect color class
+                    }
+                    feedbackDiv.style.display = 'block'; // Show feedback
+                    updateScore();
+                }
+            }
+
+            // Attach event listener to the form for efficient delegation
+            quizForm.addEventListener('change', handleAnswer);
+
+            // Reset Quiz Functionality
+            const resetQuizButton = document.getElementById('resetQuiz');
+            resetQuizButton.addEventListener('click', function() {
+                quizForm.reset(); // Resets all form fields
+                questions.forEach(questionDiv => {
+                    // Hide feedback
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.className = 'feedback'; // Remove correct/incorrect class
+                    
+                    // Reset user status in explanation
+                    const userStatusSpan = questionDiv.querySelector('.user-status');
+                    userStatusSpan.textContent = '';
+                    userStatusSpan.className = 'user-status'; // Reset class
+
+                    // Collapse details explanation
+                    questionDiv.querySelector('details').open = false;
+
+                    // Re-enable radio buttons
+                    questionDiv.querySelectorAll('input[type="radio"]').forEach(radio => {
+                        radio.disabled = false;
+                    });
+                });
+                score = 0; // Reset score
+                updateScore(); // Update score display
+            });
+
+            // Initial score display when the page loads
+            updateScore();
+        });
+    </script>
+</body>
+</html>

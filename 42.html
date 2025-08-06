@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Imaging Physics Quiz - Chapter 2</title>
+    <style>
+        /* General Body Styles */
+        body {
+            background-color: #1a1a1a; /* Black background */
+            color: #f0f0f0; /* White/light-gray text */
+            font-family: 'Roboto', 'Arial', sans-serif; /* Clean sans-serif font */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Full viewport height */
+            margin: 0;
+            padding: 20px; /* Add some padding for smaller screens */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+        }
+
+        /* Quiz Container */
+        .quiz-container {
+            background-color: #2a2a2a; /* Slightly lighter black for container */
+            padding: 30px;
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Soft shadows */
+            max-width: 850px;
+            width: 100%; /* Adjust width for responsiveness */
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* Headings and Introduction */
+        h1 {
+            color: #66cc66; /* Greenish tone for heading (medical feel) */
+            margin-bottom: 10px;
+            font-size: 2.2em;
+        }
+
+        .quiz-container > p {
+            color: #bbbbbb;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        /* Individual Question Block */
+        .question {
+            background-color: #3a3a3a; /* Darker gray for questions */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease-in-out; /* Smooth transition for hover */
+        }
+
+        .question:hover {
+            transform: translateY(-3px);
+        }
+
+        .question p {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            line-height: 1.6;
+        }
+
+        /* Radio Button Options */
+        .options label {
+            display: inline-block;
+            margin-right: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 5px 0;
+            transition: color 0.2s ease;
+        }
+
+        .options input[type="radio"] {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .options input[type="radio"] + label:hover {
+            color: #88ddff; /* Light blue on hover for labels */
+        }
+
+        /* Feedback Message (Correct/Incorrect) */
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none; /* Hidden by default, shown by JS */
+            font-size: 0.95em;
+        }
+
+        .feedback.correct {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+
+        .feedback.incorrect {
+            background-color: #f44336; /* Red */
+            color: white;
+        }
+
+        /* Explanation Details Section */
+        details {
+            margin-top: 15px;
+            background-color: #444444; /* Darker background for details */
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 12px 15px;
+            cursor: pointer;
+            color: #aaddff; /* Light blue for summary text */
+            font-weight: bold;
+            font-size: 0.95em;
+            outline: none; /* Remove outline on focus */
+            transition: background-color 0.2s ease;
+        }
+
+        summary:hover {
+            background-color: #555555;
+        }
+
+        details[open] summary {
+            background-color: #555555; /* Slightly lighter when open */
+            border-bottom: 1px solid #666666;
+        }
+
+        details p {
+            padding: 15px;
+            font-size: 0.9em;
+            line-height: 1.5;
+            color: #e0e0e0;
+            margin: 0;
+        }
+
+        .citation {
+            font-style: italic;
+            color: #999999;
+            font-size: 0.85em;
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* Reset Button */
+        .button-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        #resetQuiz {
+            background-color: #007bff; /* Blue button */
+            color: white;
+            padding: 13px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.15em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Hover effects */
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+        }
+
+        #resetQuiz:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.6);
+        }
+
+        #resetQuiz:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Farr's Physics for Medical Imaging: Chapter 2 Quiz</h1>
+        <p>Test your knowledge on Radiation Hazards and Protection from "Farr's Physics for Medical Imaging, 3rd edition – Chapter 2".</p>
+
+        <form id="quizForm">
+            <div class="question" data-correct-answer="False">
+                <p>1. Ionizing radiation interactions causing cell damage typically involve energy significantly lower than that of a covalent bond in DNA.</p>
+                <div class="options">
+                    <input type="radio" id="q1_true" name="q1" value="True">
+                    <label for="q1_true">True</label>
+                    <input type="radio" id="q1_false" name="q1" value="False">
+                    <label for="q1_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        The ionization of a single atom by ionizing radiation generates approximately 35 eV of energy, which is significantly <strong>greater</strong> than the energy of a covalent bond in DNA (around 4 eV). This high energy is what causes significant damage on the atomic scale.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>2. Alpha particles generally cause less ionization along their track in tissue compared to X-rays and gamma rays.</p>
+                <div class="options">
+                    <input type="radio" id="q2_true" name="q2" value="True">
+                    <label for="q2_true">True</label>
+                    <input type="radio" id="q2_false" name="q2" value="False">
+                    <label for="q2_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        Alpha particles are considered high-LET (linear energy transfer) radiation (10-100 keV/mm) and produce <strong>dense</strong> ionization events, leading to significant damage. X-rays and gamma rays are low-LET radiation (0.2-10 keV/mm) and cause less common ionization events.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>3. For typical medical uses of radiation, where the radiation weighting factor (wR) is 1, the equivalent dose in Sieverts (Sv) will be numerically the same as the absorbed dose in Grays (Gy).</p>
+                <div class="options">
+                    <input type="radio" id="q3_true" name="q3" value="True">
+                    <label for="q3_true">True</label>
+                    <input type="radio" id="q3_false" name="q3" value="False">
+                    <label for="q3_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        The equivalent dose (HT) is calculated as the sum of the absorbed dose (DR) multiplied by the radiation weighting factor (wR) for each type of radiation. For X-rays, gamma rays, beta particles, and positrons, wR is 1, meaning HT = DR * 1. Thus, they are numerically the same in these cases.
+                        <span class="citation">[100, 104t]</span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>4. Alpha particles pose a greater external exposure hazard than X-rays due to their rapid energy deposition.</p>
+                <div class="options">
+                    <input type="radio" id="q4_true" name="q4" value="True">
+                    <label for="q4_true">True</label>
+                    <input type="radio" id="q4_false" name="q4" value="False">
+                    <label for="q4_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        Alpha particles deposit their energy very rapidly and do not penetrate far through the skin, so they do not present a great hazard from <strong>external</strong> exposure. Conversely, X-rays and gamma rays are considered the most effective at causing biological damage from external exposure.
+                        <span class="citation">[101, 104t]</span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>5. At low radiation dose rates, tissue repair mechanisms are more effective, leading to less cell death per unit dose compared to high dose rates.</p>
+                <div class="options">
+                    <input type="radio" id="q5_true" name="q5" value="True">
+                    <label for="q5_true">True</label>
+                    <input type="radio" id="q5_false" name="q5" value="False">
+                    <label for="q5_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        At low dose rates, the body's tissue repair mechanisms can mend DNA damage before the next exposure occurs. However, at higher dose rates, the cumulative damage can overwhelm these mechanisms, making cell death more likely.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>6. Bone marrow and the gastrointestinal system are considered to have low radiosensitivity.</p>
+                <div class="options">
+                    <input type="radio" id="q6_true" name="q6" value="True">
+                    <label for="q6_true">True</label>
+                    <input type="radio" id="q6_false" name="q6" value="False">
+                    <label for="q6_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        Bone marrow and the gastrointestinal system are classified as having <strong>high</strong> radiosensitivity, meaning their cells are more susceptible to radiation damage due to their rapid division rates.
+                        <span class="citation">[105, 107t]</span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>7. The largest natural source of background radiation for an average person in the UK is cosmic radiation.</p>
+                <div class="options">
+                    <input type="radio" id="q7_true" name="q7" value="True">
+                    <label for="q7_true">True</label>
+                    <input type="radio" id="q7_false" name="q7" value="False">
+                    <label for="q7_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        Radon gas accounts for approximately 50% of an average person's annual background radiation exposure in the UK, making it the largest single natural source. Cosmic radiation contributes a smaller fraction.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>8. Deterministic effects of radiation exposure occur many years after exposure and their probability increases with dose, but not their impact.</p>
+                <div class="options">
+                    <input type="radio" id="q8_true" name="q8" value="True">
+                    <label for="q8_true">True</label>
+                    <input type="radio" id="q8_false" name="q8" value="False">
+                    <label for="q8_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        This statement describes <strong>stochastic</strong> effects. Deterministic effects occur relatively rapidly (hours to weeks) after exposure to high doses of radiation and typically have a threshold dose below which they do not occur.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>9. For most medical exposures, the increase in cancer risk is statistically significant only above doses of 100-200 mSv.</p>
+                <div class="options">
+                    <input type="radio" id="q9_true" name="q9" value="True">
+                    <label for="q9_true">True</label>
+                    <input type="radio" id="q9_false" name="q9" value="False">
+                    <label for="q9_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        Studies, particularly of atomic bomb survivors, show that a statistically significant increase in cancer risk is observed above doses of 100-200 mSv. Doses from most medical exposures are typically well below this range.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>10. The "linear non-threshold (LNT) model" implies that there is no safe dose of radiation.</p>
+                <div class="options">
+                    <input type="radio" id="q10_true" name="q10" value="True">
+                    <label for="q10_true">True</label>
+                    <input type="radio" id="q10_false" name="q10" value="False">
+                    <label for="q10_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        The ICRP-recommended LNT model, while simple to apply, suggests that any exposure to ionizing radiation, regardless of how small the dose, carries some degree of risk of causing harm.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>11. When a patient is exposed to strong magnetic fields during MRI, transient biological effects such as vertigo and nausea are more pronounced at lower field strengths.</p>
+                <div class="options">
+                    <input type="radio" id="q11_true" name="q11" value="True">
+                    <label for="q11_true">True</label>
+                    <input type="radio" id="q11_false" name="q11" value="False">
+                    <label for="q11_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        The biological effects experienced by patients when exposed to strong magnetic fields, such as vertigo, nausea, and a metallic taste, are transient and become <strong>more</strong> pronounced at higher field strengths.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>12. An item classified as "MR Conditional" can be used safely in the MR Environment under any circumstances.</p>
+                <div class="options">
+                    <input type="radio" id="q12_true" name="q12" value="True">
+                    <label for="q12_true">True</label>
+                    <input type="radio" id="q12_false" name="q12" value="False">
+                    <label for="q12_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        An "MR Conditional" item is demonstrated to be safe in the MR Environment <strong>only within defined conditions</strong>. These conditions must be carefully adhered to for safe use, and they may include specific configurations or field strength limits.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>13. The specific absorption rate (SAR) is a measure used to estimate the rate at which RF energy is being absorbed by tissues during MRI scanning.</p>
+                <div class="options">
+                    <input type="radio" id="q13_true" name="q13" value="True">
+                    <label for="q13_true">True</label>
+                    <input type="radio" id="q13_false" name="q13" value="False">
+                    <label for="q13_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        SAR (Specific Absorption Rate) is indeed used to estimate the rate at which radiofrequency (RF) energy is absorbed by patient tissues during an MRI scan. Different operating modes on the MRI scanner are set to limit the temperature rise associated with SAR.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>14. For pregnant patients, gadolinium-based contrast agents should always be avoided during an MRI scan.</p>
+                <div class="options">
+                    <input type="radio" id="q14_true" name="q14" value="True">
+                    <label for="q14_true">True</label>
+                    <input type="radio" id="q14_false" name="q14" value="False">
+                    <label for="q14_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        While generally advisable to avoid, gadolinium-based contrast agents (GBCAs) may be administered to pregnant patients if a radiologist agrees that the administration is <strong>absolutely necessary</strong> and the benefit to the patient outweighs the risks.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>15. The core tenets of radiation protection guidance are justification, optimization, and the absence of any exposure limits.</p>
+                <div class="options">
+                    <input type="radio" id="q15_true" name="q15" value="True">
+                    <label for="q15_true">True</label>
+                    <input type="radio" id="q15_false" name="q15" value="False">
+                    <label for="q15_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        The three main tenets of radiation protection guidance are justification (ensuring benefit outweighs detriment), optimization (keeping exposures ALARP), and the establishment of <strong>limits</strong> to individual exposure that cannot be exceeded.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>16. The principle of "Time" in practical radiation protection advises minimizing exposure time to a source to reduce the dose received.</p>
+                <div class="options">
+                    <input type="radio" id="q16_true" name="q16" value="True">
+                    <label for="q16_true">True</label>
+                    <input type="radio" id="q16_false" name="q16" value="False">
+                    <label for="q16_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        The principle of "Time" states that the longer an individual is exposed to a radiation source, the higher the dose received. Therefore, minimizing exposure time is a fundamental method of reducing radiation dose.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>17. The effective dose to a patient can be directly measured during an X-ray examination.</p>
+                <div class="options">
+                    <input type="radio" id="q17_true" name="q17" value="True">
+                    <label for="q17_true">True</label>
+                    <input type="radio" id="q17_false" name="q17" value="False">
+                    <label for="q17_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        The effective dose is a calculated parameter and cannot be measured directly. It is computed based on other measurable quantities, such as Dose-Area Product (DAP) for X-ray examinations, using mathematical models and conversion coefficients.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>18. Under the Ionising Radiation (Medical Exposure) Regulations (IR(ME)R) 2017, the operator is responsible for justifying all medical exposures.</p>
+                <div class="options">
+                    <input type="radio" id="q18_true" name="q18" value="True">
+                    <label for="q18_true">True</label>
+                    <input type="radio" id="q18_false" name="q18" value="False">
+                    <label for="q18_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        Under IR(ME)R 2017, the <strong>practitioner</strong> is responsible for justifying all medical exposures, ensuring that the benefit outweighs the potential harm. The operator is responsible for the optimization of these exposures.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>19. Diagnostic Reference Levels (DRLs) are optional guidelines under IR(ME)R and do not need to be regularly audited.</p>
+                <div class="options">
+                    <input type="radio" id="q19_true" name="q19" value="True">
+                    <label for="q19_true">True</label>
+                    <input type="radio" id="q19_false" name="q19" value="False">
+                    <label for="q19_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        DRLs are <strong>compulsory</strong> under IR(ME)R and must be regularly audited. They serve as a means to monitor typical patient doses for common examinations and ensure optimization of protection.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>20. The film badge is the most common type of dosimeter used to monitor extremity doses.</p>
+                <div class="options">
+                    <input type="radio" id="q20_true" name="q20" value="True">
+                    <label for="q20_true">True</label>
+                    <input type="radio" id="q20_false" name="q20" value="False">
+                    <label for="q20_false">False</label>
+                </div>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p data-original-explanation="true">
+                        Film badges are primarily used for monitoring <strong>whole-body exposure</strong>. Thermoluminescent dosimeters (TLDs) are commonly used to monitor extremity doses (e.g., to the eyes or fingers) and are often worn as rings or stalls.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const resetButton = document.getElementById('resetQuiz');
+
+            // Event listener for any change within the quiz form (specifically for radio buttons)
+            quizForm.addEventListener('change', (event) => {
+                if (event.target.type === 'radio') {
+                    handleAnswer(event.target);
+                }
+            });
+
+            // Event listener for the reset button
+            resetButton.addEventListener('click', () => {
+                resetQuiz();
+            });
+
+            /**
+             * Handles the user's answer selection for a question.
+             * Shows feedback, expands explanation, and disables radio buttons for that question.
+             * @param {HTMLInputElement} selectedRadio - The radio button that was selected.
+             */
+            function handleAnswer(selectedRadio) {
+                const questionDiv = selectedRadio.closest('.question');
+                const correctAnswer = questionDiv.dataset.correctAnswer;
+                const feedbackDiv = questionDiv.querySelector('.feedback');
+                const explanationDetails = questionDiv.querySelector('details');
+                const explanationParagraph = explanationDetails.querySelector('p');
+
+                // Disable all radio buttons for the current question to prevent further changes
+                questionDiv.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.disabled = true;
+                });
+
+                // Store the original explanation content if it hasn't been stored yet
+                if (!explanationParagraph.dataset.originalExplanationContent) {
+                    explanationParagraph.dataset.originalExplanationContent = explanationParagraph.innerHTML;
+                }
+
+                // Determine if the answer is correct and update feedback
+                if (selectedRadio.value === correctAnswer) {
+                    feedbackDiv.textContent = 'Correct!';
+                    feedbackDiv.className = 'feedback correct';
+                    explanationParagraph.innerHTML = `<strong>Correct Answer: ${correctAnswer}</strong><br>` + explanationParagraph.dataset.originalExplanationContent;
+                } else {
+                    feedbackDiv.textContent = 'Incorrect.';
+                    feedbackDiv.className = 'feedback incorrect';
+                    explanationParagraph.innerHTML = `<strong>Correct Answer: ${correctAnswer}</strong><br>Your answer was incorrect. ` + explanationParagraph.dataset.originalExplanationContent;
+                }
+
+                // Show the feedback message and open the explanation details
+                feedbackDiv.style.display = 'block';
+                explanationDetails.open = true;
+            }
+
+            /**
+             * Resets the entire quiz to its initial state.
+             * Clears selections, hides feedback, closes explanations, and re-enables radio buttons.
+             */
+            function resetQuiz() {
+                quizForm.reset(); // Resets all radio button selections
+
+                document.querySelectorAll('.question').forEach(questionDiv => {
+                    // Re-enable all radio buttons for the question
+                    questionDiv.querySelectorAll('input[type="radio"]').forEach(radio => {
+                        radio.disabled = false;
+                    });
+
+                    // Hide and clear feedback messages
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.textContent = ''; // Clear text
+
+                    // Close explanation details and restore original explanation content
+                    const explanationDetails = questionDiv.querySelector('details');
+                    explanationDetails.open = false;
+                    const explanationParagraph = explanationDetails.querySelector('p');
+                    if (explanationParagraph.dataset.originalExplanationContent) {
+                        explanationParagraph.innerHTML = explanationParagraph.dataset.originalExplanationContent;
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

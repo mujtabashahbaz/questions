@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farr's Physics for Medical Imaging - Chapter 4 Quiz</title>
+    <style>
+        body {
+            background-color: #1a1a1a; /* Dark background */
+            color: #f0f0f0; /* White/light-gray text */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Clean sans-serif font */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .quiz-container {
+            background-color: #2a2a2a; /* Slightly lighter dark background for container */
+            padding: 30px;
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Soft shadows */
+            max-width: 800px;
+            width: 100%;
+            text-align: center; /* Centered layout for main content */
+        }
+
+        h1 {
+            color: #8be9fd; /* A light blue for headings */
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+
+        .intro-text {
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #d0d0d0;
+        }
+
+        .question {
+            background-color: #3a3a3a; /* Even lighter dark for questions */
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid #4a4a4a;
+        }
+
+        .question p {
+            font-size: 1.1em;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .question .options label {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            padding: 8px 12px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .question .options label:hover {
+            background-color: #555; /* Hover effect for buttons */
+            border-color: #777;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 8px;
+            accent-color: #8be9fd; /* Style for radio buttons */
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none; /* Hidden by default, shown by JS */
+        }
+
+        .feedback.correct {
+            background-color: #4CAF50; /* Green for correct */
+            color: white;
+        }
+
+        .feedback.incorrect {
+            background-color: #f44336; /* Red for incorrect */
+            color: white;
+        }
+
+        details {
+            margin-top: 15px;
+            background-color: #444;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            display: none; /* Hidden by default, shown by JS */
+        }
+
+        details summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #8be9fd; /* Blue for explanation summary */
+        }
+
+        details p {
+            margin-top: 10px;
+            font-size: 0.95em;
+            line-height: 1.5;
+            color: #d0d0d0;
+        }
+
+        details strong {
+            color: #f0f0f0;
+        }
+
+        .citation {
+            font-style: italic;
+            font-size: 0.85em;
+            color: #aaa;
+            margin-left: 5px;
+        }
+
+        .user-result {
+            font-weight: bold;
+        }
+
+        .button-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        #resetQuiz {
+            background-color: #6272a4; /* A soft blue/purple for reset button */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #resetQuiz:hover {
+            background-color: #7a89b8;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Farr's Physics for Medical Imaging, 3rd edition – Chapter 4 Quiz</h1>
+        <p class="intro-text">Test your knowledge on Computed Tomography (CT) based on Chapter 4 of "Farr's Physics for Medical Imaging, 3rd edition". Select an answer to get immediate feedback and an explanation.</p>
+
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question" data-correct-answer="True">
+                <p>1. The CT scan is now a mainstay of the radiology department, with busy departments having multiple machines.</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="True"> True</label>
+                    <label><input type="radio" name="q1" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>True</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">The source explicitly states, "The CT scan is now a mainstay of the radiology department, with busy departments having multiple machines".</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" data-correct-answer="True">
+                <p>2. A modern CT scanner is typically housed in a lead-lined room to prevent irradiation of adjacent rooms and corridors.</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="True"> True</label>
+                    <label><input type="radio" name="q2" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>True</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">The book mentions that a modern CT scanner "is housed in a lead-lined room, to prevent irradiation of adjacent rooms and corridors".</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" data-correct-answer="False">
+                <p>3. The patient table of a CT scanner traverses through the gantry parallel to the aperture.</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="True"> True</label>
+                    <label><input type="radio" name="q3" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">The patient table traverses "perpendicular to the aperture (along the Z-axis)".</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" data-correct-answer="True">
+                <p>4. The slip ring in a modern CT scanner facilitates continuous rotation and maintains electrical power and detector signal transmission.</p>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="True"> True</label>
+                    <label><input type="radio" name="q4" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>True</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">The source states the slip ring "facilitates continuous rotation and maintains electrical power and detector signal transmission".</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" data-correct-answer="False">
+                <p>5. An X-ray tube for CT scanning typically operates between 30 and 70 kV.</p>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="True"> True</label>
+                    <label><input type="radio" name="q5" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">CT X-ray tubes "operate between 80 and 140 kV".</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question" data-correct-answer="False">
+                <p>6. Approximately 50% of the energy produced in a CT X-ray tube is converted to heat.</p>
+                <div class="options">
+                    <label><input type="radio" name="q6" value="True"> True</label>
+                    <label><input type="radio" name="q6" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">The source states, "w99% of the energy produced in the X-ray tube is converted to heat".</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question" data-correct-answer="True">
+                <p>7. The Straton tube, developed by Siemens, allows conductive heat loss from the anode rather than radiation in a vacuum.</p>
+                <div class="options">
+                    <label><input type="radio" name="q7" value="True"> True</label>
+                    <label><input type="radio" name="q7" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>True</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">The text mentions, "The Straton tube was developed in the early 2000s by Siemens and allows conductive heat loss from the anode rather than the usual radiation in a vacuum".</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question" data-correct-answer="False">
+                <p>8. A bow-tie filter is used in CT to deliberately increase noise levels at the center of the patient while reducing dose at the peripheries.</p>
+                <div class="options">
+                    <label><input type="radio" name="q8" value="True"> True</label>
+                    <label><input type="radio" name="q8" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">A bow-tie filter is used "to equalise transmitted intensities across the patient" because "the lowest dose and highest noise occurs in the centre of the patient, whilst the highest dose occurs at the peripheries". It aims to equalize, not increase, noise.</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question" data-correct-answer="False">
+                <p>9. CT detectors need to have a slow response with significant afterglow for optimal image quality.</p>
+                <div class="options">
+                    <label><input type="radio" name="q9" value="True"> True</label>
+                    <label><input type="radio" name="q9" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">Detectors need a "fast response with negligible afterglow".</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question" data-correct-answer="True">
+                <p>10. Solid-state detectors in CT have a typical detection efficiency of around 90% and geometrical efficiency of around 80%.</p>
+                <div class="options">
+                    <label><input type="radio" name="q10" value="True"> True</label>
+                    <label><input type="radio" name="q10" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>True</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">The source states solid-state detectors have "high detection efficiency (w90%) and high geometrical efficiency (w80%)".</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question" data-correct-answer="True">
+                <p>11. The initial step in a CT scan, determining patient orientation, is vital as acquired datasets will have embedded anterior, posterior, right, and left markers based on this orientation.</p>
+                <div class="options">
+                    <label><input type="radio" name="q11" value="True"> True</label>
+                    <label><input type="radio" name="q11" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>True</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">The text says, "The initial step involves determining patient orientation...This step is vital as the acquired datasets will have embedded anterior, posterior, right, and left markers based on this determined orientation".</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question" data-correct-answer="False">
+                <p>12. A topogram (scout image) in CT is acquired by rotating the X-ray tube during the patient table movement along the Z-axis.</p>
+                <div class="options">
+                    <label><input type="radio" name="q12" value="True"> True</label>
+                    <label><input type="radio" name="q12" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">For a topogram, "The X-ray tube does not rotate during this acquisition".</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question" data-correct-answer="True">
+                <p>13. In helical scanning, no single transaxial slice is irradiated, and all 'slices' are interpolated for image reconstruction.</p>
+                <div class="options">
+                    <label><input type="radio" name="q13" value="True"> True</label>
+                    <label><input type="radio" name="q13" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>True</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">The source states that in helical scanning, "no single transaxial slice is irradiated e all ‘slices’ are interpolated".</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question" data-correct-answer="False">
+                <p>14. A pitch of less than 1 in helical scanning implies a gap in data acquisition.</p>
+                <div class="options">
+                    <label><input type="radio" name="q14" value="True"> True</label>
+                    <label><input type="radio" name="q14" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">"a pitch of 1 means no overlap or separation of the acquired data, >1 implies a gap in data acquisition, and <1 implies overlap in data acquisition". So, <1 means overlap.</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question" data-correct-answer="False">
+                <p>15. Filtered back projection (FBP) is a computationally complex method that requires an a priori estimate of the radionuclide distribution.</p>
+                <div class="options">
+                    <label><input type="radio" name="q15" value="True"> True</label>
+                    <label><input type="radio" name="q15" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">FBP "is simple computationally and fast to implement" and "does not produce an exact mathematical solution". Iterative reconstruction requires an a priori estimate.</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question" data-correct-answer="False">
+                <p>16. For lung reconstruction in CT, a soft tissue kernel is typically used to amplify noise for better edge detection.</p>
+                <div class="options">
+                    <label><input type="radio" name="q16" value="True"> True</label>
+                    <label><input type="radio" name="q16" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">Different kernels are specific to each machine for different tissues, such as "lung, soft tissue, bone, and brain". A lung kernel is used for lung, and it generally increases edge detection but is noisier [77f]. A soft tissue kernel would produce a different image.</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question" data-correct-answer="False">
+                <p>17. Increasing the kV in CT imaging leads to an increased quantum noise due to reduced photon penetration.</p>
+                <div class="options">
+                    <label><input type="radio" name="q17" value="True"> True</label>
+                    <label><input type="radio" name="q17" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">Increasing kV leads to "increased-kV photons have greater penetration (more are detected), but there is a trade-off with a reduction in contrast". Quantum noise decreases with more detected photons.</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question" data-correct-answer="True">
+                <p>18. Metal implants in CT can cause streak artefacts that may obscure the area of interest, and these effects are accentuated by motion.</p>
+                <div class="options">
+                    <label><input type="radio" name="q18" value="True"> True</label>
+                    <label><input type="radio" name="q18" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>True</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">The source says, "Metal implants and dental amalgams give rise to streak artefacts that may obscure the area of interest. The streaks appear as dark and light lines emanating from the high-attenuation material. The effect is accentuated by motion".</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question" data-correct-answer="True">
+                <p>19. An isotropic voxel in CT means that the X/Y/Z-axis dimensions are the same size, enabling 3D reconstruction and image manipulation.</p>
+                <div class="options">
+                    <label><input type="radio" name="q19" value="True"> True</label>
+                    <label><input type="radio" name="q19" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>True</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">The text states, "An isotropic voxel is a cube (X/Y/Z-axis dimensions are the same size). This enables 3D reconstruction and image manipulation".</span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question" data-correct-answer="False">
+                <p>20. The effective dose to a patient in CT can be directly measured using parameters like Dose Area Product (DAP).</p>
+                <div class="options">
+                    <label><input type="radio" name="q20" value="True"> True</label>
+                    <label><input type="radio" name="q20" value="False"> False</label>
+                </div>
+                <div class="feedback" style="display:none;"></div>
+                <details style="display:none;">
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. <span class="user-result"></span><br>
+                    <span class="explanation-text">The source clarifies that "the effective dose to a patient cannot be directly measured and can only be approximated using conversions from measured parameters such as entrance surface dose and DAP".</span>
+                    </p>
+                </details>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const questions = quizForm.querySelectorAll('.question');
+            const resetButton = document.getElementById('resetQuiz');
+
+            questions.forEach(question => {
+                const radios = question.querySelectorAll('input[type="radio"]');
+                radios.forEach(radio => {
+                    radio.addEventListener('change', (event) => {
+                        const selectedAnswer = event.target.value;
+                        const correctAnswer = question.dataset.correctAnswer;
+                        const feedbackDiv = question.querySelector('.feedback');
+                        const detailsElement = question.querySelector('details');
+                        const userResultSpan = detailsElement.querySelector('.user-result');
+
+                        // Show feedback
+                        feedbackDiv.style.display = 'block';
+                        if (selectedAnswer === correctAnswer) {
+                            feedbackDiv.textContent = 'Correct!';
+                            feedbackDiv.className = 'feedback correct';
+                            userResultSpan.textContent = 'You were RIGHT!';
+                        } else {
+                            feedbackDiv.textContent = 'Incorrect.';
+                            feedbackDiv.className = 'feedback incorrect';
+                            userResultSpan.textContent = 'You were WRONG.';
+                        }
+
+                        // Expand explanation
+                        detailsElement.style.display = 'block';
+                        detailsElement.open = true; // Automatically open the details
+
+                        // Disable radio buttons for this question
+                        radios.forEach(r => r.disabled = true);
+                    });
+                });
+            });
+
+            resetButton.addEventListener('click', () => {
+                questions.forEach(question => {
+                    const radios = question.querySelectorAll('input[type="radio"]');
+                    const feedbackDiv = question.querySelector('.feedback');
+                    const detailsElement = question.querySelector('details');
+
+                    // Reset radio buttons
+                    radios.forEach(radio => {
+                        radio.checked = false;
+                        radio.disabled = false;
+                    });
+
+                    // Hide feedback and explanation
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.textContent = '';
+                    feedbackDiv.className = 'feedback'; // Reset class
+                    detailsElement.style.display = 'none';
+                    detailsElement.open = false; // Collapse the details
+                });
+            });
+        });
+    </script>
+</body>
+</html>

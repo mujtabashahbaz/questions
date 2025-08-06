@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuclear Imaging Quiz - Chapter 5</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #2b2b2b;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        h1 {
+            color: #79addc; /* A soft blue */
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+
+        p {
+            color: #d0d0d0;
+            margin-bottom: 25px;
+        }
+
+        .question {
+            background-color: #3a3a3a;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+
+        .question p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #f0f0f0;
+        }
+
+        .question label {
+            display: inline-block;
+            margin-right: 25px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .question label:hover {
+            background-color: #555;
+            color: #fff;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .feedback {
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+        }
+
+        .feedback.correct {
+            background-color: rgba(76, 175, 80, 0.2); /* Green with transparency */
+            color: #4CAF50;
+        }
+
+        .feedback.incorrect {
+            background-color: rgba(244, 67, 54, 0.2); /* Red with transparency */
+            color: #f44336;
+        }
+
+        .feedback.info {
+            background-color: rgba(33, 150, 243, 0.2); /* Blue with transparency */
+            color: #2196F3;
+        }
+
+        details {
+            margin-top: 15px;
+            background-color: #444;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            transition: background-color 0.3s ease;
+        }
+
+        details:hover {
+            background-color: #555;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #79addc;
+            outline: none;
+            transition: color 0.3s ease;
+        }
+
+        summary:hover {
+            color: #a7d0f9;
+        }
+
+        details p {
+            margin-top: 10px;
+            padding-left: 10px;
+            color: #d0d0d0;
+            font-size: 0.95em;
+        }
+
+        .citation {
+            font-size: 0.85em;
+            color: #bbb;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: #79addc;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #a7d0f9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Nuclear Imaging: Chapter 5 Quiz</h1>
+        <p>Test your knowledge on the physics of medical imaging, focusing on Chapter 5: Nuclear Imaging. Select True or False for each statement.</p>
+
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question" data-correct-answer="True">
+                <p>1. The collimator in a gamma camera is typically made of lead due to its high linear attenuation coefficient.</p>
+                <label><input type="radio" name="q1" value="True"> True</label>
+                <label><input type="radio" name="q1" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True.
+                    The source explicitly states, "Collimators are generally made of lead because of its high linear attenuation coefficient".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 97.</span>
+                </details>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" data-correct-answer="False">
+                <p>2. A pinhole collimator is used to produce demagnified views of small objects.</p>
+                <label><input type="radio" name="q2" value="True"> True</label>
+                <label><input type="radio" name="q2" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False.
+                    A pinhole collimator is used to produce magnified views of small objects, not demagnified. The text states, "The pinhole is a single-hole collimator that is used to produce magnified views of small objects".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 97.</span>
+                </details>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" data-correct-answer="True">
+                <p>3. The typical radiation detector in a gamma camera is a single crystal of sodium iodide doped with around 10% thallium.</p>
+                <label><input type="radio" name="q3" value="True"> True</label>
+                <label><input type="radio" name="q3" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True.
+                    The source confirms this: "Typically, the detector is a large-area NaI(Tl) scintillation crystal e a single crystal of sodium iodide doped with around 10% thallium".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 98.</span>
+                </details>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" data-correct-answer="False">
+                <p>4. Sodium iodide crystals used in gamma cameras are non-hygroscopic and do not require hermetic sealing.</p>
+                <label><input type="radio" name="q4" value="True"> True</label>
+                <label><input type="radio" name="q4" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False.
+                    Sodium iodide is hygroscopic, meaning it absorbs moisture from the air, and therefore requires hermetic sealing. The text states: "Sodium iodide is hygroscopic, so the crystal is hermetically sealed in aluminium".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 98.</span>
+                </details>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" data-correct-answer="True">
+                <p>5. A photomultiplier tube (PMT) primarily functions by converting light into a measurable electrical signal and amplifying it.</p>
+                <label><input type="radio" name="q5" value="True"> True</label>
+                <label><input type="radio" name="q5" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True.
+                    A PMT "detects a very small amount of light... and converts and amplifies it into a measurable electrical signal".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 98.</span>
+                </details>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question" data-correct-answer="False">
+                <p>6. In pulse height analysis, a wider acceptance window will exclude more scattered photons but reduce sensitivity.</p>
+                <label><input type="radio" name="q6" value="True"> True</label>
+                <label><input type="radio" name="q6" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False.
+                    A narrower photopeak window excludes more scatter but reduces sensitivity. Therefore, a wider window would accept more scatter but increase sensitivity. The text states: "Narrower photopeak windows will exclude more scatter but will reduce sensitivity as less photopeak events are accepted".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 99.</span>
+                </details>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question" data-correct-answer="True">
+                <p>7. Solid-state detectors utilizing cadmium-zinc-telluride (CZT) typically improve energy resolution compared to traditional gamma camera designs.</p>
+                <label><input type="radio" name="q7" value="True"> True</label>
+                <label><input type="radio" name="q7" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True.
+                    CZT solid-state detectors can improve energy resolution by a factor of about 2 compared to traditional designs, leading to improved image contrast by better exclusion of scattered radiation.
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 99.</span>
+                </details>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question" data-correct-answer="True">
+                <p>8. The intrinsic spatial resolution of a gamma camera is generally worse with a thicker NaI(Tl) detector crystal.</p>
+                <label><input type="radio" name="q8" value="True"> True</label>
+                <label><input type="radio" name="q8" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True.
+                    The source states that "The thicker the crystal, the worse the spatial resolution" due to greater variation in scintillation depth and probability of multiple Compton scatter.
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 102.</span>
+                </details>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question" data-correct-answer="False">
+                <p>9. The system spatial resolution of a gamma camera is primarily dominated by the intrinsic spatial resolution of the gamma camera, not the collimator.</p>
+                <label><input type="radio" name="q9" value="True"> True</label>
+                <label><input type="radio" name="q9" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False.
+                    The collimator is the dominant factor in system spatial resolution. The text explicitly states, "the collimator is the dominant factor".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 103.</span>
+                </details>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question" data-correct-answer="True">
+                <p>10. The sensitivity of a parallel-hole collimator remains approximately constant as the distance between the source of radioactivity and the collimator face increases.</p>
+                <label><input type="radio" name="q10" value="True"> True</label>
+                <label><input type="radio" name="q10" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True.
+                    While spatial resolution degrades with distance, the sensitivity of a parallel-hole collimator remains approximately constant. "the sensitivity being independent of distance".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 104.</span>
+                </details>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question" data-correct-answer="False">
+                <p>11. For SPECT imaging, the detector-to-patient distance should always be maximized to improve resolution.</p>
+                <label><input type="radio" name="q11" value="True"> True</label>
+                <label><input type="radio" name="q11" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False.
+                    In SPECT, the detector-to-patient distance should always be minimized to maximize resolution. The text states, "the detector-to-patient distance should always be minimised to maximise the resolution obtained".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 112.</span>
+                </details>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question" data-correct-answer="False">
+                <p>12. Filtered Back Projection (FBP) is a computationally complex image reconstruction technique that requires an a priori estimate of radionuclide distribution.</p>
+                <label><input type="radio" name="q12" value="True"> True</label>
+                <label><input type="radio" name="q12" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False.
+                    Filtered Back Projection (FBP) is computationally simple and fast, but it does not produce an exact mathematical solution. Iterative reconstruction (IR) techniques are computationally complex and require an a priori estimate. The source contrasts FBP with IR, noting that IR "do converge to an optimal solution, but they are computationally complex. With the increasing computer power available...the use of IR techniques has become the preferred option. One major difference of IR techniques is that they require an a priori estimate of the distribution of the radionuclide".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 114.</span>
+                </details>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question" data-correct-answer="False">
+                <p>13. Positron Emission Tomography (PET) relies on the detection of a single photon resulting from positron annihilation.</p>
+                <label><input type="radio" name="q13" value="True"> True</label>
+                <label><input type="radio" name="q13" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False.
+                    PET relies on the detection of a <strong>pair of collinear photons</strong> (two photons) resulting from the annihilation of a positron and an electron. "PET radionuclides decay by positron emission and imaging therefore relies on the detection of the pair of collinear photons resulting from the annihilation of the positron and an electron".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 116.</span>
+                </details>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question" data-correct-answer="True">
+                <p>14. Fluorine-18 (18F) is the most widely used radionuclide in PET imaging because its long half-life of 109 minutes makes remote production and transport feasible.</p>
+                <label><input type="radio" name="q14" value="True"> True</label>
+                <label><input type="radio" name="q14" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True.
+                    Fluorine-18 is indeed the most widely used PET radionuclide, and its half-life facilitates remote production and transport. "The most widely used radionuclide in PET imaging is fluorine-18...the half-life of 109 min makes remote production and transport to the imaging site feasible".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 116.</span>
+                </details>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question" data-correct-answer="True">
+                <p>15. The positron range in tissue introduces a fundamental limit to the spatial resolution of a PET imaging system.</p>
+                <label><input type="radio" name="q15" value="True"> True</label>
+                <label><input type="radio" name="q15" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True.
+                    The positron range, the distance between emission and annihilation, creates a fundamental limit to PET spatial resolution because the annihilation point is where the photons originate. "The range is the distance between the point of emission and the point of annihilation...This introduces a fundamental limit to the spatial resolution of a PET imaging system as it can never be less than the positron range".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 116.</span>
+                </details>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question" data-correct-answer="False">
+                <p>16. In PET imaging, scatter and random coincidences improve image contrast and resolution.</p>
+                <label><input type="radio" name="q16" value="True"> True</label>
+                <label><input type="radio" name="q16" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False.
+                    Scatter and random coincidences actually degrade image contrast and resolution by adding background. "scatter and random coincidences add background to the reconstructed images, thus reducing image contrast and degrade resolution".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 119.</span>
+                </details>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question" data-correct-answer="False">
+                <p>17. PET sensitivity is generally much lower than SPECT due to the thicker detection crystals and lack of physical collimators.</p>
+                <label><input type="radio" name="q17" value="True"> True</label>
+                <label><input type="radio" name="q17" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False.
+                    PET sensitivity is significantly higher than SPECT (by a factor of ~100) because of its thicker detection crystals and the absence of physical collimators. "The thicker detection crystals and lack of physical collimators mean that PET sensitivity is much greater than SPECT (by a factor of w100)".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 120.</span>
+                </details>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question" data-correct-answer="True">
+                <p>18. For most clinical uses of 18FDG, the Diagnostic Reference Level (DRL) set by ARSAC is 400 MBq.</p>
+                <label><input type="radio" name="q18" value="True"> True</label>
+                <label><input type="radio" name="q18" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True.
+                    The DRL for most clinical 18FDG uses is indeed 400 MBq. "For most clinical uses of FDG, the DRL set by ARSAC is 400 MBq".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 122.</span>
+                </details>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question" data-correct-answer="True">
+                <p>19. In nuclear medicine, any additional SPECT acquisitions do not add further radiation dose to the patient if the radiopharmaceutical is only injected once.</p>
+                <label><input type="radio" name="q19" value="True"> True</label>
+                <label><input type="radio" name="q19" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True.
+                    As long as the radiopharmaceutical is injected only once, subsequent SPECT acquisitions (beyond the initial planar imaging) do not add additional dose, as they are simply imaging the existing distribution of the decaying radionuclide. "any additional images required, such as SPECT acquisitions, do not add further dose to the patient as the radiopharmaceutical is only injected once".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 121.</span>
+                </details>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question" data-correct-answer="False">
+                <p>20. Pregnant staff should be encouraged to work in PET facilities due to the low energy of annihilation photons.</p>
+                <label><input type="radio" name="q20" value="True"> True</label>
+                <label><input type="radio" name="q20" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False.
+                    Pregnant staff should be precluded from working in PET facilities to minimize fetal radiation exposure, as annihilation photons are 511 keV, which is a significant energy. "Pregnant staff should be precluded from working in PET to ensure foetal radiation exposure is minimised".
+                    </p>
+                    <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd edition, Chapter 5, page 122.</span>
+                </details>
+            </div>
+
+        </form>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const resetButton = document.getElementById('resetQuiz');
+
+            quizForm.addEventListener('change', (event) => {
+                if (event.target.type === 'radio') {
+                    const questionDiv = event.target.closest('.question');
+                    const selectedAnswer = event.target.value;
+                    const correctAnswer = questionDiv.dataset.correctAnswer;
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    const detailsElement = questionDiv.querySelector('details');
+
+                    // Reset previous feedback for this question
+                    feedbackDiv.className = 'feedback'; // Clear all classes
+                    feedbackDiv.style.display = 'block';
+                    detailsElement.open = true;
+
+                    if (selectedAnswer === correctAnswer) {
+                        feedbackDiv.classList.add('correct');
+                        feedbackDiv.textContent = 'Correct!';
+                    } else {
+                        feedbackDiv.classList.add('incorrect');
+                        feedbackDiv.textContent = 'Incorrect.';
+                    }
+
+                    // Disable further input for this question after selection
+                    const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                    radioButtons.forEach(radio => radio.disabled = true);
+                }
+            });
+
+            resetButton.addEventListener('click', () => {
+                const questions = document.querySelectorAll('.question');
+                questions.forEach(questionDiv => {
+                    // Reset radio buttons
+                    const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                    radioButtons.forEach(radio => {
+                        radio.checked = false;
+                        radio.disabled = false; // Re-enable radios
+                    });
+
+                    // Hide feedback
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.className = 'feedback'; // Remove color classes
+
+                    // Collapse explanation
+                    const detailsElement = questionDiv.querySelector('details');
+                    detailsElement.open = false;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farr's Physics Quiz - Chapter 1</title>
+    <style>
+        body {
+            background-color: #1a1a1a; /* Dark background */
+            color: #e0e0e0; /* Light text */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .quiz-container {
+            background-color: #2a2a2a;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 800px;
+            margin: 20px 0;
+        }
+
+        h1 {
+            color: #f0f0f0;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.2em;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .question {
+            background-color: #333333;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid #444;
+        }
+
+        .question p {
+            margin-top: 0;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #f0f0f0;
+        }
+
+        .question label {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            color: #c0c0c0;
+            transition: color 0.2s ease;
+        }
+
+        .question label:hover {
+            color: #f0f0f0;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 8px;
+            transform: scale(1.2); /* Slightly larger radio buttons */
+            cursor: pointer;
+            accent-color: #88c0d0; /* A soft blue/cyan for radio buttons */
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+            color: #fff; /* White text for feedback */
+        }
+
+        .feedback.correct {
+            background-color: #28a745; /* Green */
+        }
+
+        .feedback.incorrect {
+            background-color: #dc3545; /* Red */
+        }
+
+        .feedback.neutral {
+            background-color: #007bff; /* Blue for general info/citation */
+        }
+
+        details {
+            margin-top: 10px;
+            background-color: #444444;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #555;
+            color: #c0c0c0;
+        }
+
+        details summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #f0f0f0;
+            outline: none;
+        }
+
+        details p {
+            font-weight: normal;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            color: #e0e0e0;
+        }
+
+        .citation {
+            font-size: 0.85em;
+            color: #88c0d0; /* Soft blue for citations */
+            font-style: italic;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #resetQuiz {
+            background-color: #88c0d0; /* Soft blue */
+            color: #1a1a1a; /* Dark text for button */
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #resetQuiz:hover {
+            background-color: #a3dae9; /* Lighter blue on hover */
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Farr's Physics for Medical Imaging, 3rd edition - Chapter 1 Quiz</h1>
+        <p>Test your knowledge on the fundamental concepts of Matter and Radiation, Electromagnetic Radiation, X-ray Production, and Matter Interactions covered in Chapter 1.</p>
+
+        <form id="quizForm">
+            <div class="question" data-correct-answer="False">
+                <p>1. Diagnostic imaging relies solely on ionizing radiations such as X-rays and gamma rays.</p>
+                <label><input type="radio" name="q1" value="True">True</label>
+                <label><input type="radio" name="q1" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False<br>
+                        Diagnostic imaging utilizes both ionizing (X- and gamma rays) and non-ionizing (radio-frequency and sound) radiations.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>2. Protons and neutrons, collectively known as nucleons, each have a relative mass of 1.</p>
+                <label><input type="radio" name="q2" value="True">True</label>
+                <label><input type="radio" name="q2" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> True<br>
+                        Both protons and neutrons have a relative mass of 1. Protons carry a +1 charge, while neutrons have no charge.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>3. The atomic number of an atom is determined by the number of neutrons in its nucleus.</p>
+                <label><input type="radio" name="q3" value="True">True</label>
+                <label><input type="radio" name="q3" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False<br>
+                        The number of **protons** determines the atomic number, which in turn defines the element. The number of neutrons can vary, leading to isotopes.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>4. Radioisotopes are stable atoms that have the same number of protons but a different number of neutrons.</p>
+                <label><input type="radio" name="q4" value="True">True</label>
+                <label><input type="radio" name="q4" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False<br>
+                        Radioisotopes are **unstable** isotopes that decay with the emission of ionizing radiation or particles. Isotopes themselves have the same atomic number but a different number of neutrons.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>5. The K-shell, the innermost electron shell, can hold up to 8 electrons.</p>
+                <label><input type="radio" name="q5" value="True">True</label>
+                <label><input type="radio" name="q5" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False<br>
+                        The innermost K-shell can hold up to **two** electrons. The L-shell holds eight electrons, the M-shell 18, and the N-shell 32.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>6. Characteristic X-rays are produced when an excited outer-shell electron returns to its original inner shell, re-emitting excess energy as a photon.</p>
+                <label><input type="radio" name="q6" value="True">True</label>
+                <label><input type="radio" name="q6" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False<br>
+                        Characteristic X-rays (photons) are produced when a **bombarding electron displaces an inner shell electron**, and a higher-shell electron (e.g., L-shell or M-shell) fills that vacancy, re-emitting the excess energy.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>7. All forms of electromagnetic (EM) radiation travel at the same velocity as light when in a vacuum.</p>
+                <label><input type="radio" name="q7" value="True">True</label>
+                <label><input type="radio" name="q7" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> True<br>
+                        Electromagnetic radiation, including radiowaves, microwaves, infrared, visible light, ultraviolet, X-rays, and gamma rays, all travel at approximately 2.98 × 10^8 m/s in a vacuum.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>8. The energy of a photon is directly proportional to its wavelength.</p>
+                <label><input type="radio" name="q8" value="True">True</label>
+                <label><input type="radio" name="q8" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False<br>
+                        Photon energy (E) is **inversely proportional** to its wavelength (λ), as shown by the formula E = hc/λ.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>9. X-rays are produced by the interaction of slow-moving electrons with a metal target, converting kinetic energy into X-rays and heat.</p>
+                <label><input type="radio" name="q9" value="True">True</label>
+                <label><input type="radio" name="q9" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False<br>
+                        X-rays are produced when **fast-moving** electrons undergo interaction with a metal target.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>10. In an X-ray tube, approximately 99% of the kinetic energy of the electrons hitting the target is converted into X-rays, with the remaining 1% producing heat.</p>
+                <label><input type="radio" name="q10" value="True">True</label>
+                <label><input type="radio" name="q10" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False<br>
+                        Approximately **99%** of the kinetic energy is converted into **heat**, and only about **1%** is converted into X-rays.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>11. Increasing the kilovoltage (kV) in an X-ray tube primarily increases the quantity of photons produced, without significantly affecting their energy.</p>
+                <label><input type="radio" name="q11" value="True">True</label>
+                <label><input type="radio" name="q11" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False<br>
+                        Increased kV shifts the X-ray spectrum upwards and to the right, leading to **increased maximum and effective energy** and an increased total number of photons. Increasing mA, conversely, increases only the quantity of photons.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>12. Bremsstrahlung radiation accounts for the majority (approximately 80%) of X-rays produced in an X-ray tube and yields a continuous spectrum of photon energies.</p>
+                <label><input type="radio" name="q12" value="True">True</label>
+                <label><input type="radio" name="q12" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> True<br>
+                        Bremsstrahlung, or "braking radiation," is produced when bombarding electrons are deflected by the nucleus, losing energy as radiation. It accounts for approximately 80% of produced X-rays and yields a continuous spectrum.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>13. Filtration in X-ray systems is primarily used to remove high-energy photons before they reach the patient, thereby reducing patient dose.</p>
+                <label><input type="radio" name="q13" value="True">True</label>
+                <label><input type="radio" name="q13" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False<br>
+                        Filtration removes **lower-energy** photons, which mostly contribute to patient dose without significantly contributing to image formation.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>14. The total filtration for general radiology systems is typically 2.5 mm of lead equivalent.</p>
+                <label><input type="radio" name="q14" value="True">True</label>
+                <label><input type="radio" name="q14" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False<br>
+                        The total filtration for general radiology systems is typically 2.5 mm **aluminium equivalent**.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>15. In heterogeneous beam attenuation, the second half-value layer (HVL) is typically smaller than the first HVL due to the preferential removal of higher-energy photons.</p>
+                <label><input type="radio" name="q15" value="True">True</label>
+                <label><input type="radio" name="q15" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False<br>
+                        The second HVL is **larger** than the first HVL because lower-energy photons are removed proportionally more, leading to a "hardened" beam with a greater proportion of higher-energy photons.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>16. The probability of photoelectric absorption increases with increased incident photon energy.</p>
+                <label><input type="radio" name="q16" value="True">True</label>
+                <label><input type="radio" name="q16" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False<br>
+                        The probability of photoelectric absorption **decreases** with increased incident photon energy (inversely proportional to E^3). It increases with the increased atomic number of the material (proportional to Z^3).
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>17. In most radiology applications, where photon energies are typically below 1 MeV, both photoelectric and Compton effects are considered the predominant interactions with matter.</p>
+                <label><input type="radio" name="q17" value="True">True</label>
+                <label><input type="radio" name="q17" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> True<br>
+                        For photon energies below 1 MeV, photoelectric absorption and Compton scattering are the main interactions considered in radiology applications.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>18. Unlike photons, charged particles have a defined "range," meaning they travel an ultimate depth within matter before losing all their energy.</p>
+                <label><input type="radio" name="q18" value="True">True</label>
+                <label><input type="radio" name="q18" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> True<br>
+                        Charged particles have a finite range in matter, while photons undergo exponential decay and do not have a defined ultimate depth.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>19. Luminescence is the process where a material absorbs energy and re-emits it as visible photons, primarily occurring in hot materials like burning wood.</p>
+                <label><input type="radio" name="q19" value="True">True</label>
+                <label><input type="radio" name="q19" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False<br>
+                        Luminescence occurs in **relatively cool materials** and is distinct from incandescence (e.g., burning wood), which involves light emission due to high temperature.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>20. Phosphorescence involves the nearly instantaneous emission of photons after energy absorption.</p>
+                <label><input type="radio" name="q20" value="True">True</label>
+                <label><input type="radio" name="q20" value="False">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer:</strong> False<br>
+                        Phosphorescence involves **delayed emission** of photons, facilitated by impurities acting as electron traps. **Fluorescence** involves the nearly instantaneous emission of photons.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const questions = document.querySelectorAll('.question');
+            const resetButton = document.getElementById('resetQuiz');
+
+            // Function to handle answer selection
+            const handleAnswerSelection = (event) => {
+                const selectedRadio = event.target;
+                const questionDiv = selectedRadio.closest('.question');
+                const feedbackDiv = questionDiv.querySelector('.feedback');
+                const explanationDetails = questionDiv.querySelector('details');
+                const correctAnswer = questionDiv.dataset.correctAnswer;
+                const userAnswer = selectedRadio.value;
+
+                // Disable all radio buttons for this question
+                questionDiv.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.disabled = true;
+                });
+
+                // Show feedback
+                feedbackDiv.style.display = 'block';
+                if (userAnswer === correctAnswer) {
+                    feedbackDiv.textContent = 'Correct!';
+                    feedbackDiv.className = 'feedback correct';
+                } else {
+                    feedbackDiv.textContent = 'Incorrect!';
+                    feedbackDiv.className = 'feedback incorrect';
+                }
+
+                // Update explanation with user's status
+                const explanationP = explanationDetails.querySelector('p');
+                let userStatus = '';
+                if (userAnswer === correctAnswer) {
+                    userStatus = 'You were RIGHT!';
+                } else {
+                    userStatus = 'You were WRONG!';
+                }
+                explanationP.innerHTML = `
+                    <strong>Correct Answer:</strong> ${correctAnswer}<br>
+                    <strong>Your Answer:</strong> ${userAnswer} - ${userStatus}<br>
+                    ${explanationP.innerHTML.split('<br>') || explanationP.innerHTML.split('<br>')}
+                `; // Rebuild content to inject user's status
+
+                // Expand explanation
+                explanationDetails.open = true;
+            };
+
+            // Add event listeners to all radio buttons
+            questions.forEach(question => {
+                question.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.addEventListener('change', handleAnswerSelection);
+                });
+            });
+
+            // Reset Quiz functionality
+            resetButton.addEventListener('click', () => {
+                quizForm.reset(); // Clears all selected radio buttons
+                questions.forEach(question => {
+                    const feedbackDiv = question.querySelector('.feedback');
+                    const explanationDetails = question.querySelector('details');
+                    const explanationP = explanationDetails.querySelector('p'); // Get the explanation paragraph
+
+                    // Hide feedback
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.textContent = '';
+                    feedbackDiv.className = 'feedback'; // Reset classes
+
+                    // Collapse explanation
+                    explanationDetails.open = false;
+
+                    // Revert explanation text to original (without user status)
+                    const originalExplanationContent = question.querySelector('details').innerHTML;
+                    const originalSummary = question.querySelector('details summary').outerHTML;
+                    const originalCitation = question.querySelector('.citation') ? question.querySelector('.citation').outerHTML : '';
+                    
+                    // A more robust way to reset the explanation might be to store it initially or rebuild it
+                    // For now, let's just make sure the "Your Answer" line is removed if it exists
+                    const lines = explanationP.innerHTML.split('<br>');
+                    if (lines && lines.includes('Your Answer:')) {
+                        // If "Your Answer" line exists, remove it and the "Correct Answer" line
+                        explanationP.innerHTML = `<strong>Correct Answer:</strong> ${question.dataset.correctAnswer}<br>${lines.slice(2).join('<br>')}`;
+                    }
+                    
+                    // Re-enable radio buttons
+                    question.querySelectorAll('input[type="radio"]').forEach(radio => {
+                        radio.disabled = false;
+                    });
+                });
+            });
+
+            // Initial setup to ensure explanations are closed and feedback hidden on load
+            questions.forEach(question => {
+                question.querySelector('.feedback').style.display = 'none';
+                question.querySelector('details').open = false;
+            });
+        });
+    </script>
+</body>
+</html>

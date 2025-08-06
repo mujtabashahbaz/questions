@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farr's Physics for Medical Imaging - Chapter 1 Quiz</title>
+    <style>
+        :root {
+            --background-dark: #1a1a1a;
+            --container-bg: #2c2c2c;
+            --text-light: #f0f0f0;
+            --accent-color: #6a0dad; /* A deep purple */
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --correct-color: #4CAF50; /* Green */
+            --incorrect-color: #F44336; /* Red */
+            --info-color: #2196F3; /* Blue */
+            --button-hover-bg: #8a2be2; /* Lighter purple for hover */
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top */
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .quiz-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: var(--container-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px var(--shadow-color);
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 2.2em;
+        }
+
+        .intro-text {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+
+        .question {
+            background-color: #3a3a3a;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            text-align: left;
+            position: relative;
+        }
+
+        .question p {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .question input[type="radio"] {
+            display: none; /* Hide default radio button */
+        }
+
+        .question label {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-right: 15px;
+            border: 2px solid var(--accent-color);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .question label:hover {
+            background-color: var(--accent-color);
+            color: var(--text-light);
+        }
+
+        .question input[type="radio"]:checked + label {
+            background-color: var(--accent-color);
+            color: var(--text-light);
+            border-color: var(--accent-color);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+            transition: opacity 0.3s ease;
+            font-size: 0.95em;
+        }
+
+        .feedback.correct {
+            background-color: var(--correct-color);
+            color: var(--background-dark);
+        }
+
+        .feedback.incorrect {
+            background-color: var(--incorrect-color);
+            color: var(--background-dark);
+        }
+
+        details {
+            margin-top: 15px;
+            background-color: #4a4a4a;
+            border-radius: 5px;
+            padding: 10px 15px;
+            border: 1px solid #5a5a5a;
+            font-size: 0.9em;
+            display: none; /* Hidden by default */
+        }
+
+        details[open] {
+            display: block; /* Show when open */
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--info-color);
+        }
+
+        details p {
+            margin-top: 10px;
+            margin-bottom: 0;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .citation {
+            font-size: 0.8em;
+            color: #ccc;
+            font-style: italic;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            background-color: var(--accent-color);
+            color: var(--text-light);
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        button:hover {
+            background-color: var(--button-hover-bg);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Physics for Medical Imaging Quiz - Chapter 1</h1>
+        <p class="intro-text">Test your knowledge on the fundamental concepts from Chapter 1 of *Farr's Physics for Medical Imaging, 3rd edition*.</p>
+
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question" data-correct-answer="True">
+                <p>1. Protons have a relative mass of 1 and carry a +1 charge.</p>
+                <input type="radio" id="q1_true" name="q1" value="True">
+                <label for="q1_true">True</label>
+                <input type="radio" id="q1_false" name="q1" value="False">
+                <label for="q1_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True</strong><br>
+                        Protons are indeed nucleons with a relative mass of 1 and a +1 charge.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" data-correct-answer="True">
+                <p>2. Electrons have a relative mass of 0.0005 and carry a -1 charge.</p>
+                <input type="radio" id="q2_true" name="q2" value="True">
+                <label for="q2_true">True</label>
+                <input type="radio" id="q2_false" name="q2" value="False">
+                <label for="q2_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True</strong><br>
+                        Electrons orbiting the nucleus have a relative mass of 0.0005 and a -1 charge, typically matching the number of protons to balance the atom's charge.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" data-correct-answer="False">
+                <p>3. The innermost electron shell, termed the M-shell, can hold 18 electrons.</p>
+                <input type="radio" id="q3_true" name="q3" value="True">
+                <label for="q3_true">True</label>
+                <input type="radio" id="q3_false" name="q3" value="False">
+                <label for="q3_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: False</strong><br>
+                        The innermost shell is the K-shell, which can hold two electrons. The M-shell can indeed hold 18 electrons, but it is not the innermost shell.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" data-correct-answer="True">
+                <p>4. The outermost electron shell, known as the valence shell, can hold a maximum of eight electrons when complete.</p>
+                <input type="radio" id="q4_true" name="q4" value="True">
+                <label for="q4_true">True</label>
+                <input type="radio" id="q4_false" name="q4" value="False">
+                <label for="q4_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True</strong><br>
+                        The valence shell is the outermost shell and can only ever have eight electrons within it, forming a complete outer shell octet. This defines the element's chemical, thermal, optical, and electrical properties.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" data-correct-answer="True">
+                <p>5. All forms of electromagnetic (EM) radiation travel at the same velocity as light when in a vacuum, which is approximately 2.98 × 10^8 m/s.</p>
+                <input type="radio" id="q5_true" name="q5" value="True">
+                <label for="q5_true">True</label>
+                <input type="radio" id="q5_false" name="q5" value="False">
+                <label for="q5_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True</strong><br>
+                        Electromagnetic radiation, encompassing all forms from radio waves to X-rays, travels at a constant velocity in vacuo, similar to the speed of light in air.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question" data-correct-answer="True">
+                <p>6. Photon energy is inversely proportional to wavelength.</p>
+                <input type="radio" id="q6_true" name="q6" value="True">
+                <label for="q6_true">True</label>
+                <input type="radio" id="q6_false" name="q6" value="False">
+                <label for="q6_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True</strong><br>
+                        The relationship E = hc/λ (where h is Planck's constant and c is velocity) demonstrates that photon energy (E) is inversely proportional to wavelength (λ).
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question" data-correct-answer="True">
+                <p>7. Beam intensity is defined as the energy fluence rate (W/mm²), but it is difficult to measure in practice.</p>
+                <input type="radio" id="q7_true" name="q7" value="True">
+                <label for="q7_true">True</label>
+                <input type="radio" id="q7_false" name="q7" value="False">
+                <label for="q7_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True</strong><br>
+                        While beam intensity indicates the energy fluence rate, it is challenging to measure directly in reality; air kerma is used as an indirect measurement.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question" data-correct-answer="True">
+                <p>8. The inverse square law states that the area of an X-ray beam is proportional to the square of the distance from a point source.</p>
+                <input type="radio" id="q8_true" name="q8" value="True">
+                <label for="q8_true">True</label>
+                <input type="radio" id="q8_false" name="q8" value="False">
+                <label for="q8_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True</strong><br>
+                        The inverse square law describes how the dimensions of a beam are proportional to distance, and its area is proportional to the square of the distance from a point source, assuming no absorption or scatter.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question" data-correct-answer="False">
+                <p>9. When fast-moving electrons interact with a metal target in an X-ray tube, approximately 99% of their kinetic energy is converted into X-rays.</p>
+                <input type="radio" id="q9_true" name="q9" value="True">
+                <label for="q9_true">True</label>
+                <input type="radio" id="q9_false" name="q9" value="False">
+                <label for="q9_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: False</strong><br>
+                        Only about 1% of the kinetic energy is converted into X-rays, while approximately 99% is converted into heat.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question" data-correct-answer="False">
+                <p>10. Increasing the kilovoltage (kV) of an X-ray tube increases only the quantity of photons produced, without affecting the X-ray spectrum's energy distribution.</p>
+                <input type="radio" id="q10_true" name="q10" value="True">
+                <label for="q10_true">True</label>
+                <input type="radio" id="q10_false" name="q10" value="False">
+                <label for="q10_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: False</strong><br>
+                        Increased kV shifts the spectrum upwards and to the right, increasing both the maximum and effective energy, as well as the total number of photons. Increased mA (milliamperage) primarily increases the quantity of photons only.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question" data-correct-answer="True">
+                <p>11. Bremsstrahlung (braking radiation) accounts for approximately 80% of the X-rays produced in an X-ray tube.</p>
+                <input type="radio" id="q11_true" name="q11" value="True">
+                <label for="q11_true">True</label>
+                <input type="radio" id="q11_false" name="q11" value="False">
+                <label for="q11_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True</strong><br>
+                        Bremsstrahlung radiation is produced when bombarding electrons are deflected by the nucleus, losing energy as radiation. This process yields a continuous spectrum and accounts for the majority of produced X-rays.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question" data-correct-answer="False">
+                <p>12. Filtration in X-ray imaging primarily removes higher-energy photons before they reach the patient, reducing patient dose.</p>
+                <input type="radio" id="q12_true" name="q12" value="True">
+                <label for="q12_true">True</label>
+                <input type="radio" id="q12_false" name="q12" value="False">
+                <label for="q12_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: False</strong><br>
+                        Filtration involves the removal of *lower-energy* photons, which would mostly contribute to patient dose without significantly aiding image formation.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question" data-correct-answer="True">
+                <p>13. Increasing the amount of filtration used in X-ray production will reduce the overall output of X-rays.</p>
+                <input type="radio" id="q13_true" name="q13" value="True">
+                <label for="q13_true">True</label>
+                <input type="radio" id="q13_false" name="q13" value="False">
+                <label for="q13_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True</strong><br>
+                        Filtration attenuates X-rays, especially lower-energy ones. Therefore, increasing filtration reduces the total number of photons exiting the tube, leading to a reduced overall output of X-rays.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question" data-correct-answer="True">
+                <p>14. In most radiology applications, for photon energies below 1 MeV, both photoelectric and Compton effects are significant interactions with matter.</p>
+                <input type="radio" id="q14_true" name="q14" value="True">
+                <label for="q14_true">True</label>
+                <input type="radio" id="q14_false" name="q14" value="False">
+                <label for="q14_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True</strong><br>
+                        For photon energies below 1 MeV, typically encountered in diagnostic radiology, both photoelectric and Compton effects are the primary interactions considered.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question" data-correct-answer="False">
+                <p>15. The probability of photoelectric absorption increases proportionally with the cube of the incident photon energy (E³ dependence).</p>
+                <input type="radio" id="q15_true" name="q15" value="True">
+                <label for="q15_true">True</label>
+                <input type="radio" id="q15_false" name="q15" value="False">
+                <label for="q15_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: False</strong><br>
+                        The probability of photoelectric absorption *decreases* with increased incident photon energy, following a 1/E³ relationship. It increases with the cube of the atomic number (Z³).
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question" data-correct-answer="True">
+                <p>16. Secondary electrons generated by the ionization of an atom are themselves directly ionizing.</p>
+                <input type="radio" id="q16_true" name="q16" value="True">
+                <label for="q16_true">True</label>
+                <input type="radio" id="q16_false" name="q16" value="False">
+                <label for="q16_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True</strong><br>
+                        Secondary electrons, including recoil electrons and photoelectrons, are directly ionizing as they interact with the outer shells of atoms, causing further excitations and ionizations.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question" data-correct-answer="True">
+                <p>17. Charged particles have a definite range within matter, meaning they travel a specific ultimate depth, unlike photons which undergo exponential decay.</p>
+                <input type="radio" id="q17_true" name="q17" value="True">
+                <label for="q17_true">True</label>
+                <input type="radio" id="q17_false" name="q17" value="False">
+                <label for="q17_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True</strong><br>
+                        Due to their mass and charge, charged particles interact differently from photons, exhibiting a finite range dependent on their initial energy and type, as illustrated by the Bragg curve.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question" data-correct-answer="True">
+                <p>18. In beta decay (beta minus decay), a neutron is converted into a proton and an electron, resulting in the daughter nuclide having the same mass number but an atomic number increased by one.</p>
+                <input type="radio" id="q18_true" name="q18" value="True">
+                <label for="q18_true">True</label>
+                <input type="radio" id="q18_false" name="q18" value="False">
+                <label for="q18_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True</strong><br>
+                        Beta decay resolves a neutron excess by converting a neutron into a proton and an emitted electron (beta particle), leading to an increase in atomic number while the mass number remains constant.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question" data-correct-answer="True">
+                <p>19. Technetium-99m (99Tcm) is ideally suited for imaging because it decays by isomeric transition, emits only 140 keV gamma rays, and has a 6-hour half-life.</p>
+                <input type="radio" id="q19_true" name="q19" value="True">
+                <label for="q19_true">True</label>
+                <input type="radio" id="q19_false" name="q19" value="False">
+                <label for="q19_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: True</strong><br>
+                        99Tcm is the most commonly used radionuclide in nuclear medicine due to these desirable properties, which optimize imaging parameters and minimize patient dose.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question" data-correct-answer="False">
+                <p>20. The biological half-life of a pharmaceutical compound, which defines its clearance rate from body tissues, is an immutable property that is constant for all individuals in a population group.</p>
+                <input type="radio" id="q20_true" name="q20" value="True">
+                <label for="q20_true">True</label>
+                <input type="radio" id="q20_false" name="q20" value="False">
+                <label for="q20_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        <strong>Correct Answer: False</strong><br>
+                        While the physical half-life is an immutable property of the radionuclide, the biological half-life can vary subtly among a population group as physiological processes are unique to each individual and may be affected by pathology.
+                        <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const questions = document.querySelectorAll('.question');
+            const resetButton = document.getElementById('resetQuiz');
+
+            questions.forEach(questionDiv => {
+                const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                const feedbackDiv = questionDiv.querySelector('.feedback');
+                const explanationDetails = questionDiv.querySelector('details');
+                const explanationP = explanationDetails.querySelector('p');
+                const correctAnswer = questionDiv.dataset.correctAnswer;
+
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', function() {
+                        const selectedAnswer = this.value;
+                        let isCorrect = (selectedAnswer === correctAnswer);
+
+                        // Update feedback div
+                        feedbackDiv.textContent = isCorrect ? 'Correct!' : 'Incorrect.';
+                        feedbackDiv.className = `feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+                        feedbackDiv.style.display = 'block';
+
+                        // Update explanation
+                        const baseExplanationText = explanationP.innerHTML.split('<br>'); // Keep only the first line of explanation
+                        explanationP.innerHTML = `${baseExplanationText}<br>
+                                                 You answered: <strong>${selectedAnswer}</strong>.<br>
+                                                 Your answer was ${isCorrect ? 'correct' : 'incorrect'}.
+                                                 <span class="citation">${questionDiv.querySelector('.citation').outerHTML}</span>`;
+                        
+                        // Ensure explanation is open for the selected question
+                        explanationDetails.open = true;
+                    });
+                });
+            });
+
+            resetButton.addEventListener('click', () => {
+                quizForm.reset(); // Clears radio selections
+                questions.forEach(questionDiv => {
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    const explanationDetails = questionDiv.querySelector('details');
+                    const explanationP = explanationDetails.querySelector('p');
+                    const citationSpan = questionDiv.querySelector('.citation').outerHTML;
+
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.classList.remove('correct', 'incorrect'); // Remove feedback colors
+                    explanationDetails.open = false; // Close explanations
+
+                    // Reset explanation text to its original state (without user-specific feedback)
+                    const originalExplanationContent = explanationP.innerHTML.split('<br>');
+                    explanationP.innerHTML = `${originalExplanationContent}<br>
+                                              <span class="citation">${citationSpan}</span>`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

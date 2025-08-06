@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRCR Part 1 CT Physics Quiz - Chapter 4</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #000000; /* Black background */
+            color: #E0E0E0; /* Light gray text */
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top of the page */
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .quiz-container {
+            background-color: #1A1A1A; /* Darker gray for the container */
+            padding: 30px;
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Soft shadow */
+            max-width: 800px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #FFFFFF;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.2em;
+        }
+
+        .quiz-container > p { /* Target the intro paragraph specifically */
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            color: #CCCCCC;
+        }
+
+        .question {
+            background-color: #282828; /* Slightly lighter for each question block */
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333333; /* Subtle border */
+        }
+
+        .question p {
+            text-align: left;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #F0F0F0;
+        }
+
+        .options label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border: 1px solid #555555;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+            color: #D0D0D0;
+        }
+
+        .options label:hover {
+            background-color: #3A3A3A;
+        }
+
+        .options input[type="radio"] {
+            margin-right: 10px;
+            accent-color: #0080FF; /* Blue accent for radio buttons */
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            display: none; /* Hidden by default, shown by JS */
+            font-size: 0.95em;
+        }
+
+        .feedback.correct {
+            background-color: #224422; /* Dark green for correct */
+            color: #AACCB0; /* Light green text */
+        }
+
+        .feedback.incorrect {
+            background-color: #442222; /* Dark red for incorrect */
+            color: #CCAAAE; /* Light red text */
+        }
+
+        .feedback details {
+            margin-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 10px;
+            color: #BBBBBB;
+        }
+
+        .feedback summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #00BFFF; /* Bright blue for summary */
+        }
+
+        .feedback details p {
+            margin-top: 10px;
+            font-weight: normal; /* Override bold from question p */
+            text-align: left; /* Override center from quiz-container p */
+            color: #BBBBBB;
+        }
+
+        .citation {
+            font-style: italic;
+            font-size: 0.85em;
+            color: #999999;
+            margin-left: 5px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        button {
+            background-color: #0080FF; /* Blue button */
+            color: #FFFFFF;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 128, 255, 0.3);
+        }
+
+        button:hover {
+            background-color: #0066CC; /* Darker blue on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 128, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>FRCR Part 1 Radiology Physics Quiz</h1>
+        <p>Based on Chapter 4: Computed Tomography from Farr's Physics for Medical Imaging, 3rd edition.</p>
+
+        <form id="quizForm">
+            <div class="question" data-correct-answer="False">
+                <p>1. True/False: The scintillator in a solid-state CT detector directly converts incident X-ray photons into electrical signals, which are then processed for image formation.</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="True"> True</label>
+                    <label><input type="radio" name="q1" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: False.</strong></span> <span class="user-status"></span><span class="explanation-content">The scintillator converts incident X-ray photons into *light photons*. These light photons are then converted into electrical signals by a photodiode.</span> <span class="citation"></span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>2. True/False: In CT imaging, increasing the field of view (FOV) while maintaining a fixed matrix size will result in improved spatial resolution.</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="True"> True</label>
+                    <label><input type="radio" name="q2" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: False.</strong></span> <span class="user-status"></span><span class="explanation-content">Pixel size is calculated as FOV / matrix size. Therefore, increasing the FOV while keeping the matrix size fixed will increase the pixel size, leading to *reduced* spatial resolution.</span> <span class="citation"></span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>3. True/False: Streak artifacts from metal implants in CT are explicitly presented in Chapter 4 as being separate phenomena from those caused by photon starvation.</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="True"> True</label>
+                    <label><input type="radio" name="q3" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: False.</strong></span> <span class="user-status"></span><span class="explanation-content">Chapter 4 states that both high-attenuation objects (like metal implants) and photon starvation can result in streak artifacts, but it does not explicitly differentiate them as entirely separate mechanisms. High attenuation can contribute to photon starvation.</span> <span class="citation"></span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>4. True/False: In helical CT scanning, a pitch value of less than 1 (e.g., 0.8) indicates a gap in data acquisition between successive rotations of the X-ray tube.</p>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="True"> True</label>
+                    <label><input type="radio" name="q4" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: False.</strong></span> <span class="user-status"></span><span class="explanation-content">A pitch value of less than 1 implies *overlap* in data acquisition. A pitch greater than 1 implies a gap.</span> <span class="citation"></span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>5. True/False: When reconstructing CT images, a soft tissue kernel provides superior edge detection compared to a lung kernel, making it more suitable for visualizing fine lung pathology.</p>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="True"> True</label>
+                    <label><input type="radio" name="q5" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: False.</strong></span> <span class="user-status"></span><span class="explanation-content">Lung reconstruction kernels typically offer *increased edge detection* (though they are noisier) compared to soft tissue kernels, which are designed for broader detail.</span> <span class="citation">[75, 77f]</span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>6. True/False: In CT, the patient dose is directly proportional to the peak kilovoltage (kVp).</p>
+                <div class="options">
+                    <label><input type="radio" name="q6" value="True"> True</label>
+                    <label><input type="radio" name="q6" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: False.</strong></span> <span class="user-status"></span><span class="explanation-content">Patient dose in CT is proportional to (kVp)², not directly proportional.</span> <span class="citation"></span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>7. True/False: Ring artifacts in third-generation CT scanners are primarily caused by miscalibration or malfunction of a single detector element, leading to incorrect CT numbers along a circular path.</p>
+                <div class="options">
+                    <label><input type="radio" name="q7" value="True"> True</label>
+                    <label><input type="radio" name="q7" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: True.</strong></span> <span class="user-status"></span><span class="explanation-content">A faulty detector in third-generation systems will result in incorrect CT numbers along the circle traced by that detector, producing a ring artifact. Daily calibration programs aim to prevent this.</span> <span class="citation"></span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>8. True/False: The Straton tube, an advancement in CT X-ray tube technology, improved anode heat dissipation primarily by enhancing radiative heat loss within a vacuum.</p>
+                <div class="options">
+                    <label><input type="radio" name="q8" value="True"> True</label>
+                    <label><input type="radio" name="q8" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: False.</strong></span> <span class="user-status"></span><span class="explanation-content">The Straton tube, developed by Siemens, improved heat dissipation by allowing *conductive* heat loss from the anode, which is a departure from the usual radiative cooling in a vacuum.</span> <span class="citation"></span></p>
+                    </details>
+                <p></div>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>9. True/False: Multiplanar reformat (MPR) in modern CT scanners is limited to providing seamless viewing primarily in axial and sagittal planes, with reduced quality in coronal reconstructions due to inherent anisotropic voxel dimensions.</p>
+                <div class="options">
+                    <label><input type="radio" name="q9" value="True"> True</label>
+                    <label><input type="radio" name="q9" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: False.</strong></span> <span class="user-status"></span><span class="explanation-content">A major advantage of modern CT scanners is MPR, which enables any acquired dataset to be viewed in *any plane* (axial, sagittal, coronal, or oblique), especially with isotropic datasets where resolution is uniform in all dimensions.</span> <span class="citation"></span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>10. True/False: In CT images, quantum noise is primarily attributed to inherent electronic fluctuations within the data acquisition system, making it largely independent of the number of photons detected.</p>
+                <div class="options">
+                    <label><input type="radio" name="q10" value="True"> True</label>
+                    <label><input type="radio" name="q10" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: False.</strong></span> <span class="user-status"></span><span class="explanation-content">Quantum noise is caused by a lack of sufficient photons and is directly affected by the photon flux (number of photons). Electronic noise, on the other hand, is inherent to the data acquisition system.</span> <span class="citation"></span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>11. True/False: The collimator in a CT scanner is responsible for controlling the Z-axis beam width through its variable aperture sizes.</p>
+                <div class="options">
+                    <label><input type="radio" name="q11" value="True"> True</label>
+                    <label><input type="radio" name="q11" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: True.</strong></span> <span class="user-status"></span><span class="explanation-content">The collimator is mounted on the X-ray tube and its variable aperture sizes directly control the Z-axis (longitudinal) beam width, also referred to as slice thickness.</span> <span class="citation"></span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>12. True/False: A CT number of -1000 Hounsfield Units (HU) typically corresponds to air, representing near-complete X-ray attenuation in that region.</p>
+                <div class="options">
+                    <label><input type="radio" name="q12" value="True"> True</label>
+                    <label><input type="radio" name="q12" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: False.</strong></span> <span class="user-status"></span><span class="explanation-content">While -1000 HU does correspond to air, air represents *minimal* X-ray attenuation, allowing almost all X-rays to pass through, not near-complete attenuation. High positive HU values (like bone) represent high attenuation.</span> <span class="citation">[77t]</span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>13. True/False: In retrospective cardiac CT imaging with dose modulation, the tube current is intentionally reduced during systole to lower patient dose, as the primary data acquisition is focused on the diastolic phase.</p>
+                <div class="options">
+                    <label><input type="radio" name="q13" value="True"> True</label>
+                    <label><input type="radio" name="q13" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: True.</strong></span> <span class="user-status"></span><span class="explanation-content">In retrospective cardiac CT with dose modulation, the tube current is reduced during cardiac phases outside the desired acquisition window (typically systole), thereby reducing overall patient dose while prioritizing high-quality data acquisition during diastole.</span> <span class="citation"></span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>14. True/False: Dual-energy CT enhances image contrast by exploiting the differential responses of materials with varying atomic numbers to X-ray photons emitted at different energy levels (kVp).</p>
+                <div class="options">
+                    <label><input type="radio" name="q14" value="True"> True</label>
+                    <label><input type="radio" name="q14" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: True.</strong></span> <span class="user-status"></span><span class="explanation-content">Dual-energy CT leverages the energy-dependent attenuation properties of different elements (which relate to their atomic numbers) by acquiring scans at multiple kVp settings, allowing for material decomposition and improved contrast.</span> <span class="citation"></span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>15. True/False: The CTDI_vol (Computed Tomography Dose Index - Volume) parameter in CT dosimetry is calculated by dividing the weighted CTDI (CTDI_w) by the scanner's pitch.</p>
+                <div class="options">
+                    <label><input type="radio" name="q15" value="True"> True</label>
+                    <label><input type="radio" name="q15" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: True.</strong></span> <span class="user-status"></span><span class="explanation-content">The formula provided in the text is CTDI_vol = CTDI_w / pitch. This reflects the average absorbed dose within the scanned volume considering helical acquisition.</span> <span class="citation"></span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>16. True/False: During the acquisition of a scout image (topogram) in CT, the X-ray tube continuously rotates around the patient to sum multiple 2D slices into a single projection.</p>
+                <div class="options">
+                    <label><input type="radio" name="q16" value="True"> True</label>
+                    <label><input type="radio" name="q16" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: False.</strong></span> <span class="user-status"></span><span class="explanation-content">For a scout image, the X-ray tube is preset to a fixed position (e.g., 12 o'clock for frontal) and *does not rotate* while the patient table moves along the Z-axis.</span> <span class="citation"></span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>17. True/False: An adaptive array in a multi-slice CT detector is characterized by detector elements of uniform size across the entire array, which simplifies reconstruction algorithms.</p>
+                <div class="options">
+                    <label><input type="radio" name="q17" value="True"> True</label>
+                    <label><input type="radio" name="q17" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: False.</strong></span> <span class="user-status"></span><span class="explanation-content">An adaptive array features *thinner central detector sizes* that progressively widen away from the center. A linear array uses detectors of the same size.</span> <span class="citation">[72, 73f]</span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>18. True/False: Dual-source CT scanners enhance temporal resolution by using two X-ray sources positioned 90 degrees apart, allowing for the detection of a half-scan with only a quarter rotation of the gantry.</p>
+                <div class="options">
+                    <label><input type="radio" name="q18" value="True"> True</label>
+                    <label><input type="radio" name="q18" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: True.</strong></span> <span class="user-status"></span><span class="explanation-content">Dual-source CT utilizes two X-ray sources mounted at 90 degrees to each other, which, combined with a one-quarter rotation, effectively creates a half-scan acquisition, thus improving temporal resolution.</span> <span class="citation"></span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>19. True/False: The "cupping" artifact in CT, resulting from beam hardening, appears as higher CT numbers in the center of the patient compared to the periphery.</p>
+                <div class="options">
+                    <label><input type="radio" name="q19" value="True"> True</label>
+                    <label><input type="radio" name="q19" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: False.</strong></span> <span class="user-status"></span><span class="explanation-content">The "cupping" artifact is characterized by *lower* CT numbers in the center of the patient than they should be, due to beam hardening.</span> <span class="citation"></span></p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>20. True/False: Increasing the pitch factor in helical CT scanning generally leads to an increase in patient dose due to the increased acquisition volume per rotation.</p>
+                <div class="options">
+                    <label><input type="radio" name="q20" value="True"> True</label>
+                    <label><input type="radio" name="q20" value="False"> False</label>
+                </div>
+                <div class="feedback">
+                    <details>
+                        <summary>Show Explanation and Correct Answer</summary>
+                        <p><span class="correct-answer-text"><strong>Correct Answer: False.</strong></span> <span class="user-status"></span><span class="explanation-content">Patient dose is *inversely proportional* to pitch. Doubling the pitch halves the dose. While it covers more volume per rotation, it reduces the X-ray exposure time for any given point.</span> <span class="citation"></span></p>
+                    </details>
+                </div>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const quizForm = document.getElementById('quizForm');
+            const resetButton = document.getElementById('resetQuiz');
+            const questions = document.querySelectorAll('.question');
+
+            quizForm.addEventListener('change', function(event) {
+                if (event.target.type === 'radio') {
+                    const questionDiv = event.target.closest('.question');
+                    const selectedAnswer = event.target.value;
+                    const correctAnswer = questionDiv.dataset.correctAnswer;
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    const userStatusSpan = feedbackDiv.querySelector('.user-status');
+
+                    // Disable all radio buttons for this question
+                    const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                    radioButtons.forEach(radio => radio.disabled = true);
+
+                    // Determine if correct and update feedback
+                    if (selectedAnswer === correctAnswer) {
+                        feedbackDiv.classList.remove('incorrect');
+                        feedbackDiv.classList.add('correct');
+                        userStatusSpan.innerHTML = 'You were <strong>right!</strong> ';
+                    } else {
+                        feedbackDiv.classList.remove('correct');
+                        feedbackDiv.classList.add('incorrect');
+                        userStatusSpan.innerHTML = 'You were <strong>wrong.</strong> ';
+                    }
+                    feedbackDiv.style.display = 'block'; // Show feedback
+                }
+            });
+
+            resetButton.addEventListener('click', function() {
+                questions.forEach(questionDiv => {
+                    // Reset radio buttons
+                    const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                    radioButtons.forEach(radio => {
+                        radio.checked = false;
+                        radio.disabled = false; // Re-enable
+                    });
+
+                    // Hide feedback
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.classList.remove('correct', 'incorrect'); // Clean up classes
+
+                    // Clear user status text
+                    const userStatusSpan = feedbackDiv.querySelector('.user-status');
+                    if (userStatusSpan) {
+                        userStatusSpan.innerHTML = '';
+                    }
+
+                    // Close details summary if it was open
+                    const detailsElement = feedbackDiv.querySelector('details');
+                    if (detailsElement) {
+                        detailsElement.open = false;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

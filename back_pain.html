@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Back Pain Assessment Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        .question {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Back Pain Assessment Form</h1>
+
+    <!-- 1. Onset and Duration -->
+    <div class="section">
+        <h2>1. Onset and Duration</h2>
+        <div class="question">
+            <label>When did the pain start?</label><br>
+            <input type="checkbox" name="onset" value="Today"> Today<br>
+            <input type="checkbox" name="onset" value="Within last week"> Within last week<br>
+            <input type="checkbox" name="onset" value="1-4 weeks ago"> 1–4 weeks ago<br>
+            <input type="checkbox" name="onset" value="More than 1 month ago"> More than 1 month ago<br>
+        </div>
+        <div class="question">
+            <label>How did it start?</label><br>
+            <input type="checkbox" name="start" value="Sudden"> Sudden<br>
+            <input type="checkbox" name="start" value="Gradual"> Gradual<br>
+            <input type="checkbox" name="start" value="After lifting/strain"> After lifting/strain<br>
+            <input type="checkbox" name="start" value="After a fall/accident"> After a fall/accident<br>
+        </div>
+    </div>
+
+    <!-- 2. Pain Characteristics -->
+    <div class="section">
+        <h2>2. Pain Characteristics</h2>
+        <div class="question">
+            <label>Where does the pain radiate?</label><br>
+            <input type="checkbox" name="radiation" value="Stops at thigh"> Stops at thigh<br>
+            <input type="checkbox" name="radiation" value="Goes below knee"> Goes below knee<br>
+            <input type="checkbox" name="radiation" value="To both legs"> To both legs<br>
+            <input type="checkbox" name="radiation" value="Only one leg"> Only one leg<br>
+        </div>
+        <div class="question">
+            <label>Pain type:</label><br>
+            <input type="checkbox" name="type" value="Sharp"> Sharp<br>
+            <input type="checkbox" name="type" value="Shooting"> Shooting<br>
+            <input type="checkbox" name="type" value="Burning"> Burning<br>
+            <input type="checkbox" name="type" value="Dull/Achy"> Dull/Achy<br>
+        </div>
+    </div>
+
+    <!-- 3. Aggravating and Relieving Factors -->
+    <div class="section">
+        <h2>3. Aggravating & Relieving Factors</h2>
+        <div class="question">
+            <label>What makes it worse?</label><br>
+            <input type="checkbox" name="worse" value="Walking"> Walking<br>
+            <input type="checkbox" name="worse" value="Sitting"> Sitting<br>
+            <input type="checkbox" name="worse" value="Standing"> Standing<br>
+            <input type="checkbox" name="worse" value="Bending forward"> Bending forward<br>
+            <input type="checkbox" name="worse" value="Coughing/Sneezing"> Coughing/Sneezing<br>
+        </div>
+        <div class="question">
+            <label>What makes it better?</label><br>
+            <input type="checkbox" name="better" value="Rest"> Rest<br>
+            <input type="checkbox" name="better" value="Lying down"> Lying down<br>
+            <input type="checkbox" name="better" value="Bending forward"> Bending forward<br>
+            <input type="checkbox" name="better" value="Sitting"> Sitting<br>
+        </div>
+    </div>
+
+    <!-- 4. Associated Symptoms -->
+    <div class="section">
+        <h2>4. Associated Neurological Symptoms</h2>
+        <div class="question">
+            <input type="checkbox" name="symptoms" value="Numbness"> Numbness in legs/feet<br>
+            <input type="checkbox" name="symptoms" value="Tingling"> Tingling<br>
+            <input type="checkbox" name="symptoms" value="Weakness"> Weakness in legs<br>
+            <input type="checkbox" name="symptoms" value="Bladder/Bowel issues"> Difficulty controlling urine/bowel<br>
+        </div>
+    </div>
+
+    <!-- 5. Red Flags -->
+    <div class="section">
+        <h2>5. Red Flag Symptoms</h2>
+        <div class="question">
+            <input type="checkbox" name="redflags" value="Fever"> Fever<br>
+            <input type="checkbox" name="redflags" value="Night pain"> Pain worse at night<br>
+            <input type="checkbox" name="redflags" value="Weight loss"> Unexplained weight loss<br>
+            <input type="checkbox" name="redflags" value="History of cancer"> History of cancer<br>
+            <input type="checkbox" name="redflags" value="Recent infection"> Recent infection<br>
+        </div>
+    </div>
+
+    <!-- 6. Past History -->
+    <div class="section">
+        <h2>6. Past Medical History</h2>
+        <div class="question">
+            <input type="checkbox" name="history" value="Diabetes"> Diabetes<br>
+            <input type="checkbox" name="history" value="Osteoporosis"> Osteoporosis<br>
+            <input type="checkbox" name="history" value="Previous spinal surgery"> Previous spinal surgery<br>
+            <input type="checkbox" name="history" value="Arthritis"> Arthritis<br>
+        </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="section">
+        <button type="submit">Submit</button>
+    </div>
+
+</body>
+</html>

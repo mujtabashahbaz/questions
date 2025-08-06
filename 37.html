@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CT Physics Quiz: Chapter 4</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .quiz-container {
+            background-color: #2c2c2c;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        h1 {
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-size: 2.2em;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #c0c0c0;
+        }
+
+        .question {
+            background-color: #3a3a3a;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .question p {
+            font-weight: bold;
+            color: #f0f0f0;
+            margin-bottom: 15px;
+            font-size: 1.15em;
+        }
+
+        .question label {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .question label:hover {
+            color: #88aaff; /* Light blue on hover for labels */
+        }
+
+        .question input[type="radio"] {
+            margin-right: 8px;
+            transform: scale(1.2); /* Slightly larger radio buttons */
+            cursor: pointer;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .feedback.correct {
+            background-color: #4CAF50; /* Green */
+            color: #ffffff;
+        }
+
+        .feedback.incorrect {
+            background-color: #f44336; /* Red */
+            color: #ffffff;
+        }
+
+        .feedback.partial {
+            background-color: #2196F3; /* Blue */
+            color: #ffffff;
+        }
+
+        details {
+            margin-top: 15px;
+            background-color: #444444;
+            border-radius: 8px;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        details summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #a0a0a0;
+            transition: color 0.3s ease;
+        }
+
+        details summary:hover {
+            color: #ffffff;
+        }
+
+        details p {
+            margin-top: 10px;
+            font-size: 0.95em;
+            color: #cccccc;
+        }
+
+        .citation {
+            font-style: italic;
+            font-size: 0.85em;
+            color: #999999;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .button-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        #resetQuiz {
+            background-color: #555555;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #resetQuiz:hover {
+            background-color: #777777;
+            transform: translateY(-2px);
+        }
+
+        /* Styling for correct/incorrect answers after selection */
+        .question.correct-answer-highlight {
+            border: 2px solid #4CAF50;
+        }
+
+        .question.incorrect-answer-highlight {
+            border: 2px solid #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Computed Tomography (CT) Physics Quiz</h1>
+        <p>Test your knowledge on key concepts from Chapter 4 of *Farr's Physics for Medical Imaging, 3rd edition*.</p>
+
+        <form id="quizForm">
+            <div class="question" data-correct-answer="False">
+                <p>1. Modern CT scanners utilize permanent magnets to generate the main magnetic field.</p>
+                <label><input type="radio" name="q1" value="True"> True</label>
+                <label><input type="radio" name="q1" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. Modern CT scanners house the X-ray tube, collimator, filter, and detectors within a slip ring, which facilitates continuous rotation and electrical power/detector signal transmission. Permanent magnets are characteristic of MRI, not CT.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>2. The X-ray tube in a CT scanner typically operates between 80 and 140 kV.</p>
+                <label><input type="radio" name="q2" value="True"> True</label>
+                <label><input type="radio" name="q2" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. The X-ray tube used in CT scanning operates between 80 and 140 kV.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>3. A bow-tie filter in a CT scanner is used to increase the dose at the periphery of the patient's transaxial plane.</p>
+                <label><input type="radio" name="q3" value="True"> True</label>
+                <label><input type="radio" name="q3" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. A bow-tie filter is used to equalize transmitted intensities across the patient, where the lowest dose and highest noise naturally occur in the center and highest dose at the peripheries.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>4. CT detectors need to have a slow response with significant afterglow to ensure data accuracy.</p>
+                <label><input type="radio" name="q4" value="True"> True</label>
+                <label><input type="radio" name="q4" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. Detectors need to have a fast response with negligible afterglow for accuracy.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>5. Multi-slice CT scanners acquire multiple slices simultaneously along the Z-axis.</p>
+                <label><input type="radio" name="q5" value="True"> True</label>
+                <label><input type="radio" name="q5" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. Multi-slice scanners are an evolution of helical scanners that use detector arrays, enabling multiple slices to be acquired simultaneously.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>6. In helical scanning, a pitch of less than 1 (pitch &lt; 1) implies a gap in data acquisition.</p>
+                <label><input type="radio" name="q6" value="True"> True</label>
+                <label><input type="radio" name="q6" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. A pitch of less than 1 implies an overlap in data acquisition.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>7. One advantage of helical scanning is that it can minimize slice misregistration due to patient breathing.</p>
+                <label><input type="radio" name="q7" value="True"> True</label>
+                <label><input type="radio" name="q7" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. Helical scanning minimizes slice misregistration secondary to breathing because the scan can be acquired in one breath hold.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>8. Back projection is the only image reconstruction method used in modern CT scanners.</p>
+                <label><input type="radio" name="q8" value="True"> True</label>
+                <label><input type="radio" name="q8" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. While back projection is a reconstruction method, filtered back projection (FBP) and iterative reconstruction (IR) are also main reconstruction methods.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>9. Raw data acquired by a CT scanner is typically stored permanently on PACS for later use.</p>
+                <label><input type="radio" name="q9" value="True"> True</label>
+                <label><input type="radio" name="q9" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. Raw data is not stored for use and is reconstructed into more readily transferrable datasets, remaining only on the scanner and often deleted weekly.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>10. CT numbers (Hounsfield units) for bone are typically greater than 1000.</p>
+                <label><input type="radio" name="q10" value="True"> True</label>
+                <label><input type="radio" name="q10" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. Bone typically has CT numbers greater than 1000.
+                        <span class="citation">[797t]</span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>11. Increasing the focal spot size generally leads to higher spatial resolution in CT images.</p>
+                <label><input type="radio" name="q11" value="True"> True</label>
+                <label><input type="radio" name="q11" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. A small focal spot size (w0.4-0.7 mm) has a higher resolution, whereas a large focal spot size (w1.0-1.2 mm) has lower resolution.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>12. Quantum noise in CT images is primarily caused by an excess of photons reaching the detectors.</p>
+                <label><input type="radio" name="q12" value="True"> True</label>
+                <label><input type="radio" name="q12" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. Quantum noise is caused by a lack of sufficient photons.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>13. Motion artefacts in CT can be caused by cardiac motion or patient breathing.</p>
+                <label><input type="radio" name="q13" value="True"> True</label>
+                <label><input type="radio" name="q13" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. Motion during scan acquisition adversely affects the reconstruction process, with main sources including cardiac motion in non-ECG-gated studies and patient movement, including breathing artefact.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>14. Metal implants in the scan field can lead to streak artefacts.</p>
+                <label><input type="radio" name="q14" value="True"> True</label>
+                <label><input type="radio" name="q14" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. Metal implants and dental amalgams give rise to streak artefacts that may obscure the area of interest.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>15. Photon starvation artefacts are usually prevented by increasing the kV setting regardless of patient size.</p>
+                <label><input type="radio" name="q15" value="True"> True</label>
+                <label><input type="radio" name="q15" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. Photon starvation is usually prevented with mA modulation, where mA varies along the Z-axis according to patient's scout images; it can occur if required mA is beyond accepted tolerances for very large patients.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>16. Multiplanar reformat (MPR) is a post-processing technique that allows any acquired CT dataset to be viewed in any plane.</p>
+                <label><input type="radio" name="q16" value="True"> True</label>
+                <label><input type="radio" name="q16" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. One of the major advantages of modern CT scanners is the multiplanar reformat, which enables any acquired dataset to be viewed in any plane.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>17. Dual-energy CT can generate material-specific images, such as virtual non-contrast datasets.</p>
+                <label><input type="radio" name="q17" value="True"> True</label>
+                <label><input type="radio" name="q17" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. Dual-energy CT can generate material-specific images and varying color maps, including virtual non-contrast datasets.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>18. The Dose Length Product (DLP) is measured in mGy.cm and accounts for the total scan length.</p>
+                <label><input type="radio" name="q18" value="True"> True</label>
+                <label><input type="radio" name="q18" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True. The DLP, measured in mGy.cm, is defined as CTDIvol multiplied by the total scan length (L).
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>19. In CT, increasing the mAs (milliamperage-seconds) during a scan directly halves the patient dose.</p>
+                <label><input type="radio" name="q19" value="True"> True</label>
+                <label><input type="radio" name="q19" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. Dose is directly proportional to mAs, meaning doubling mAs doubles the dose.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>20. Patient centring in the gantry's isocentre does not significantly affect the radiation dose or image noise.</p>
+                <label><input type="radio" name="q20" value="True"> True</label>
+                <label><input type="radio" name="q20" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False. The patient must be positioned in the isocentre of the gantry; otherwise, dose and noise are increased.
+                        <span class="citation"></span></p>
+                </details>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const resetButton = document.getElementById('resetQuiz');
+            const questions = quizForm.querySelectorAll('.question');
+
+            questions.forEach(questionDiv => {
+                const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', (event) => {
+                        const selectedAnswer = event.target.value;
+                        const correctAnswer = questionDiv.dataset.correctAnswer;
+                        const feedbackDiv = questionDiv.querySelector('.feedback');
+                        const explanationDetails = questionDiv.querySelector('details');
+
+                        // Show feedback
+                        feedbackDiv.style.display = 'block';
+                        explanationDetails.open = true; // Expand explanation
+
+                        // Update feedback content and styling
+                        const explanationParagraph = explanationDetails.querySelector('p');
+                        const explanationText = explanationParagraph.innerHTML;
+
+                        if (selectedAnswer === correctAnswer) {
+                            feedbackDiv.classList.remove('incorrect', 'partial');
+                            feedbackDiv.classList.add('correct');
+                            feedbackDiv.textContent = 'Correct!';
+                            questionDiv.classList.add('correct-answer-highlight');
+                            questionDiv.classList.remove('incorrect-answer-highlight');
+                            explanationParagraph.innerHTML = `<strong>Correct Answer:</strong> ${correctAnswer}. You were <strong>Right!</strong> ${explanationText.substring(explanationText.indexOf('.') + 1)}`;
+                        } else {
+                            feedbackDiv.classList.remove('correct', 'partial');
+                            feedbackDiv.classList.add('incorrect');
+                            feedbackDiv.textContent = 'Incorrect.';
+                            questionDiv.classList.add('incorrect-answer-highlight');
+                            questionDiv.classList.remove('correct-answer-highlight');
+                            explanationParagraph.innerHTML = `<strong>Correct Answer:</strong> ${correctAnswer}. You were <strong>Wrong!</strong> ${explanationText.substring(explanationText.indexOf('.') + 1)}`;
+                        }
+
+                        // Disable radio buttons for this question
+                        radioButtons.forEach(radio => radio.disabled = true);
+                    });
+                });
+            });
+
+            resetButton.addEventListener('click', () => {
+                quizForm.reset(); // Reset form selections
+                questions.forEach(questionDiv => {
+                    // Hide feedback
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.classList.remove('correct', 'incorrect', 'partial');
+
+                    // Collapse explanation
+                    const explanationDetails = questionDiv.querySelector('details');
+                    explanationDetails.open = false;
+
+                    // Re-enable radio buttons
+                    const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                    radioButtons.forEach(radio => radio.disabled = false);
+
+                    // Remove highlights
+                    questionDiv.classList.remove('correct-answer-highlight', 'incorrect-answer-highlight');
+
+                    // Restore original explanation text (important for subsequent resets)
+                    const originalCorrectAnswer = questionDiv.dataset.correctAnswer;
+                    const originalExplanation = explanationDetails.querySelector('p');
+                    // This is a bit of a hack to reset the explanation text.
+                    // A better way would be to store original explanations as data attributes too.
+                    // For now, reconstruct based on data-correct-answer and citation.
+                    let citationSpan = originalExplanation.querySelector('.citation');
+                    let citationText = citationSpan ? citationSpan.outerHTML : '';
+                    let rawExplanation = originalExplanation.textContent.replace(originalCorrectAnswer + '. ', '').replace(citationSpan ? citationSpan.textContent : '', '').trim();
+                    originalExplanation.innerHTML = `<strong>Correct Answer:</strong> ${originalCorrectAnswer}. ${rawExplanation}${citationText}`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

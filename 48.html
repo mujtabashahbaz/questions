@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRCR Part 1 Radiology Physics Quiz - MRI Chapter</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top to allow scrolling */
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .quiz-container {
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.3), 0 0 10px rgba(0, 255, 255, 0.1);
+            width: 100%;
+            max-width: 800px;
+            margin: auto; /* Center horizontally */
+            text-align: left;
+        }
+
+        h1 {
+            color: #00ffff;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            color: #ccc;
+        }
+
+        .question {
+            background-color: #2a2a2a;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .question p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .question label {
+            display: inline-block;
+            margin-right: 20px;
+            font-size: 1em;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .question label:hover {
+            background-color: #444;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+            transition: opacity 0.5s ease;
+        }
+
+        .feedback.correct {
+            background-color: #28a745; /* Green */
+            color: white;
+        }
+
+        .feedback.incorrect {
+            background-color: #dc3545; /* Red */
+            color: white;
+        }
+
+        .feedback.neutral {
+            background-color: #007bff; /* Blue */
+            color: white;
+        }
+
+        details {
+            background-color: #333;
+            padding: 10px 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+            color: #eee;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #00ffff;
+            padding: 5px 0;
+        }
+
+        details p {
+            margin-top: 10px;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        .citation {
+            font-size: 0.8em;
+            font-style: italic;
+            color: #aaa;
+            margin-left: 5px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #resetQuiz {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+        }
+
+        #resetQuiz:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.6);
+        }
+
+        #resetQuiz:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>FRCR Part 1 Radiology Physics Quiz</h1>
+        <p class="intro">Test your understanding of Magnetic Resonance Imaging (MRI) principles from Farr's Physics for Medical Imaging, 3rd Edition (Chapter 6).</p>
+
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question" data-correct-answer="False">
+                <p>1. During a spontaneous quench in a superconducting MRI scanner, the liquid helium undergoes a phase transition to liquid nitrogen and is safely released into the scan room.</p>
+                <label><input type="radio" name="q1" value="True"> True</label>
+                <label><input type="radio" name="q1" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>During a quench, liquid helium turns into a **gas** and is vented out of the scanner via the quench pipe, as it is extremely cold and can **displace oxygen**, making it potentially dangerous. It does not turn into liquid nitrogen. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" data-correct-answer="False">
+                <p>2. MR Conditional items can be safely used in any MR Environment without the need for specific conditions or guidelines.</p>
+                <label><input type="radio" name="q2" value="True"> True</label>
+                <label><input type="radio" name="q2" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>MR Conditional items have demonstrated safety in the MR Environment, but **only within defined conditions** that address the static magnetic field, switched gradient magnetic field, and radio-frequency (RF) fields, potentially with specific item configurations. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" data-correct-answer="False">
+                <p>3. Time-varying magnetic fields generated by gradient coils in MRI scanners primarily contribute to acoustic noise, but do not cause heating or vibration of implanted devices.</p>
+                <label><input type="radio" name="q3" value="True"> True</label>
+                <label><input type="radio" name="q3" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>Time-varying magnetic fields cause acoustic noise due to forces on the gradient coils, but they also lead to **heating and vibration** of implanted devices, primarily due to Lenz's law. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" data-correct-answer="False">
+                <p>4. According to the MHRA guidelines, a 1.0°C whole-body temperature rise is the maximum permissible in the 'Normal Operating Mode' for MRI scanners.</p>
+                <label><input type="radio" name="q4" value="True"> True</label>
+                <label><input type="radio" name="q4" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>For the 'Normal Operating Mode', the maximum whole-body temperature rise is **0.5°C**. A 1.0°C rise is permitted in the 'First Level (Controlled)' mode. <span class="citation">[127, Table 6.1]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" data-correct-answer="False">
+                <p>5. Macrocyclic gadolinium-based contrast agents are generally associated with a higher risk of nephrogenic systemic fibrosis (NSF) compared to linear agents due to their more stable chemical structure.</p>
+                <label><input type="radio" name="q5" value="True"> True</label>
+                <label><input type="radio" name="q5" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>Macrocyclic contrast agents are considered to carry a **lower risk** of NSF because they are chemically **more stable** than linear ones. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question" data-correct-answer="False">
+                <p>6. In clinical MRI, hydrogen nuclei are exclusively used for imaging because they possess an even number of protons, which inherently exhibits nuclear magnetic resonance.</p>
+                <label><input type="radio" name="q6" value="True"> True</label>
+                <label><input type="radio" name="q6" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>While hydrogen is predominantly used, any nuclei with an **odd number of protons** will exhibit nuclear MR. Hydrogen has a single proton (odd number). <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question" data-correct-answer="True">
+                <p>7. The Larmor frequency of hydrogen protons in an MRI scanner is directly proportional to both the gyromagnetic ratio of the element and the strength of the applied static magnetic field (B0).</p>
+                <label><input type="radio" name="q7" value="True"> True</label>
+                <label><input type="radio" name="q7" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True</p>
+                    <p>The Larmor frequency (u0) is defined by the equation u0 = gB0, where 'g' is the gyromagnetic ratio and 'B0' is the static magnetic field strength, indicating a direct proportionality. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question" data-correct-answer="False">
+                <p>8. Immediately after a 90-degree RF excitation pulse, the longitudinal magnetization (Mz) instantly recovers to its initial equilibrium value (M0), while the transverse magnetization (Mxy) remains at zero.</p>
+                <label><input type="radio" name="q8" value="True"> True</label>
+                <label><input type="radio" name="q8" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>Immediately after a 90-degree RF pulse, Mz (longitudinal magnetization) is tipped into the x-y plane and becomes **zero**, while Mxy (transverse magnetization) reaches its maximum value of M0. Mz then recovers back to M0 over the T1 relaxation time. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question" data-correct-answer="False">
+                <p>9. In slice selection, the thickness of the excited slice is primarily determined by the gyromagnetic ratio and is independent of the applied gradient strength.</p>
+                <label><input type="radio" name="q9" value="True"> True</label>
+                <label><input type="radio" name="q9" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>The thickness of the excited slice depends on the applied **gradient strength (GSS)**, the gyromagnetic ratio, and the transmitter bandwidth (range of frequencies) of the RF pulse. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question" data-correct-answer="False">
+                <p>10. Aliasing artifacts, characterized by tissues outside the field of view appearing wrapped into the image, are a common problem in frequency encoding due to insufficient sampling during readout.</p>
+                <label><input type="radio" name="q10" value="True"> True</label>
+                <label><input type="radio" name="q10" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>Aliasing (or wrap) artifacts occur in the **phase-encoding direction** when tissues outside the FOV cannot be distinguished due to phase shifts beyond 360 degrees. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question" data-correct-answer="False">
+                <p>11. Tissues with shorter T1 relaxation times, such as cerebrospinal fluid (CSF), appear bright on T1-weighted (T1w) images because they quickly recover their longitudinal magnetization.</p>
+                <label><input type="radio" name="q11" value="True"> True</label>
+                <label><input type="radio" name="q11" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>CSF has a **long T1 relaxation time** and therefore recovers slowly, appearing with **low signal (dark)** on T1w images. Tissues with short T1 (e.g., fat) recover quickly and appear bright. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question" data-correct-answer="False">
+                <p>12. In a basic Spin Echo (SE) sequence, the 180-degree refocusing pulse completely eliminates all dephasing effects, including those caused by intrinsic spin-spin interactions (T2) and magnetic susceptibility differences (T2*).</p>
+                <label><input type="radio" name="q12" value="True"> True</label>
+                <label><input type="radio" name="q12" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>The 180-degree refocusing pulse in SE sequences rephases the T2* dephasing caused by magnetic field inhomogeneities (including susceptibility differences), but it **does not rephase the random, irreversible dephasing due to intrinsic spin-spin (T2) relaxation**. Thus, only the random T2 relaxation affects the contrast in the final image. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question" data-correct-answer="False">
+                <p>13. Fast Spin Echo (FSE) sequences, while reducing scan time, typically result in lower Specific Absorption Rate (SAR) values compared to basic Spin Echo sequences due to the rapid acquisition of multiple echoes.</p>
+                <label><input type="radio" name="q13" value="True"> True</label>
+                <label><input type="radio" name="q13" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>FSE/TSE sequences have **high SAR** values. The use of multiple large RF pulses in a short space of time (to generate multiple echoes per TR) leads to increased energy deposition. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question" data-correct-answer="False">
+                <p>14. Gradient Echo (GRE) sequences are generally faster than Spin Echo (SE) sequences because they employ a 180-degree refocusing pulse, which allows for shorter repetition times.</p>
+                <label><input type="radio" name="q14" value="True"> True</label>
+                <label><input type="radio" name="q14" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>GRE sequences are faster because they **do not use a 180-degree refocusing pulse**. Instead, they use gradients to dephase and rephase the signal. The absence of this pulse also means not all longitudinal magnetization is tipped into the transverse plane, allowing for shorter TRs. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question" data-correct-answer="False">
+                <p>15. Fat saturation techniques are generally more effective at lower field strengths (e.g., 1.5 T) because the chemical shift between fat and water resonant frequencies is greater, allowing for better spectral separation.</p>
+                <label><input type="radio" name="q15" value="True"> True</label>
+                <label><input type="radio" name="q15" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>Fat saturation is **easier to achieve at higher field strengths** because there is a **greater separation** (chemical shift) between the fat and water peaks (e.g., 440 Hz at 3 T vs 220 Hz at 1.5 T). <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question" data-correct-answer="False">
+                <p>16. In Dixon imaging, a water-suppressed image is created by adding the in-phase (IP) and out-of-phase (OP) images, which causes the fat signals to cancel out while water signals add together.</p>
+                <label><input type="radio" name="q16" value="True"> True</label>
+                <label><input type="radio" name="q16" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>A water-suppressed image (i.e., a fat-only image) is created by **subtracting** the out-of-phase (OP) image from the in-phase (IP) image (Sfat = 0.5(SIP - SOP) or Sfat = 0.5(SOP - SIP) depending on phase relationship), which causes **water signals to cancel out** and fat signals to add. Adding the IP and OP images results in a water-only image (Swater = 0.5(SOP + SIP)). <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question" data-correct-answer="False">
+                <p>17. The center of k-space in MRI primarily contains information related to the image's spatial resolution, whereas the outer edges contribute more to the overall image contrast.</p>
+                <label><input type="radio" name="q17" value="True"> True</label>
+                <label><input type="radio" name="q17" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>The **center of k-space** contains the image **contrast information**, while the **edge of k-space** contains the **resolution information**. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question" data-correct-answer="True">
+                <p>18. Parallel imaging techniques, such as SENSE or GRAPPA, reduce scan time by decreasing the number of phase-encoding steps acquired, which consequently leads to a reduction in the signal-to-noise ratio (SNR).</p>
+                <label><input type="radio" name="q18" value="True"> True</label>
+                <label><input type="radio" name="q18" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True</p>
+                    <p>Parallel imaging reduces scan time by acquiring fewer phase-encoding steps. This, however, leads to a reduction in SNR. For example, reducing scan time by 50% can reduce SNR to approximately 70%. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question" data-correct-answer="False">
+                <p>19. Susceptibility artifacts, frequently observed near metal implants, are more prominent on Spin Echo (SE) sequences compared to Gradient Echo (GRE) sequences because SE sequences lack a 180-degree refocusing pulse.</p>
+                <label><input type="radio" name="q19" value="True"> True</label>
+                <label><input type="radio" name="q19" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>Susceptibility artifacts are **less prominent on SE sequences** because the **180-degree refocusing pulse helps to rephase** the dephasing caused by local magnetic-field distortions. GRE sequences, which lack this pulse, are therefore more susceptible to these artifacts. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question" data-correct-answer="False">
+                <p>20. Functional MRI (fMRI) studies typically rely on the Blood Oxygenation Level-Dependent (BOLD) signal, which increases with higher static magnetic field strengths (B0) primarily due to the diamagnetic properties of oxyhaemoglobin.</p>
+                <label><input type="radio" name="q20" value="True"> True</label>
+                <label><input type="radio" name="q20" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>The BOLD signal increases with B0. However, oxyhaemoglobin is **diamagnetic** (weakly opposes B0), while deoxyhaemoglobin is paramagnetic (weakly enhances B0). The BOLD signal primarily reflects changes in the concentration of paramagnetic deoxyhaemoglobin, not the diamagnetic properties of oxyhaemoglobin. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="button-container">
+                <button type="reset" id="resetQuiz">Reset Quiz</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const questions = document.querySelectorAll('.question');
+            const resetButton = document.getElementById('resetQuiz');
+
+            // Function to handle answer selection
+            const handleAnswer = (event) => {
+                const selectedRadio = event.target;
+                if (selectedRadio.type === 'radio') {
+                    const questionDiv = selectedRadio.closest('.question');
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    const correctAnswer = questionDiv.dataset.correctAnswer;
+                    const selectedAnswer = selectedRadio.value;
+
+                    // Remove existing classes
+                    feedbackDiv.classList.remove('correct', 'incorrect', 'neutral');
+
+                    // Check answer and update feedback
+                    if (selectedAnswer === correctAnswer) {
+                        feedbackDiv.textContent = `Correct! Your answer was: ${selectedAnswer}.`;
+                        feedbackDiv.classList.add('correct');
+                    } else {
+                        feedbackDiv.textContent = `Incorrect. Your answer was: ${selectedAnswer}.`;
+                        feedbackDiv.classList.add('incorrect');
+                    }
+                    feedbackDiv.style.display = 'block';
+
+                    // Disable all radio buttons for this question after selection
+                    const radios = questionDiv.querySelectorAll('input[type="radio"]');
+                    radios.forEach(radio => radio.disabled = true);
+
+                    // Open the details element
+                    questionDiv.querySelector('details').open = true;
+                }
+            };
+
+            // Attach event listeners to all radio buttons
+            questions.forEach(questionDiv => {
+                const radios = questionDiv.querySelectorAll('input[type="radio"]');
+                radios.forEach(radio => {
+                    radio.addEventListener('change', handleAnswer);
+                });
+            });
+
+            // Handle reset quiz button
+            resetButton.addEventListener('click', () => {
+                questions.forEach(questionDiv => {
+                    const radios = questionDiv.querySelectorAll('input[type="radio"]');
+                    radios.forEach(radio => {
+                        radio.checked = false; // Uncheck
+                        radio.disabled = false; // Re-enable
+                    });
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    feedbackDiv.style.display = 'none'; // Hide feedback
+                    feedbackDiv.textContent = ''; // Clear text
+                    feedbackDiv.classList.remove('correct', 'incorrect', 'neutral'); // Remove classes
+
+                    // Close the details element
+                    questionDiv.querySelector('details').open = false;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

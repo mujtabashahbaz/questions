@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRCR Part 1 Radiology Physics Quiz - Chapter 7</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 20px 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .quiz-container {
+            background-color: #2b2b2b;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h1 {
+            color: #00bcd4; /* A vibrant blue for headings */
+            margin-bottom: 10px;
+        }
+
+        .intro-text {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        .question {
+            background-color: #3a3a3a;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .question p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .question label {
+            display: inline-block;
+            margin-right: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            color: #e0e0e0;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+        }
+
+        .feedback.correct {
+            background-color: rgba(0, 128, 0, 0.3); /* Green */
+            color: #aaffaa;
+        }
+
+        .feedback.incorrect {
+            background-color: rgba(255, 0, 0, 0.3); /* Red */
+            color: #ffaaaa;
+        }
+
+        .feedback.neutral {
+            background-color: rgba(0, 100, 200, 0.3); /* Blue */
+            color: #aaddff;
+        }
+
+        details {
+            margin-top: 10px;
+            background-color: #4a4a4a;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 0.95em;
+            color: #bbb;
+        }
+
+        details summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #00bcd4;
+        }
+
+        details p {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .citation {
+            font-style: italic;
+            font-size: 0.85em;
+            color: #999;
+        }
+
+        .button-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #00bcd4;
+            color: #1a1a1a;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        button:hover {
+            background-color: #0097a7;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>FRCR Part 1 Radiology Physics Quiz</h1>
+        <p class="intro-text">Challenge your understanding of Ultrasound Imaging (Chapter 7) from Farr's Physics for Medical Imaging, 3rd edition.</p>
+
+        <form id="quizForm">
+            <div class="question" data-correct-answer="False">
+                <p>1. In ultrasound imaging, a higher Mechanical Coefficient (Q factor) transducer is primarily used to produce short pulses for detailed anatomical imaging.</p>
+                <label><input type="radio" name="q1" value="True"> True</label>
+                <label><input type="radio" name="q1" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>A high Q transducer produces a pure tone and has a long ring-down time, which is characteristic of Continuous Wave (CW) ultrasound, not pulsed wave imaging. For pulsed wave imaging, a low Q transducer is used to produce short pulses and a wide range of frequencies, which is essential for good axial resolution. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>2. The near field (Fresnel region) length of an ultrasound beam is directly proportional to the square of the transducer's aperture size and the operating frequency.</p>
+                <label><input type="radio" name="q2" value="True"> True</label>
+                <label><input type="radio" name="q2" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True</p>
+                    <p>The near field length (N) is calculated by the formula N = (D/2)² / λ, where D is the aperture diameter and λ is the wavelength. Since λ = c/f (speed of sound/frequency), substituting this into the formula shows N is proportional to D² and f (N ∝ fD²). <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>3. When an ultrasound beam encounters a structure much smaller than its wavelength, such as red blood cells, specular reflection predominates, providing detailed internal tissue characterization.</p>
+                <label><input type="radio" name="q3" value="True"> True</label>
+                <label><input type="radio" name="q3" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>When the beam encounters a structure much smaller than the wavelength, Rayleigh-like scatter occurs, where the beam is scattered in all directions. Specular reflection, by contrast, occurs when the beam strikes a large, smooth interface larger than the wavelength. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>4. Acoustic matching layers on ultrasound transducers are designed with an intermediate acoustic impedance to maximize the transmission of ultrasound energy into tissue from the high-impedance piezoelectric crystal.</p>
+                <label><input type="radio" name="q4" value="True"> True</label>
+                <label><input type="radio" name="q4" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True</p>
+                    <p>Piezoelectric materials like PZT have a very high acoustic impedance compared to soft tissue. Without a matching layer, most of the ultrasound would be reflected at the transducer-tissue interface. A matching layer with an intermediate impedance (Z₂ = √(Z₁Z₃)) is used to improve transmission into the patient. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>5. In B-mode ultrasound, increasing the Pulse Repetition Frequency (PRF) allows for a greater depth of view while maintaining the frame rate, due to shorter pulse-listening times.</p>
+                <label><input type="radio" name="q5" value="True"> True</label>
+                <label><input type="radio" name="q5" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>Depth of view is inversely proportional to PRF (depth of view = 0.5 * c / PRF). Therefore, increasing the PRF reduces the maximum depth that can be imaged. There is a balance between frame rate, line density, and depth of view. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>6. The fundamental principle of harmonic imaging in ultrasound is to transmit ultrasound at a fundamental frequency and then exclusively image the higher-order harmonic frequencies generated as the wave propagates through tissue.</p>
+                <label><input type="radio" name="q6" value="True"> True</label>
+                <label><input type="radio" name="q6" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True</p>
+                    <p>As ultrasound propagates through tissue, the wave distorts, and frequency components beyond the fundamental (1st harmonic) are generated. Harmonic imaging transmits the fundamental frequency and then uses filtering (e.g., band filtering, pulse inversion) to isolate and image only the higher-order harmonics, typically the 2nd harmonic (2f), to improve image quality. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>7. Electronic focusing in ultrasound transducers allows independent adjustment of focusing in both the azimuthal (scan) and elevation (slice thickness) planes, providing fully customizable 3D beam shaping for any transducer type.</p>
+                <label><input type="radio" name="q7" value="True"> True</label>
+                <label><input type="radio" name="q7" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>Electronic focusing is typically achieved in the azimuthal (scan) plane by introducing delays in energizing transducer elements. Focusing in the perpendicular or elevation plane is usually done using physical methods (e.g., acoustic lens). "1.5D transducers" use multiple layers to improve slice resolution, but not all transducer types offer fully independent electronic control in both planes. <span class="citation">[160-161, 161f]</span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>8. The phenomenon of aliasing in Pulsed Wave (PW) Doppler ultrasound occurs when the detected Doppler shift frequency exceeds half of the Pulse Repetition Frequency (PRF).</p>
+                <label><input type="radio" name="q8" value="True"> True</label>
+                <label><input type="radio" name="q8" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True</p>
+                    <p>This is a direct application of the Nyquist criterion to Doppler ultrasound. To accurately measure the full range of frequencies, the sampling rate (PRF) must be at least twice the highest frequency present in the signal (the maximum Doppler shift, fmax). If PRF < fmax, aliasing occurs. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>9. Power Doppler images inherently provide information about both the direction and speed of blood flow, making them superior to Color Doppler for detailed velocity analysis.</p>
+                <label><input type="radio" name="q9" value="True"> True</label>
+                <label><input type="radio" name="q9" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>Power Doppler maps the amplitude of the Doppler signal, reflecting the quantity of blood flow or density of red blood cells. It does NOT provide information on speed or direction. Color Doppler, while less sensitive, does indicate direction and speed of flow. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>10. The main reason for posterior acoustic enhancement distal to a fluid-filled structure is that ultrasound is attenuated less in fluid compared to the surrounding soft tissue, causing a relatively stronger echo from deeper structures.</p>
+                <label><input type="radio" name="q10" value="True"> True</label>
+                <label><input type="radio" name="q10" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True</p>
+                    <p>Acoustic enhancement (or negative shadowing) occurs because fluid-filled structures (e.g., cysts, bladder) attenuate the ultrasound beam significantly less than the surrounding soft tissues. This means more sound energy reaches the tissues beyond the fluid, resulting in brighter echoes distal to it. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>11. The thermal index (TI) displayed on an ultrasound scanner provides a direct, precise measurement of the absolute temperature rise in tissue, allowing operators to scan indefinitely below a TI of 1.0.</p>
+                <label><input type="radio" name="q11" value="True"> True</label>
+                <label><input type="radio" name="q11" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>The thermal index (TI) is an *estimate* or *indication* of the temperature rise, not a direct, precise measurement. It indicates the ratio of emitted power to the power required to raise tissue temperature by 1°C. While a TI below 1.0 suggests a negligible temperature rise, safety guidelines still recommend minimizing exposure time. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>12. An ultrasound transducer made of a thicker piezoelectric crystal will typically resonate at a lower natural frequency, producing a longer wavelength compared to a thinner crystal of the same material.</p>
+                <label><input type="radio" name="q12" value="True"> True</label>
+                <label><input type="radio" name="q12" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True</p>
+                    <p>The resonant frequency of a piezoelectric crystal is determined by its thickness (t) and the speed of sound (c) within the crystal, where the wavelength (λ) is approximately twice the crystal thickness (λ = 2t). Since frequency (f) = c/λ, a thicker crystal results in a longer wavelength and thus a lower resonant frequency. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>13. When performing electronic linear array scanning, the field of view always maintains a consistent width regardless of depth, due to parallel scan lines being emitted from the transducer.</p>
+                <label><input type="radio" name="q13" value="True"> True</label>
+                <label><input type="radio" name="q13" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>While linear arrays produce rectangular images with parallel scan lines, the field of view is limited by the width of the probe face at the surface. For curvilinear arrays, the lines of sight spread out with depth, covering a wider field of view. The statement implies a constant width at *all* depths, which is not true for all linear/curvilinear arrays, particularly as beams can diverge in the far field. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>14. Temporal averaging (persistence) in ultrasound image processing combines echoes from successive frames to reduce random noise, but it can also lead to blurring of moving structures.</p>
+                <label><input type="radio" name="q14" value="True"> True</label>
+                <label><input type="radio" name="q14" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True</p>
+                    <p>Temporal averaging, or persistence, works by storing and combining echoes from multiple successive frames. This effectively reduces random noise (which varies from frame to frame), improving SNR. However, if structures are moving, combining their positions across multiple frames results in a blurred image. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>15. In B-mode ultrasound, the brightness of a pixel is primarily determined by the speed of sound in the tissue corresponding to that pixel's location.</p>
+                <label><input type="radio" name="q15" value="True"> True</label>
+                <label><input type="radio" name="q15" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>The brightness of a pixel in a B-mode image is determined by the *strength of the received signal* or echo from the corresponding interface. This signal strength depends on factors like the strength of reflection (acoustic impedance differences), attenuation, and scatter, not directly the speed of sound at that location. The speed of sound is used to calculate depth. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>16. The use of a backing block in a pulsed ultrasound transducer is essential for enabling shorter pulse lengths, but it inherently reduces the transducer's output and Q factor.</p>
+                <label><input type="radio" name="q16" value="True"> True</label>
+                <label><input type="radio" name="q16" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True</p>
+                    <p>A backing block is acoustically matched to the transducer material to absorb backward-traveling ultrasound and damp the crystal's vibrations. This damping effect shortens the pulse length, which is crucial for good axial resolution in imaging. However, by absorbing energy, it reduces the overall output and lowers the Q factor, broadening the frequency bandwidth. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>17. Mirroring artifact typically occurs when a small, highly attenuating structure, like bowel gas, causes the ultrasound beam to reflect back and forth repeatedly, creating multiple false images distal to the structure.</p>
+                <label><input type="radio" name="q17" value="True"> True</label>
+                <label><input type="radio" name="q17" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>This describes a reverberation artifact. Mirroring artifact, by contrast, occurs when a large, strongly reflective interface (like the diaphragm) acts like a mirror, causing structures to appear displaced onto the opposite side of the interface. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>18. A primary advantage of using microbubble contrast agents in ultrasound is their ability to resonate at ultrasound frequencies and their harmonics, producing strong signals that can be isolated using harmonic imaging to suppress surrounding tissue.</p>
+                <label><input type="radio" name="q18" value="True"> True</label>
+                <label><input type="radio" name="q18" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True</p>
+                    <p>Microbubbles, despite being smaller than the ultrasound wavelength, resonate when subjected to ultrasound pulses, producing strong signals and high levels of harmonics. This property allows for selective imaging of the contrast agent using harmonic imaging, effectively suppressing signals from surrounding tissues and enhancing visualization of blood flow. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False">
+                <p>19. The Doppler effect angle (theta, θ) in ultrasound should ideally be close to 90 degrees (perpendicular to flow) to maximize the measured Doppler shift and accurately determine blood flow velocity.</p>
+                <label><input type="radio" name="q19" value="True"> True</label>
+                <label><input type="radio" name="q19" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>The Doppler shift is proportional to cos θ. The maximum Doppler shift is achieved when cos θ is 1, which occurs when θ is 0 degrees (i.e., the beam is parallel to the direction of flow). When the beam is perpendicular to flow (θ = 90 degrees), cos θ is 0, resulting in no Doppler effect being measured. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True">
+                <p>20. In elastography, shear waves are preferred over longitudinal compression waves for measuring tissue stiffness because their much slower propagation speed in soft tissue allows their movement to be directly imaged and quantified.</p>
+                <label><input type="radio" name="q20" value="True"> True</label>
+                <label><input type="radio" name="q20" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True</p>
+                    <p>Shear waves travel significantly slower in soft tissue (approximately 1-10 m/s) compared to longitudinal compression waves (around 1540 m/s). This slow speed makes it feasible to directly image and quantify their propagation through tissue using ultrasound, allowing for the measurement of tissue stiffness. <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <div class="button-container">
+                <button type="button" id="resetQuiz">Reset Quiz</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const questions = document.querySelectorAll('.question');
+            const resetButton = document.getElementById('resetQuiz');
+
+            const enableQuestion = (questionDiv) => {
+                questionDiv.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.disabled = false;
+                });
+            };
+
+            const disableQuestion = (questionDiv) => {
+                questionDiv.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.disabled = true;
+                });
+            };
+
+            const showFeedback = (questionDiv, isCorrect, userAnswer) => {
+                const feedbackDiv = questionDiv.querySelector('.feedback');
+                const correctAnswer = questionDiv.dataset.correctAnswer;
+                const explanationDetails = questionDiv.querySelector('details');
+                const explanationParagraph = explanationDetails.querySelector('p');
+
+                if (isCorrect) {
+                    feedbackDiv.textContent = 'Correct!';
+                    feedbackDiv.className = 'feedback correct';
+                    explanationParagraph.innerHTML = `<strong>Correct Answer:</strong> ${correctAnswer}<br>You were <strong>Right!</strong><br>${explanationParagraph.innerHTML.split('<br>').slice(2).join('<br>')}`;
+                } else {
+                    feedbackDiv.textContent = 'Incorrect.';
+                    feedbackDiv.className = 'feedback incorrect';
+                    explanationParagraph.innerHTML = `<strong>Correct Answer:</strong> ${correctAnswer}<br>You were <strong>Wrong.</strong><br>${explanationParagraph.innerHTML.split('<br>').slice(2).join('<br>')}`;
+                }
+                feedbackDiv.style.display = 'block';
+                explanationDetails.open = true; // Automatically open explanation
+                disableQuestion(questionDiv);
+            };
+
+            const handleQuestionChange = (event) => {
+                const selectedRadio = event.target;
+                const questionDiv = selectedRadio.closest('.question');
+                const userAnswer = selectedRadio.value;
+                const correctAnswer = questionDiv.dataset.correctAnswer;
+                const isCorrect = (userAnswer === correctAnswer);
+
+                showFeedback(questionDiv, isCorrect, userAnswer);
+            };
+
+            questions.forEach(questionDiv => {
+                const radios = questionDiv.querySelectorAll('input[type="radio"]');
+                radios.forEach(radio => {
+                    radio.addEventListener('change', handleQuestionChange);
+                });
+                // Ensure questions are enabled initially (or on reset)
+                enableQuestion(questionDiv);
+                // Reset feedback and details visibility
+                questionDiv.querySelector('.feedback').style.display = 'none';
+                questionDiv.querySelector('details').open = false;
+                // Re-initialize explanation text
+                const originalExplanationHTML = questionDiv.querySelector('details p').dataset.originalHtml;
+                if (!originalExplanationHTML) {
+                    questionDiv.querySelector('details p').dataset.originalHtml = questionDiv.querySelector('details p').innerHTML;
+                } else {
+                     questionDiv.querySelector('details p').innerHTML = originalExplanationHTML;
+                }
+            });
+
+            resetButton.addEventListener('click', () => {
+                quizForm.reset(); // Clears radio button selections
+                questions.forEach(questionDiv => {
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    const explanationDetails = questionDiv.querySelector('details');
+                    const explanationParagraph = explanationDetails.querySelector('p');
+
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.className = 'feedback'; // Remove correct/incorrect class
+                    explanationDetails.open = false;
+
+                    // Restore original explanation text
+                    explanationParagraph.innerHTML = explanationParagraph.dataset.originalHtml;
+                    
+                    enableQuestion(questionDiv);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

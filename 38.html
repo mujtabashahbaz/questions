@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultrasound Physics Quiz (Chapter 7)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            background-color: #1a1a1a; /* Dark background */
+            color: #e0e0e0; /* Light text */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .quiz-container {
+            background-color: #2a2a2a; /* Slightly lighter dark for container */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Soft shadow */
+            max-width: 800px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #f0f0f0;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.2em;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #b0b0b0;
+        }
+
+        .question {
+            background-color: #3a3a3a; /* Even lighter dark for individual questions */
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            border: 1px solid #4a4a4a;
+        }
+
+        .question p {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            line-height: 1.5;
+        }
+
+        .question label {
+            margin-right: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .question label:hover {
+            color: #ffffff;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 8px;
+            accent-color: #6a90ff; /* Blue accent for radio buttons */
+            cursor: pointer;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+            color: #333; /* Dark text for feedback */
+        }
+
+        .feedback.correct {
+            background-color: #4CAF50; /* Green */
+            color: #ffffff;
+        }
+
+        .feedback.incorrect {
+            background-color: #f44336; /* Red */
+            color: #ffffff;
+        }
+
+        .feedback.neutral {
+            background-color: #2196F3; /* Blue */
+            color: #ffffff;
+        }
+
+        details {
+            margin-top: 15px;
+            background-color: #4a4a4a;
+            border-radius: 6px;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        details[open] {
+            background-color: #5a5a5a;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #c0c0c0;
+            outline: none;
+        }
+
+        summary:hover {
+            color: #ffffff;
+        }
+
+        details p {
+            margin-top: 10px;
+            margin-bottom: 0;
+            font-size: 0.95em;
+            line-height: 1.5;
+            color: #d0d0d0;
+        }
+
+        .citation {
+            font-style: italic;
+            color: #a0a0a0;
+            font-size: 0.85em;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #resetQuiz {
+            background-color: #6a90ff; /* Blue button */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #resetQuiz:hover {
+            background-color: #4a75e0;
+            transform: translateY(-2px);
+        }
+
+        #resetQuiz:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Ultrasound Physics Quiz</h1>
+        <p class="intro-text">
+            Test your knowledge on Chapter 7: Ultrasound Imaging from *Farr's Physics for Medical Imaging, 3rd edition*. Select True or False for each statement. Feedback appears immediately!
+        </p>
+
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question" data-correct-answer="False">
+                <p><strong>1.</strong> Sound waves are a form of electromagnetic radiation.</p>
+                <input type="radio" id="q1_true" name="q1" value="True">
+                <label for="q1_true">True</label>
+                <input type="radio" id="q1_false" name="q1" value="False">
+                <label for="q1_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. Sound is the physical vibration of particles in a medium; it is not electromagnetic (EM) radiation.</p>
+                </details>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" data-correct-answer="True">
+                <p><strong>2.</strong> Unlike electromagnetic waves, sound requires a medium in which to travel.</p>
+                <input type="radio" id="q2_true" name="q2" value="True">
+                <label for="q2_true">True</label>
+                <input type="radio" id="q2_false" name="q2" value="False">
+                <label for="q2_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>True</strong>. Sound, unlike electromagnetic waves, requires a medium in which to travel.</p>
+                </details>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" data-correct-answer="False">
+                <p><strong>3.</strong> Longitudinal compression waves in ultrasound imaging travel perpendicular to the direction of particle movement.</p>
+                <input type="radio" id="q3_true" name="q3" value="True">
+                <label for="q3_true">True</label>
+                <input type="radio" id="q3_false" name="q3" value="False">
+                <label for="q3_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. Longitudinal compression waves travel in the direction of particle movement, while transverse shear waves travel perpendicular to particle motion.</p>
+                </details>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" data-correct-answer="True">
+                <p><strong>4.</strong> The speed of sound in a medium increases with its stiffness.</p>
+                <input type="radio" id="q4_true" name="q4" value="True">
+                <label for="q4_true">True</label>
+                <input type="radio" id="q4_false" name="q4" value="False">
+                <label for="q4_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>True</strong>. Sound speed increases with the stiffness (adiabatic elastic bulk modulus) and decreases with the density of the medium.</p>
+                </details>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" data-correct-answer="False">
+                <p><strong>5.</strong> Acoustic impedance is measured in Watts per square millimeter (W/mm²).</p>
+                <input type="radio" id="q5_true" name="q5" value="True">
+                <label for="q5_true">True</label>
+                <input type="radio" id="q5_false" name="q5" value="False">
+                <label for="q5_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. Acoustic impedance is measured in Rayls (kg/m²s). The intensity of ultrasound is measured in Watts per square millimeter (W/mm²).</p>
+                </details>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question" data-correct-answer="True">
+                <p><strong>6.</strong> Piezoelectric materials convert electrical energy into sound energy and vice versa.</p>
+                <input type="radio" id="q6_true" name="q6" value="True">
+                <label for="q6_true">True</label>
+                <input type="radio" id="q6_false" name="q6" value="False">
+                <label for="q6_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>True</strong>. Piezoelectric materials convert electrical energy into sound energy and vice versa.</p>
+                </details>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question" data-correct-answer="False">
+                <p><strong>7.</strong> When a piezoelectric material is heated above its Curie temperature, its piezoelectric properties are enhanced.</p>
+                <input type="radio" id="q7_true" name="q7" value="True">
+                <label for="q7_true">True</label>
+                <input type="radio" id="q7_false" name="q7" value="False">
+                <label for="q7_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. When heated above the Curie temperature, the piezoelectric properties are lost.</p>
+                </details>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question" data-correct-answer="False">
+                <p><strong>8.</strong> Pulsed wave (PW) ultrasound, used in imaging, emits a single, pure tone frequency.</p>
+                <input type="radio" id="q8_true" name="q8" value="True">
+                <label for="q8_true">True</label>
+                <input type="radio" id="q8_false" name="q8" value="False">
+                <label for="q8_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. In PW, the pulse contains a range of frequencies, forming a continuous spectrum. A single frequency (pure tone) is emitted in Continuous Wave (CW).</p>
+                </details>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question" data-correct-answer="True">
+                <p><strong>9.</strong> Damping applied to an ultrasound transducer causes loss (decay) of energy and shortens the pulse length.</p>
+                <input type="radio" id="q9_true" name="q9" value="True">
+                <label for="q9_true">True</label>
+                <input type="radio" id="q9_false" name="q9" value="False">
+                <label for="q9_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>True</strong>. Damping causes loss (decay) of energy and shortens the pulse length.</p>
+                </details>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question" data-correct-answer="False">
+                <p><strong>10.</strong> For an ultrasound transducer, a thicker crystal resonates at a higher frequency.</p>
+                <input type="radio" id="q10_true" name="q10" value="True">
+                <label for="q10_true">True</label>
+                <input type="radio" id="q10_false" name="q10" value="False">
+                <label for="q10_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. A thicker crystal resonates at a lower frequency, producing a longer wavelength.</p>
+                </details>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question" data-correct-answer="True">
+                <p><strong>11.</strong> The backing block in an ultrasound probe is designed to absorb ultrasound and damp vibrations, enabling shorter pulses.</p>
+                <input type="radio" id="q11_true" name="q11" value="True">
+                <label for="q11_true">True</label>
+                <input type="radio" id="q11_false" name="q11" value="False">
+                <label for="q11_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>True</strong>. The backing block is used to absorb the ultrasound and damp the vibration, enabling shorter pulses.</p>
+                </details>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question" data-correct-answer="False">
+                <p><strong>12.</strong> Acoustic coupling gel is used in ultrasound to trap air between the transducer face and the skin, improving sound transmission.</p>
+                <input type="radio" id="q12_true" name="q12" value="True">
+                <label for="q12_true">True</label>
+                <input type="radio" id="q12_false" name="q12" value="False">
+                <label for="q12_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. Acoustic coupling gel is used, and bubbles must be avoided, because sound cannot travel from the transducer into the tissue if air is trapped between the transducer face and the skin.</p>
+                </details>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question" data-correct-answer="False">
+                <p><strong>13.</strong> Specular reflection occurs when an ultrasound beam strikes a rough interface.</p>
+                <input type="radio" id="q13_true" name="q13" value="True">
+                <label for="q13_true">True</label>
+                <input type="radio" id="q13_false" name="q13" value="False">
+                <label for="q13_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. Specular reflection occurs if the beam strikes a large, smooth interface. Diffuse reflection occurs if the beam strikes a rough interface.</p>
+                </details>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question" data-correct-answer="False">
+                <p><strong>14.</strong> In soft tissue, ultrasound absorption is approximately inversely proportional to frequency.</p>
+                <input type="radio" id="q14_true" name="q14" value="True">
+                <label for="q14_true">True</label>
+                <input type="radio" id="q14_false" name="q14" value="False">
+                <label for="q14_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. In soft tissue, absorption is approximately proportional to frequency.</p>
+                </details>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question" data-correct-answer="False">
+                <p><strong>15.</strong> The depth of ultrasound penetration is generally better at higher frequencies.</p>
+                <input type="radio" id="q15_true" name="q15" value="True">
+                <label for="q15_true">True</label>
+                <input type="radio" id="q15_false" name="q15" value="False">
+                <label for="q15_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. The depth of penetration is poorer at higher frequencies, as attenuation is greater.</p>
+                </details>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question" data-correct-answer="True">
+                <p><strong>16.</strong> B-mode ultrasound allows imaging of a two-dimensional slice, unlike A-mode which produces a single line representation.</p>
+                <input type="radio" id="q16_true" name="q16" value="True">
+                <label for="q16_true">True</label>
+                <input type="radio" id="q16_false" name="q16" value="False">
+                <label for="q16_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>True</strong>. B-mode allows imaging of a two-dimensional slice, whereas A-mode produces a simple representation of the depth of tissue interfaces along a single line.</p>
+                </details>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question" data-correct-answer="True">
+                <p><strong>17.</strong> Electronic focusing in ultrasound is achieved by introducing delays in when each element in a transducer group is energized.</p>
+                <input type="radio" id="q17_true" name="q17" value="True">
+                <label for="q17_true">True</label>
+                <input type="radio" id="q17_false" name="q17" value="False">
+                <label for="q17_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>True</strong>. Electronic focusing is achieved by introducing delays in when each element in a group is energized.</p>
+                </details>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question" data-correct-answer="False">
+                <p><strong>18.</strong> Noise in ultrasound imaging is principally due to mechanical vibrations within the transducer.</p>
+                <input type="radio" id="q18_true" name="q18" value="True">
+                <label for="q18_true">True</label>
+                <input type="radio" id="q18_false" name="q18" value="False">
+                <label for="q18_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. Noise in ultrasound is principally electronic noise: statistical fluctuations in the number of electrons in the very small currents measured.</p>
+                </details>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question" data-correct-answer="False">
+                <p><strong>19.</strong> In harmonic imaging, the fundamental frequency is transmitted, and only the higher-order harmonics are reflected back to the transducer.</p>
+                <input type="radio" id="q19_true" name="q19" value="True">
+                <label for="q19_true">True</label>
+                <input type="radio" id="q19_false" name="q19" value="False">
+                <label for="q19_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. In harmonic imaging, the fundamental frequency (1st harmonic) is transmitted, and <strong>both</strong> the fundamental and higher-order harmonics are reflected back to the transducer.</p>
+                </details>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question" data-correct-answer="False">
+                <p><strong>20.</strong> For Doppler measurements, the maximum Doppler shift is achieved when the angle of insonation (q) is 90 degrees.</p>
+                <input type="radio" id="q20_true" name="q20" value="True">
+                <label for="q20_true">True</label>
+                <input type="radio" id="q20_false" name="q20" value="False">
+                <label for="q20_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>Correct answer: <strong>False</strong>. The maximum Doppler shift is achieved when cos q = 1, i.e., q = 0 degrees (movement in the direction of the sound). For movement perpendicular to the transmitted beam (q = 90 degrees), cos q = 0, producing no Doppler effect.</p>
+                </details>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const questions = document.querySelectorAll('.question');
+            const resetButton = document.getElementById('resetQuiz');
+
+            questions.forEach(questionDiv => {
+                const radios = questionDiv.querySelectorAll('input[type="radio"]');
+                const feedbackDiv = questionDiv.querySelector('.feedback');
+                const detailsElement = questionDiv.querySelector('details');
+                const explanationP = detailsElement.querySelector('p');
+                const correctAnswer = questionDiv.dataset.correctAnswer;
+
+                radios.forEach(radio => {
+                    radio.addEventListener('change', (event) => {
+                        const selectedAnswer = event.target.value;
+                        const isCorrect = (selectedAnswer === correctAnswer);
+
+                        // Update feedback
+                        feedbackDiv.style.display = 'block';
+                        feedbackDiv.classList.remove('correct', 'incorrect', 'neutral');
+                        if (isCorrect) {
+                            feedbackDiv.textContent = 'Correct!';
+                            feedbackDiv.classList.add('correct');
+                        } else {
+                            feedbackDiv.textContent = 'Incorrect.';
+                            feedbackDiv.classList.add('incorrect');
+                        }
+
+                        // Update explanation
+                        const userWas = isCorrect ? 'Right' : 'Wrong';
+                        explanationP.innerHTML = `Correct answer: <strong>${correctAnswer}</strong>. You were <strong>${userWas}</strong>. ${explanationP.innerHTML.split('. You were').split('. Correct answer: ') || explanationP.innerHTML.split('. Correct answer: ')}.` + (explanationP.querySelector('.citation') ? `<span class='citation'>${explanationP.querySelector('.citation').outerHTML}</span>` : ''); // Reconstruct to preserve explanation if not already structured
+                        explanationP.innerHTML = `Correct answer: <strong>${correctAnswer}</strong>. You were <strong>${userWas}</strong>. ${explanationP.innerHTML.substring(explanationP.innerHTML.indexOf('You were') + userWas.length + 9)}`; // Keep only the original explanation
+
+                        // Set the explanation text directly from the stored correct answer and initial explanation text
+                        let initialExplanationText = explanationP.textContent.split('Correct answer: ');
+                        if (initialExplanationText) {
+                             // Find the end of the initial "Correct answer: X" part
+                            let endOfInitialAnswer = initialExplanationText.indexOf('.');
+                            if (endOfInitialAnswer !== -1) {
+                                initialExplanationText = initialExplanationText.substring(endOfInitialAnswer + 2); // Get text after the initial answer part
+                            }
+                        } else {
+                            // Fallback if the initial parse fails, try to get the original raw text.
+                            // This part is for robust fallback, assuming original explanation structure.
+                            const originalExplanationNode = document.createElement('p');
+                            originalExplanationNode.innerHTML = explanationP.getAttribute('data-original-html');
+                            initialExplanationText = originalExplanationNode.textContent.split('You were').trim();
+                            if(initialExplanationText.startsWith('Correct answer:')) {
+                                initialExplanationText = initialExplanationText.substring(initialExplanationText.indexOf('.', initialExplanationText.indexOf('Correct answer:')) + 2).trim();
+                            }
+                        }
+
+                        // Store original explanation HTML if not already stored
+                        if (!explanationP.hasAttribute('data-original-html')) {
+                            explanationP.setAttribute('data-original-html', explanationP.innerHTML);
+                        }
+
+                        // Reconstruct explanation for display
+                        const originalContent = explanationP.getAttribute('data-original-html');
+                        // Use a regex to extract the part after the first period, which usually follows "Correct answer: X."
+                        const explanationOnlyMatch = originalContent.match(/\. (.*)/s); // Capture everything after ". "
+                        const explanationOnly = explanationOnlyMatch ? explanationOnlyMatch : originalContent; // Fallback to full content
+
+                        explanationP.innerHTML = `Correct answer: <strong>${correctAnswer}</strong>. You were <strong>${userWas}</strong>. ${explanationOnly}`;
+
+
+                        detailsElement.open = true; // Expand explanation
+
+                        // Disable all radio buttons for this question
+                        radios.forEach(r => r.disabled = true);
+                    });
+                });
+            });
+
+            resetButton.addEventListener('click', () => {
+                questions.forEach(questionDiv => {
+                    const radios = questionDiv.querySelectorAll('input[type="radio"]');
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    const detailsElement = questionDiv.querySelector('details');
+                    const explanationP = detailsElement.querySelector('p');
+
+                    radios.forEach(radio => {
+                        radio.checked = false;
+                        radio.disabled = false;
+                    });
+
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.classList.remove('correct', 'incorrect', 'neutral');
+                    detailsElement.open = false;
+
+                    // Reset explanation text to its original state if it was modified
+                    if (explanationP.hasAttribute('data-original-html')) {
+                        explanationP.innerHTML = explanationP.getAttribute('data-original-html');
+                    }
+                });
+            });
+
+            // Store original explanation HTML on page load for reset functionality
+            questions.forEach(questionDiv => {
+                const explanationP = questionDiv.querySelector('details p');
+                explanationP.setAttribute('data-original-html', explanationP.innerHTML);
+            });
+        });
+    </script>
+</body>
+</html>

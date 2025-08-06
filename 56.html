@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRCR Part 1 Radiology Physics Quiz - Chapter 3</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000000; /* Black background */
+            color: #E0E0E0; /* Light gray text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .quiz-container {
+            background-color: #1A1A1A; /* Darker black for container */
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.2); /* Soft teal shadow */
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #333333; /* Subtle border */
+        }
+
+        h1 {
+            color: #00FFFF; /* Cyan for heading */
+            margin-bottom: 15px;
+            font-size: 2.2em;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .question {
+            background-color: #222222; /* Slightly lighter than container for questions */
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border: 1px solid #444444;
+        }
+
+        .question p {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #F0F0F0; /* White for question text */
+        }
+
+        .question label {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 20px;
+            cursor: pointer;
+            color: #C0C0C0; /* Lighter gray for labels */
+        }
+
+        .question input[type="radio"] {
+            margin-right: 8px;
+            accent-color: #00FFFF; /* Cyan for radio buttons */
+            cursor: pointer;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+        }
+
+        .feedback.correct {
+            background-color: #004d00; /* Dark green */
+            color: #32CD32; /* Lime green */
+        }
+
+        .feedback.incorrect {
+            background-color: #4d0000; /* Dark red */
+            color: #FF4500; /* Orange-red */
+        }
+
+        .feedback.neutral {
+            background-color: #00004d; /* Dark blue */
+            color: #87CEFA; /* Light sky blue */
+        }
+
+        details {
+            margin-top: 15px;
+            background-color: #2A2A2A; /* Slightly darker for explanations */
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #555555;
+            color: #D0D0D0; /* Off-white */
+        }
+
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #00FFFF; /* Cyan for summary */
+        }
+
+        details p {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #B0B0B0; /* Gray for explanation text */
+        }
+
+        .citation {
+            font-style: italic;
+            font-size: 0.8em;
+            color: #777777; /* Darker gray for citations */
+        }
+
+        .button-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #00FFFF; /* Cyan button */
+            color: #000000; /* Black text on button */
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4);
+        }
+
+        button:hover {
+            background-color: #00DCDC; /* Slightly darker cyan on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 255, 255, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>FRCR Part 1 Radiology Physics Quiz - Chapter 3</h1>
+        <p>Test your deep understanding of X-ray Imaging concepts from Farr's Physics for Medical Imaging, 3rd edition – Chapter 3.</p>
+
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question" data-correct-answer="False">
+                <p>1. The heat rating of an X-ray tube increases with a longer exposure time.</p>
+                <label><input type="radio" name="q1" value="True"> True</label>
+                <label><input type="radio" name="q1" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>The heat rating reflects the allowable milliamperage per particular kV values (kV * mA, with units in joules). This rating <strong>decreases</strong> based on factors like a longer exposure time, due to the increased heat production over time.</p>
+                    <p><span class="citation">[Source: Farr's Physics for Medical Imaging, 3rd ed., p. 189]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" data-correct-answer="False">
+                <p>2. In X-ray imaging, the intensity of the beam is most apparent to decrease from the anode edge towards the cathode edge of the field, due to the heel effect.</p>
+                <label><input type="radio" name="q2" value="True"> True</label>
+                <label><input type="radio" name="q2" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>The intensity of the beam decreases across the field, and this is most apparent from the central ray (B) towards the anode edge (A). This means the intensity is <strong>lower at the anode end</strong> and higher at the cathode end. The statement implies the opposite directional decrease.</p>
+                    <p><span class="citation">[Source: Farr's Physics for Medical Imaging, 3rd ed., p. 190]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" data-correct-answer="False">
+                <p>3. An air gap between the patient and image detector plate reduces scatter and decreases image magnification, requiring less kV or mA to maintain photon flux.</p>
+                <label><input type="radio" name="q3" value="True"> True</label>
+                <label><input type="radio" name="q3" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>While an air gap does reduce scatter, it produces a <strong>magnified image</strong>. Additionally, as the distance is increased, <strong>increased</strong> kV or mA is required to maintain photon flux, not less.</p>
+                    <p><span class="citation">[Source: Farr's Physics for Medical Imaging, 3rd ed., p. 193]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" data-correct-answer="True">
+                <p>4. For Computed Radiography (CR) systems, the photostimulable phosphor plate is commonly composed of barium fluorohalide doped with europium, and typically uses a red laser for scanning, as most phosphors release blue light.</p>
+                <label><input type="radio" name="q4" value="True"> True</label>
+                <label><input type="radio" name="q4" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True</p>
+                    <p>The photostimulable phosphor plate indeed uses barium fluorohalide doped with europium (BaFX:Eu) as its active layer. A red laser is used to stimulate the release of trapped energy, which is re-emitted as blue light. This choice of colors optimizes the reading process.</p>
+                    <p><span class="citation">[Source: Farr's Physics for Medical Imaging, 3rd ed., pp. 198-199]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" data-correct-answer="False">
+                <p>5. Digital Radiography (DR) systems typically achieve a Detective Quantum Efficiency (DQE) lower than that of Computed Radiography (CR) systems.</p>
+                <label><input type="radio" name="q5" value="True"> True</label>
+                <label><input type="radio" name="q5" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>DR systems have a significantly <strong>higher DQE</strong> compared to CR systems. CR systems achieve a DQE of approximately 30%, while DR systems can achieve around 65%. A higher DQE indicates better efficiency in photon detection and less added noise to the detected signal.</p>
+                    <p><span class="citation">[Source: Farr's Physics for Medical Imaging, 3rd ed., p. 206]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question" data-correct-answer="False">
+                <p>6. In Digital Radiography (DR) direct conversion systems using amorphous selenium, electrons are released by the selenium and migrate to the charge collecting electrode with significant lateral diffusion.</p>
+                <label><input type="radio" name="q6" value="True"> True</label>
+                <label><input type="radio" name="q6" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>In amorphous selenium direct conversion systems, the released electrons migrate to the surface electrode, and positive charge is drawn to the charge collecting electrode with <strong>minimal lateral diffusion</strong>. This minimal diffusion is crucial for maintaining high spatial resolution.</p>
+                    <p><span class="citation">[Source: Farr's Physics for Medical Imaging, 3rd ed., p. 207]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question" data-correct-answer="False">
+                <p>7. A high-pass filtering technique in image processing enhances edges by increasing the weighting of pixels that contribute to those edges, and simultaneously reduces image noise.</p>
+                <label><input type="radio" name="q7" value="True"> True</label>
+                <label><input type="radio" name="q7" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>High-pass filtering does enhance edges by exaggerating contrast at boundaries, but it also serves to <strong>increase noise</strong>. This is a common trade-off in image processing: sharpening often comes at the cost of increased noise.</p>
+                    <p><span class="citation">[Source: Farr's Physics for Medical Imaging, 3rd ed., p. 220]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question" data-correct-answer="True">
+                <p>8. The Nyquist criterion states that the signal must be sampled at least twice in every cycle to accurately record high-frequency signals, otherwise aliasing may occur.</p>
+                <label><input type="radio" name="q8" value="True"> True</label>
+                <label><input type="radio" name="q8" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True</p>
+                    <p>The Nyquist criterion is fundamental in digital imaging, stating that the sampling frequency must be at least twice the highest frequency present in the signal. Failure to meet this criterion leads to aliasing, where high-frequency signals are erroneously recorded as lower frequencies.</p>
+                    <p><span class="citation">[Source: Farr's Physics for Medical Imaging, 3rd ed., p. 221]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question" data-correct-answer="False">
+                <p>9. For mammography, a Rhenium/Molybdenum target/filter combination is commonly used for larger or denser breasts due to its ability to attenuate higher-energy X-rays effectively.</p>
+                <label><input type="radio" name="q9" value="True"> True</label>
+                <label><input type="radio" name="q9" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>A Rhenium/Molybdenum combination is <strong>not used</strong> in mammography. The text specifically states that the molybdenum filter would attenuate the rhodium-characteristic X-rays. Common combinations include Molybdenum/Molybdenum, Molybdenum/Rhodium, or Rhodium/Rhodium for larger/denser breasts.</p>
+                    <p><span class="citation">[Source: Farr's Physics for Medical Imaging, 3rd ed., p. 241]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question" data-correct-answer="False">
+                <p>10. In an image intensifier, the photocathode converts X-ray photons to electrons with an efficiency of approximately 50%.</p>
+                <label><input type="radio" name="q10" value="True"> True</label>
+                <label><input type="radio" name="q10" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>The photocathode, composed of antimony caesium (SbCs3), is only about <strong>15% efficient</strong> in converting light photons (from the input phosphor) into electrons. While it produces 200 electrons per incident X-ray photon, its quantum efficiency is significantly lower than 50%.</p>
+                    <p><span class="citation">[Source: Farr's Physics for Medical Imaging, 3rd ed., p. 247]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question" data-correct-answer="False">
+                <p>11. The brightness gain of an image intensifier is directly proportional to the minification gain and inversely proportional to the flux gain.</p>
+                <label><input type="radio" name="q11" value="True"> True</label>
+                <label><input type="radio" name="q11" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>Brightness gain is calculated as the <strong>product</strong> of minification gain and flux gain (Brightness gain = Minification gain × flux gain). Both factors contribute multiplicatively to the overall brightness intensification, not inversely.</p>
+                    <p><span class="citation">[Source: Farr's Physics for Medical Imaging, 3rd ed., p. 253]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question" data-correct-answer="False">
+                <p>12. In fluoroscopy, the "anti-isowatt curve" for automatic brightness control (ABC) is designed to optimize the spectrum for imaging iodine, resulting in high image quality and high dose.</p>
+                <label><input type="radio" name="q12" value="True"> True</label>
+                <label><input type="radio" name="q12" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>The "anti-isowatt curve" (Curve A) increases mA and kV as radiological thickness increases. However, Curve B is specifically optimized for iodine contrast imaging, holding kV at 60-65 kV and increasing mA, leading to high image quality and high dose.</p>
+                    <p><span class="citation">[Source: Farr's Physics for Medical Imaging, 3rd ed., pp. 259-260]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question" data-correct-answer="False">
+                <p>13. To minimize patient dose in fluoroscopy, increasing the source-skin distance and using continuous fluoroscopy rather than pulsed fluoroscopy are recommended.</p>
+                <label><input type="radio" name="q13" value="True"> True</label>
+                <label><input type="radio" name="q13" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>While increasing the source-skin distance does help minimize patient dose, <strong>pulsed fluoroscopy</strong> is recommended over continuous fluoroscopy to reduce dose rate. Pulsed fluoroscopy delivers X-rays in short bursts, reducing the total exposure time while maintaining diagnostic quality.</p>
+                    <p><span class="citation">[Source: Farr's Physics for Medical Imaging, 3rd ed., p. 267 (Box 3.1)]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question" data-correct-answer="False">
+                <p>14. The `Radiation Dose Structured Report` in DICOM ensures that if an image is deleted, the record of the dose associated with that image is also lost permanently.</p>
+                <label><input type="radio" name="q14" value="True"> True</label>
+                <label><input type="radio" name="q14" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False</p>
+                    <p>The Radiation Dose Structured Report (RDSR) was specifically implemented to <strong>prevent</strong> the loss of dose data when images are not stored or are deleted. Before RDSR, dose data was often directly attached to each image, meaning its deletion would result in the loss of dose records. RDSR ensures dose information is a separately exported DICOM image, attached to the main imaging encounter.</p>
+                    <p><span class="citation">[Source: Farr's Physics for Medical Imaging, 3rd ed., p. 181]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question" data-correct-answer="True">
+                <p>15. In mammography, the compression paddle's function includes reducing the required radiation dose, scatter, and geometric and movement unsharpness.</p>
+                <label><input type="radio" name="q15" value="True"> True</label>
+                <label><input type="radio" name="q15" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True</p>
+                    <p>The compression paddle is critical in mammography. Its primary functions include equalizing breast tissue thickness and, importantly, <strong>reducing the radiation dose required, minimizing scatter, and decreasing both geometric and movement unsharpness</strong>, thereby improving image quality.</p>
+                    <p><span class="citation">[Source: Farr's Physics for Medical Imaging, 3rd ed., p. 236]</span></p>
+                </details>
+            </div>
+
+        </form>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const questions = document.querySelectorAll('.question');
+            const resetButton = document.getElementById('resetQuiz');
+
+            questions.forEach(questionDiv => {
+                const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                const feedbackDiv = questionDiv.querySelector('.feedback');
+                const detailsElement = questionDiv.querySelector('details');
+
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', (event) => {
+                        const selectedAnswer = event.target.value;
+                        const correctAnswer = questionDiv.dataset.correctAnswer;
+                        
+                        // Disable all radio buttons for this question
+                        radioButtons.forEach(rb => rb.disabled = true);
+
+                        // Show feedback
+                        feedbackDiv.style.display = 'block';
+                        if (selectedAnswer === correctAnswer) {
+                            feedbackDiv.textContent = 'Correct!';
+                            feedbackDiv.className = 'feedback correct';
+                        } else {
+                            feedbackDiv.textContent = 'Incorrect!';
+                            feedbackDiv.className = 'feedback incorrect';
+                        }
+
+                        // Update explanation text with user's result
+                        const resultText = document.createElement('span');
+                        resultText.textContent = `You were ${selectedAnswer === correctAnswer ? 'right' : 'wrong'}.`;
+                        resultText.style.fontWeight = 'bold';
+                        if (selectedAnswer === correctAnswer) {
+                            resultText.style.color = '#32CD32'; // Lime green
+                        } else {
+                            resultText.style.color = '#FF4500'; // Orange-red
+                        }
+
+                        // Remove existing user result span if present
+                        let existingResultSpan = detailsElement.querySelector('.user-result-text');
+                        if (existingResultSpan) {
+                            existingResultSpan.remove();
+                        }
+                        
+                        // Insert new user result span after the "Correct Answer" paragraph
+                        const correctAnswerP = detailsElement.querySelector('p strong').closest('p');
+                        if (correctAnswerP) {
+                            const newResultP = document.createElement('p');
+                            newResultP.className = 'user-result-text'; // Add a class for easy removal
+                            newResultP.appendChild(resultText);
+                            correctAnswerP.after(newResultP);
+                        }
+                    });
+                });
+            });
+
+            resetButton.addEventListener('click', () => {
+                quizForm.reset(); // Resets all radio buttons
+                questions.forEach(questionDiv => {
+                    const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    const detailsElement = questionDiv.querySelector('details');
+
+                    // Re-enable radio buttons
+                    radioButtons.forEach(rb => rb.disabled = false);
+
+                    // Hide feedback
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.textContent = '';
+                    feedbackDiv.className = 'feedback'; // Reset classes
+
+                    // Close details and remove user result text
+                    detailsElement.open = false;
+                    let existingResultSpan = detailsElement.querySelector('.user-result-text');
+                    if (existingResultSpan) {
+                        existingResultSpan.remove();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
