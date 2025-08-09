@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRCR Part 3 Radiology Physics Quiz - Chapter 1</title>
+    <style>
+        body {
+            background-color: #1a1a1a; /* Black background */
+            color: #e0e0e0; /* Light gray text */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Clean sans-serif font */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top to allow scrolling */
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .quiz-container {
+            background-color: #2c2c2c; /* Slightly lighter black for container */
+            padding: 30px;
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Soft shadow */
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #f0f0f0;
+            margin-bottom: 15px;
+            font-size: 2.2em;
+        }
+
+        .intro {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #bbb;
+        }
+
+        .question {
+            background-color: #383838; /* Even lighter background for questions */
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-left: 5px solid #555;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .question:hover {
+            transform: translateY(-3px);
+        }
+
+        .question p {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            line-height: 1.5;
+            color: #e0e0e0;
+        }
+
+        .question label {
+            display: inline-flex; /* Use flex to align radio and text */
+            align-items: center;
+            margin-right: 20px;
+            font-size: 1em;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.2s, color 0.2s;
+            background-color: #4a4a4a;
+            color: #f0f0f0;
+        }
+
+        .question label:hover {
+            background-color: #606060;
+            color: #fff;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 8px;
+            accent-color: #4CAF50; /* Green accent for radio buttons */
+            cursor: pointer;
+            transform: scale(1.2);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+            font-size: 0.95em;
+        }
+
+        .feedback.correct {
+            background-color: rgba(76, 175, 80, 0.2); /* Green feedback */
+            color: #4CAF50;
+        }
+
+        .feedback.incorrect {
+            background-color: rgba(244, 67, 54, 0.2); /* Red feedback */
+            color: #F44336;
+        }
+
+        .feedback.info {
+            background-color: rgba(33, 150, 243, 0.2); /* Blue for initial state if needed */
+            color: #2196F3;
+        }
+
+        .explanation-section {
+            margin-top: 40px;
+            background-color: #383838;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-left: 5px solid #2196F3; /* Blue border */
+            text-align: left;
+        }
+
+        .explanation-section summary {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2196F3;
+            cursor: pointer;
+            padding: 5px 0;
+            outline: none;
+            transition: color 0.2s;
+        }
+
+        .explanation-section summary:hover {
+            color: #64b5f6;
+        }
+
+        .explanation-section p {
+            margin-top: 10px;
+            line-height: 1.6;
+            color: #ccc;
+            font-size: 0.95em;
+        }
+
+        .explanation-section .citation {
+            font-style: italic;
+            color: #999;
+            font-size: 0.85em;
+        }
+
+        .button-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        #resetQuiz {
+            background-color: #FFC107; /* Amber/Yellow for reset */
+            color: #333;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.1s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #resetQuiz:hover {
+            background-color: #FFD54F;
+            transform: translateY(-2px);
+        }
+
+        #resetQuiz:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>FRCR Part 3 Radiology Physics Quiz</h1>
+        <p class="intro">Test your deep understanding of "Farr's Physics for Medical Imaging, 3rd edition – Chapter 1" with these challenging True/False questions. Select an answer for instant feedback.</p>
+
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question" data-correct-answer="False">
+                <p>1. The number of electrons in an atom typically matches the number of protons to balance the charge, and this number uniquely defines the atomic number and position in the periodic table.</p>
+                <label><input type="radio" name="q1" value="True"> True</label>
+                <label><input type="radio" name="q1" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" data-correct-answer="False">
+                <p>2. The binding energy of an electron to its shell is fixed for a given element and shell level, with L-shell electrons requiring more energy to remove than K-shell electrons.</p>
+                <label><input type="radio" name="q2" value="True"> True</label>
+                <label><input type="radio" name="q2" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" data-correct-answer="False">
+                <p>3. When an inner shell electron is excited and returns to its original shell, the re-emitted excess energy as a photon is always consistent, yielding characteristic X-rays whose energy is unique to the specific element, but not dependent on the electron shells involved in the transition.</p>
+                <label><input type="radio" name="q3" value="True"> True</label>
+                <label><input type="radio" name="q3" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" data-correct-answer="False">
+                <p>4. The valence shell, despite being the outermost electron shell, can hold up to 32 electrons to fully define an element's chemical and electrical properties.</p>
+                <label><input type="radio" name="q4" value="True"> True</label>
+                <label><input type="radio" name="q4" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" data-correct-answer="False">
+                <p>5. All forms of electromagnetic (EM) radiation travel at the same velocity as light in a vacuum, and their photon energy is directly proportional to their wavelength.</p>
+                <label><input type="radio" name="q5" value="True"> True</label>
+                <label><input type="radio" name="q5" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question" data-correct-answer="False">
+                <p>6. Beam intensity, measured in W/mm², is typically easier to measure in reality compared to air kerma, which is an indirect measurement of energy fluence.</p>
+                <label><input type="radio" name="q6" value="True"> True</label>
+                <label><input type="radio" name="q6" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question" data-correct-answer="False">
+                <p>7. The inverse square law, when applied to a point source of electromagnetic radiation, assumes no absorption or scatter between the source and the point of measurement, and it indicates that the area of a beam is directly proportional to the distance from the source.</p>
+                <label><input type="radio" name="q7" value="True"> True</label>
+                <label><input type="radio" name="q7" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question" data-correct-answer="False">
+                <p>8. In X-ray production, approximately 99% of the electron's kinetic energy is converted into X-rays, with the remaining 1% generating heat, primarily through interactions with inner shell electrons.</p>
+                <label><input type="radio" name="q8" value="True"> True</label>
+                <label><input type="radio" name="q8" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question" data-correct-answer="True">
+                <p>9. High-frequency generators are used in modern X-ray equipment to maintain a near-constant waveform with minimal ripple (e.g., 1%), leading to advantages such as increased X-ray output and lower patient dose compared to older rectification types.</p>
+                <label><input type="radio" name="q9" value="True"> True</label>
+                <label><input type="radio" name="q9" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question" data-correct-answer="False">
+                <p>10. The K-shell binding energy for tungsten is approximately 59 keV, while the L-shell binding energy is 70 keV, and Ka X-rays are produced when an M-shell electron fills a K-shell vacancy.</p>
+                <label><input type="radio" name="q10" value="True"> True</label>
+                <label><input type="radio" name="q10" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question" data-correct-answer="True">
+                <p>11. Increasing the kilovoltage (kV) of an X-ray tube shifts the X-ray spectrum upwards and to the right, leading to both an increased total number of photons and increased maximum and effective energy.</p>
+                <label><input type="radio" name="q11" value="True"> True</label>
+                <label><input type="radio" name="q11" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question" data-correct-answer="False">
+                <p>12. Bremsstrahlung radiation accounts for approximately 80% of produced X-rays and yields a continuous spectrum of photon energies that is independent of tube voltage.</p>
+                <label><input type="radio" name="q12" value="True"> True</label>
+                <label><input type="radio" name="q12" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question" data-correct-answer="False">
+                <p>13. Filtration of the X-ray beam primarily removes higher-energy photons, which contributes significantly to patient dose but has little impact on image formation, and thus increases the overall output of X-rays.</p>
+                <label><input type="radio" name="q13" value="True"> True</label>
+                <label><input type="radio" name="q13" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question" data-correct-answer="False">
+                <p>14. The total filtration for a general radiology system is typically 2.5 mm aluminium equivalent, comprised solely of additional filtration sheets placed between the tube and the patient.</p>
+                <label><input type="radio" name="q14" value="True"> True</label>
+                <label><input type="radio" name="q14" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question" data-correct-answer="True">
+                <p>15. In X-ray or gamma ray interaction with matter, absorption is a stochastic process where the photon transfers all energy to the matter and disappears, making its outcome for any given photon impossible to predict precisely.</p>
+                <label><input type="radio" name="q15" value="True"> True</label>
+                <label><input type="radio" name="q15" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question" data-correct-answer="True">
+                <p>16. For a given material, the half-value layer (HVL) decreases as the atomic number of the material increases and as the incident photon energy decreases.</p>
+                <label><input type="radio" name="q16" value="True"> True</label>
+                <label><input type="radio" name="q16" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question" data-correct-answer="False">
+                <p>17. Photoelectric absorption is more probable at higher incident photon energies (proportional to E³) and in materials with lower atomic numbers (proportional to 1/Z³).</p>
+                <label><input type="radio" name="q17" value="True"> True</label>
+                <label><input type="radio" name="q17" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question" data-correct-answer="False">
+                <p>18. In most radiology applications, where photon energies are typically below 1 MeV, pair production is the predominant interaction, followed by Compton and photoelectric effects.</p>
+                <label><input type="radio" name="q18" value="True"> True</label>
+                <label><input type="radio" name="q18" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question" data-correct-answer="True">
+                <p>19. Charged particles, unlike photons which undergo exponential decay, have an ultimate depth within matter known as their range, which is dependent on their initial energy and particle type.</p>
+                <label><input type="radio" name="q19" value="True"> True</label>
+                <label><input type="radio" name="q19" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question" data-correct-answer="False">
+                <p>20. Fluorescence involves delayed photon emission facilitated by electron traps and intersystem crossing, while phosphorescence results in nearly instantaneous photon emission.</p>
+                <label><input type="radio" name="q20" value="True"> True</label>
+                <label><input type="radio" name="q20" value="False"> False</label>
+                <div class="feedback"></div>
+            </div>
+        </form>
+
+        <details class="explanation-section">
+            <summary>Show Explanation and Correct Answer</summary>
+            <p><strong>1. Correct Answer: False.</strong> The number of protons uniquely defines the atomic number and position in the periodic table. While electrons usually match protons for charge balance, they do not define the atomic number itself. <span class="citation"></span></p>
+            <p><strong>2. Correct Answer: False.</strong> K-shell electrons have higher binding energy (EK) than L-shell electrons (EL), meaning more energy is required to remove K-shell electrons (EK > EL > EM). <span class="citation"></span></p>
+            <p><strong>3. Correct Answer: False.</strong> While the energy value is consistent for each element, characteristic photons' energy also depends on the specific electron shells involved in the transition (e.g., K-shell vacancy filled by L-shell or M-shell electron). <span class="citation"></span></p>
+            <p><strong>4. Correct Answer: False.</strong> The valence shell can only ever have eight electrons, adhering to the octet rule, even though an N-shell (if not the outermost) can typically hold up to 32 electrons. <span class="citation"></span></p>
+            <p><strong>5. Correct Answer: False.</strong> While all EM radiation travels at the speed of light in a vacuum, photon energy is inversely proportional to wavelength (E = hc/λ), not directly proportional. <span class="citation"></span></p>
+            <p><strong>6. Correct Answer: False.</strong> Beam intensity is difficult to measure in reality. Air kerma, on the other hand, provides an indirect but more practical measurement of energy fluence. <span class="citation"></span></p>
+            <p><strong>7. Correct Answer: False.</strong> The inverse square law assumes no absorption or scatter, but states that the area of a beam is proportional to the *square* of the distance from a point source, not directly proportional. <span class="citation"></span></p>
+            <p><strong>8. Correct Answer: False.</strong> Approximately 1% of the electron's kinetic energy is converted to X-rays, and the vast majority (99%) is converted to heat, primarily through multiple small interactions involving the *outer* electrons of target atoms. <span class="citation"></span></p>
+            <p><strong>9. Correct Answer: True.</strong> Modern X-ray equipment utilizes high-frequency generators to achieve a near-constant waveform with a 1% ripple, which indeed offers advantages like increased X-ray output and lower patient dose. <span class="citation"></span></p>
+            <p><strong>10. Correct Answer: False.</strong> For tungsten, the K-shell energy is 70 keV and the L-shell is 12 keV. Ka X-rays result from an L-shell electron filling a K-shell vacancy (Ka ≈ 59 keV). <span class="citation"></span></p>
+            <p><strong>11. Correct Answer: True.</strong> Increasing the kilovoltage (kV) indeed shifts the X-ray spectrum upwards and to the right, leading to both an increased total number of photons and increased maximum and effective energy. <span class="citation"></span></p>
+            <p><strong>12. Correct Answer: False.</strong> While Bremsstrahlung radiation accounts for approximately 80% of produced X-rays and yields a continuous spectrum, its photon energies are *dependent* on the tube voltage, not independent. <span class="citation"></span></p>
+            <p><strong>13. Correct Answer: False.</strong> Filtration removes *lower*-energy photons which primarily contribute to dose and have little image impact. Furthermore, increasing filtration *reduces* the overall output of X-rays. <span class="citation"></span></p>
+            <p><strong>14. Correct Answer: False.</strong> The total filtration for a general radiology system is the sum of both inherent filtration (e.g., from the tube housing) and additional filtration (sheets placed between the tube and patient). <span class="citation"></span></p>
+            <p><strong>15. Correct Answer: True.</strong> Absorption, like other photon interactions, is a stochastic process. This means that for any given photon, its outcome is governed by statistical laws of chance and is impossible to predict precisely. <span class="citation"></span></p>
+            <p><strong>16. Correct Answer: True.</strong> The half-value layer (HVL) decreases as the atomic number of the material increases and as the incident photon energy decreases, meaning the material attenuates the beam more effectively. <span class="citation"></span></p>
+            <p><strong>17. Correct Answer: False.</strong> The probability of photoelectric absorption *decreases* with increased incident photon energy (1/E³ relationship) and *increases* with the increased atomic number of the material (Z³ relationship). <span class="citation"></span></p>
+            <p><strong>18. Correct Answer: False.</strong> In most radiology applications (photon energies < 1 MeV), only photoelectric and Compton effects are considered. Pair production becomes predominant only at photon energies significantly above 1 MeV. <span class="citation"></span></p>
+            <p><strong>19. Correct Answer: True.</strong> Charged particles have a finite "range" or ultimate depth within matter, as their energy is lost through discrete interactions. This contrasts with photons, which undergo exponential decay. <span class="citation"></span></p>
+            <p><strong>20. Correct Answer: False.</strong> Fluorescence involves nearly instantaneous photon emission, while phosphorescence is characterized by *delayed* photon emission, often facilitated by electron traps and intersystem crossing. <span class="citation"></span></p>
+        </details>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const questions = document.querySelectorAll('.question');
+            const resetButton = document.getElementById('resetQuiz');
+            const explanationSection = document.querySelector('.explanation-section');
+
+            questions.forEach(question => {
+                const radioButtons = question.querySelectorAll('input[type="radio"]');
+                const feedbackDiv = question.querySelector('.feedback');
+                const correctAnswer = question.dataset.correctAnswer;
+
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', (event) => {
+                        const isCorrect = event.target.value === correctAnswer;
+                        feedbackDiv.style.display = 'block';
+                        if (isCorrect) {
+                            feedbackDiv.textContent = 'Correct!';
+                            feedbackDiv.className = 'feedback correct';
+                        } else {
+                            feedbackDiv.textContent = 'Incorrect.';
+                            feedbackDiv.className = 'feedback incorrect';
+                        }
+                        // Disable all radio buttons for this question after selection
+                        radioButtons.forEach(rb => rb.disabled = true);
+                    });
+                });
+            });
+
+            resetButton.addEventListener('click', () => {
+                quizForm.reset(); // Clears all selected radio buttons
+                questions.forEach(question => {
+                    const feedbackDiv = question.querySelector('.feedback');
+                    const radioButtons = question.querySelectorAll('input[type="radio"]');
+
+                    feedbackDiv.style.display = 'none'; // Hide feedback
+                    feedbackDiv.className = 'feedback'; // Reset feedback class
+
+                    radioButtons.forEach(radio => {
+                        radio.disabled = false; // Re-enable radio buttons
+                    });
+                });
+                explanationSection.open = false; // Close the explanation section
+            });
+        });
+    </script>
+</body>
+</html>
