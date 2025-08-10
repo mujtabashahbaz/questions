@@ -1,0 +1,39 @@
+Write full HTML code for a self-contained 20-question True/False quiz based on *Farr's Physics for Medical Imaging, 3rd edition – Chapter 1*, using a dark theme.
+
+Use !DOCTYPE html with full html, head, and body structure.
+
+In the head, include:
+
+meta charset, meta viewport, title
+ 
+A style block with:
+Black background, white/light-gray text
+Clean sans-serif font
+Centered layout, rounded corners, soft shadows
+Hover effects for buttons
+Feedback in green/red/blue (readable on black)
+
+In the body:
+A div class="quiz-container" with a h1 and intro p
+A form id="quizForm" with 20 questions, each inside:
+
+div class="question" data-correct-answer="True/False"
+A p for question text
+Two radio inputs with labels for True and False
+A hidden div class="feedback" that appears after selection
+A closed details with:
+
+summary: “Show Explanation and Correct Answer”
+ 
+p showing:
+Correct answer
+Whether user was right
+Brief explanation
+Optional span class="citation" for book reference
+
+At the bottom:
+A div class="button-container" with one Reset Quiz button (id="resetQuiz")
+
+Behavior:
+Selecting an answer shows feedback and expands explanation for that question only.
+No “Check Answers” button — feedback appears after a choice is made.
