@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRCR Part 1 Radiology Physics Quiz - Chapter 1</title>
+    <style>
+        /* CSS Variables for easy theme adjustments */
+        :root {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --secondary-text-color: #cccccc;
+            --container-bg: #2a2a2a;
+            --border-color: #444;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --correct-color: #4CAF50; /* Green */
+            --incorrect-color: #F44336; /* Red */
+            --neutral-color: #2196F3; /* Blue for summary and general info */
+            --button-bg: #444;
+            --button-hover-bg: #666;
+        }
+
+        /* Basic body styling */
+        body {
+            font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top for longer content */
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Main quiz container layout and appearance */
+        .quiz-container {
+            background-color: var(--container-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 16px var(--shadow-color);
+            padding: 30px;
+            max-width: 900px; /* Limits width for readability */
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--text-color);
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+
+        .quiz-container > p {
+            color: var(--secondary-text-color);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* Individual question styling */
+        .question {
+            background-color: #333;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .question p {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        .question label {
+            display: inline-block;
+            margin-right: 20px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .question label:hover {
+            background-color: #555;
+            border-color: #777;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        /* Feedback message styling */
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            display: none; /* Hidden by default, shown by JS */
+            font-weight: bold;
+            text-align: center;
+            color: var(--text-color); /* Ensure text is readable on feedback colors */
+        }
+
+        .feedback.correct {
+            background-color: var(--correct-color);
+        }
+
+        .feedback.incorrect {
+            background-color: var(--incorrect-color);
+        }
+
+        /* Explanation details styling */
+        details {
+            margin-top: 15px;
+            background-color: #444;
+            border-radius: 6px;
+            padding: 10px;
+            border: 1px solid #555;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--neutral-color); /* Blue for summary */
+        }
+
+        details p {
+            margin-top: 10px;
+            font-size: 0.95em;
+            line-height: 1.5;
+            color: var(--secondary-text-color);
+        }
+        
+        details p strong {
+            color: var(--correct-color); /* Highlight Correct Answer text */
+        }
+
+        .citation {
+            font-style: italic;
+            font-size: 0.85em;
+            color: #888;
+        }
+
+        /* Button and Score display container */
+        .button-container {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Reset Quiz button styling */
+        #resetQuiz {
+            background-color: var(--button-bg);
+            color: var(--text-color);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        #resetQuiz:hover {
+            background-color: var(--button-hover-bg);
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        /* Score display styling */
+        #scoreDisplay {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: var(--text-color);
+            background-color: #333;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        /* Disable interaction for answered questions */
+        .question.answered label {
+            cursor: default;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>FRCR Part 1 Radiology Physics Quiz</h1>
+        <p>Test your understanding of Chapter 1: Matter and Radiation from "Farr's Physics for Medical Imaging, 3rd edition" with these challenging True/False questions. Aim for deep understanding, not just memorization!</p>
+        
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question" id="q1" data-correct-answer="True">
+                <p>1. The number of protons determines the atomic number, while the number of nucleons determines the mass number of the atom.</p>
+                <input type="radio" name="q1" value="True" id="q1_true"><label for="q1_true">True</label>
+                <input type="radio" name="q1" value="False" id="q1_false"><label for="q1_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The number of protons defines the atomic number and the element name. The nucleons (protons and neutrons) combine to yield the mass number of the atom. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 11</span></p>
+                </details>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" id="q2" data-correct-answer="False">
+                <p>2. The M-shell can hold a maximum of 32 electrons.</p>
+                <input type="radio" name="q2" value="True" id="q2_true"><label for="q2_true">True</label>
+                <input type="radio" name="q2" value="False" id="q2_false"><label for="q2_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The M-shell can hold 18 electrons. The N-shell holds 32 electrons. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 12</span></p>
+                </details>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" id="q3" data-correct-answer="False">
+                <p>3. The valence shell defines only the electrical properties of an element.</p>
+                <input type="radio" name="q3" value="True" id="q3_true"><label for="q3_true">True</label>
+                <input type="radio" name="q3" value="False" id="q3_false"><label for="q3_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The valence shell defines the chemical, thermal, optical, and electrical properties of the element. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 13</span></p>
+                </details>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" id="q4" data-correct-answer="False">
+                <p>4. For a given element, the binding energy of the K-shell (EK) is less than that of the L-shell (EL).</p>
+                <input type="radio" name="q4" value="True" id="q4_true"><label for="q4_true">True</label>
+                <input type="radio" name="q4" value="False" id="q4_false"><label for="q4_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Each shell has different binding energies, with EK > EL > EM, etc. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 14</span></p>
+                </details>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" id="q5" data-correct-answer="True">
+                <p>5. The energy value of characteristic X-rays is consistent for each element.</p>
+                <input type="radio" name="q5" value="True" id="q5_true"><label for="q5_true">True</label>
+                <input type="radio" name="q5" value="False" id="q5_false"><label for="q5_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: When an electron returns to its original shell, the excess energy is re-emitted as a photon. The energy value of the photon is consistent for each element, yielding characteristic photons (termed X-rays). <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 14</span></p>
+                </details>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question" id="q6" data-correct-answer="True">
+                <p>6. All forms of electromagnetic radiation travel at the same velocity as light when in vacuo.</p>
+                <input type="radio" name="q6" value="True" id="q6_true"><label for="q6_true">True</label>
+                <input type="radio" name="q6" value="False" id="q6_false"><label for="q6_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: All forms of electromagnetic (EM) radiation travel at the same velocity as light when in vacuo (2.98 × 10^8 ms^-1, similar in air). <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 15</span></p>
+                </details>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question" id="q7" data-correct-answer="False">
+                <p>7. Photon energy is directly proportional to its wavelength.</p>
+                <input type="radio" name="q7" value="True" id="q7_true"><label for="q7_true">True</label>
+                <input type="radio" name="q7" value="False" id="q7_false"><label for="q7_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The equation E = h/λ shows that photon energy is inversely proportional to wavelength. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 17</span></p>
+                </details>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question" id="q8" data-correct-answer="False">
+                <p>8. Beam intensity, as a facet of an X-ray beam, is easily measurable in reality.</p>
+                <input type="radio" name="q8" value="True" id="q8_true"><label for="q8_true">True</label>
+                <input type="radio" name="q8" value="False" id="q8_false"><label for="q8_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Beam intensity indicates the energy fluence rate but is difficult to measure in reality. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 18</span></p>
+                </details>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question" id="q9" data-correct-answer="False">
+                <p>9. The inverse square law for beam intensity relies on the assumption of significant absorption or scatter between the source and measurement point.</p>
+                <input type="radio" name="q9" value="True" id="q9_true"><label for="q9_true">True</label>
+                <input type="radio" name="q9" value="False" id="q9_false"><label for="q9_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The inverse square law relies on two assumptions: a point source and *no* absorption or scatter between source and point of measurement. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 20</span></p>
+                </details>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question" id="q10" data-correct-answer="False">
+                <p>10. Approximately 99% of the kinetic energy of electrons hitting the metal target in an X-ray tube is converted into X-rays.</p>
+                <input type="radio" name="q10" value="True" id="q10_true"><label for="q10_true">True</label>
+                <input type="radio" name="q10" value="False" id="q10_false"><label for="q10_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The kinetic energy of the electrons is converted to X-rays (~1%) and heat (~99%). <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 21</span></p>
+                </details>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question" id="q11" data-correct-answer="True">
+                <p>11. Thermionic emission is the process through which a fraction of the free electrons can overcome the positive attraction of the metal anions when the tungsten filament is heated until incandescent.</p>
+                <input type="radio" name="q11" value="True" id="q11_true"><label for="q11_true">True</label>
+                <input type="radio" name="q11" value="False" id="q11_false"><label for="q11_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: To generate electrons, the tungsten filament within the cathode is heated until incandescent. This enables thermionic emission to occur, where a fraction of free electrons overcome the positive attraction of metal anions. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 21</span></p>
+                </details>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question" id="q12" data-correct-answer="True">
+                <p>12. Increased kilovoltage (kV) shifts the X-ray spectrum upwards and to the right, leading to increased maximum and effective energy and an increased total number of photons.</p>
+                <input type="radio" name="q12" value="True" id="q12_true"><label for="q12_true">True</label>
+                <input type="radio" name="q12" value="False" id="q12_false"><label for="q12_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Increased kV shifts the spectrum upwards and to the right, resulting in increased maximum and effective energy and an increased total number of photons. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 26</span></p>
+                </details>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question" id="q13" data-correct-answer="True">
+                <p>13. Bremsstrahlung radiation accounts for approximately 80% of produced X-rays.</p>
+                <input type="radio" name="q13" value="True" id="q13_true"><label for="q13_true">True</label>
+                <input type="radio" name="q13" value="False" id="q13_false"><label for="q13_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Bremsstrahlung (braking radiation) accounts for 80% of produced X-rays. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 25</span></p>
+                </details>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question" id="q14" data-correct-answer="True">
+                <p>14. For tungsten, the Kα characteristic X-ray energy (resulting from an L-shell electron filling a K-shell vacancy) is approximately 59 keV.</p>
+                <input type="radio" name="q14" value="True" id="q14_true"><label for="q14_true">True</label>
+                <input type="radio" name="q14" value="False" id="q14_false"><label for="q14_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: For tungsten, K-shell energy is 70 keV and L-shell is 12 keV, so Kα (K-L) is ~58 keV, which approximates 59 keV. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 25</span></p>
+                </details>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question" id="q15" data-correct-answer="True">
+                <p>15. Modern X-ray equipment primarily uses high-frequency (HF) generators.</p>
+                <input type="radio" name="q15" value="True" id="q15_true"><label for="q15_true">True</label>
+                <input type="radio" name="q15" value="False" id="q15_false"><label for="q15_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Modern X-ray equipment uses high-frequency (HF) generators in which the mains is converted to HF AC (1 kHz or higher). <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 32</span></p>
+                </details>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question" id="q16" data-correct-answer="False">
+                <p>16. Filtration primarily aims to remove higher-energy photons before they reach the patient.</p>
+                <input type="radio" name="q16" value="True" id="q16_true"><label for="q16_true">True</label>
+                <input type="radio" name="q16" value="False" id="q16_false"><label for="q16_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Filtration involves the removal of lower-energy photons before they reach the patient. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 35</span></p>
+                </details>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question" id="q17" data-correct-answer="True">
+                <p>17. For general radiology, the total filtration required for a system is equivalent to 2.5 mm aluminium.</p>
+                <input type="radio" name="q17" value="True" id="q17_true"><label for="q17_true">True</label>
+                <input type="radio" name="q17" value="False" id="q17_false"><label for="q17_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The total filtration for a system is equivalent to the sum of inherent and additional filtration, which for general radiology is 2.5 mm aluminium equivalent. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 35</span></p>
+                </details>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question" id="q18" data-correct-answer="True">
+                <p>18. Increasing the filtration of an X-ray beam increases its half-value layer (HVL).</p>
+                <input type="radio" name="q18" value="True" id="q18_true"><label for="q18_true">True</label>
+                <input type="radio" name="q18" value="False" id="q18_false"><label for="q18_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Increasing filtration attenuates lower-energy X-rays more than higher-energy X-rays, which increases the half-value layer (HVL)/penetrating power. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 36</span></p>
+                </details>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question" id="q19" data-correct-answer="False">
+                <p>19. Unlike photons, charged particles undergo exponential decay as they travel through matter.</p>
+                <input type="radio" name="q19" value="True" id="q19_true"><label for="q19_true">True</label>
+                <input type="radio" name="q19" value="False" id="q19_false"><label for="q19_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Charged particles have a range, an ultimate depth within matter, unlike photons which undergo exponential decay. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 46</span></p>
+                </details>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question" id="q20" data-correct-answer="False">
+                <p>20. The probability of photoelectric absorption increases with increased incident photon energy.</p>
+                <input type="radio" name="q20" value="True" id="q20_true"><label for="q20_true">True</label>
+                <input type="radio" name="q20" value="False" id="q20_false"><label for="q20_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The probability of photoelectric absorption decreases with increased incident photon energy (1/E^3). <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 42</span></p>
+                </details>
+            </div>
+
+            <!-- Question 21 -->
+            <div class="question" id="q21" data-correct-answer="True">
+                <p>21. The probability of photoelectric absorption increases with the increased atomic number of the material, proportional to Z^3.</p>
+                <input type="radio" name="q21" value="True" id="q21_true"><label for="q21_true">True</label>
+                <input type="radio" name="q21" value="False" id="q21_false"><label for="q21_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The probability of photoelectric absorption increases with the increased atomic number of the material (Z^3). <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 42</span></p>
+                </details>
+            </div>
+
+            <!-- Question 22 -->
+            <div class="question" id="q22" data-correct-answer="True">
+                <p>22. In most radiology applications, where photon energies are typically less than 1 MeV, both photoelectric and Compton effects are considered significant interactions with matter.</p>
+                <input type="radio" name="q22" value="True" id="q22_true"><label for="q22_true">True</label>
+                <input type="radio" name="q22" value="False" id="q22_false"><label for="q22_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: In most radiology applications, photon energies are <1 MeV, so only photoelectric and Compton effects are considered. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 43</span></p>
+                </details>
+            </div>
+
+            <!-- Question 23 -->
+            <div class="question" id="q23" data-correct-answer="True">
+                <p>23. A secondary electron loses approximately 34 eV per ion pair formed.</p>
+                <input type="radio" name="q23" value="True" id="q23_true"><label for="q23_true">True</label>
+                <input type="radio" name="q23" value="False" id="q23_false"><label for="q23_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: An electron loses ~34 eV per ion pair formed. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 44</span></p>
+                </details>
+            </div>
+
+            <!-- Question 24 -->
+            <div class="question" id="q24" data-correct-answer="False">
+                <p>24. Phosphorescence involves instantaneous emission of photons facilitated by electron traps.</p>
+                <input type="radio" name="q24" value="True" id="q24_true"><label for="q24_true">True</label>
+                <input type="radio" name="q24" value="False" id="q24_false"><label for="q24_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Phosphorescence involves *delayed* emission of photons. Fluorescence involves *instantaneous* emission. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 50</span></p>
+                </details>
+            </div>
+
+            <!-- Question 25 -->
+            <div class="question" id="q25" data-correct-answer="True">
+                <p>25. Thermoluminescence enables the transition of electrons and hence the emission of photons via heating.</p>
+                <input type="radio" name="q25" value="True" id="q25_true"><label for="q25_true">True</label>
+                <input type="radio" name="q25" value="False" id="q25_false"><label for="q25_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Thermoluminescence enables the transition of the electrons and hence the emission of photons via heating. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 51</span></p>
+                </details>
+            </div>
+
+            <!-- Question 26 -->
+            <div class="question" id="q26" data-correct-answer="False">
+                <p>26. Solid phosphors typically achieve a luminescence efficiency of 100%.</p>
+                <input type="radio" name="q26" value="True" id="q26_true"><label for="q26_true">True</label>
+                <input type="radio" name="q26" value="False" id="q26_false"><label for="q26_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The majority of luminescence is not at 100% (solid phosphors at ~20%, electroluminescence at ~10%). <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 51</span></p>
+                </details>
+            </div>
+
+            <!-- Question 27 -->
+            <div class="question" id="q27" data-correct-answer="False">
+                <p>27. Isotopes of an element have the same number of neutrons but different numbers of protons.</p>
+                <input type="radio" name="q27" value="True" id="q27_true"><label for="q27_true">True</label>
+                <input type="radio" name="q27" value="False" id="q27_false"><label for="q27_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Isotopes are atoms with the same atomic number (number of protons) but a different number of neutrons. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 11, 53</span></p>
+                </details>
+            </div>
+
+            <!-- Question 28 -->
+            <div class="question" id="q28" data-correct-answer="True">
+                <p>28. Cyclotrons produce radionuclides by bombarding stable nuclei with highly energetic charged particles, typically resulting in a neutron deficit in the target nuclei.</p>
+                <input type="radio" name="q28" value="True" id="q28_true"><label for="q28_true">True</label>
+                <input type="radio" name="q28" value="False" id="q28_false"><label for="q28_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Cyclotrons produce radionuclides by bombarding stable nuclei with highly energetic charged particles, typically protons. These force neutrons out of the target nuclei, leaving these in an unstable configuration with a neutron deficit. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 54, 56</span></p>
+                </details>
+            </div>
+
+            <!-- Question 29 -->
+            <div class="question" id="q29" data-correct-answer="False">
+                <p>29. Fluorine-18 (18F), a common radionuclide used in positron emission tomography (PET), is typically produced in a nuclear reactor.</p>
+                <input type="radio" name="q29" value="True" id="q29_true"><label for="q29_true">True</label>
+                <input type="radio" name="q29" value="False" id="q29_false"><label for="q29_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Fluorine-18 (18F) is produced via a cyclotron (18O + p → 18F + n). <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 56</span></p>
+                </details>
+            </div>
+
+            <!-- Question 30 -->
+            <div class="question" id="q30" data-correct-answer="True">
+                <p>30. Molybdenum-99 (99Mo), used in the production of technetium-99m (99Tcm), is produced by bombarding stable molybdenum-98 (98Mo) with neutrons in a nuclear reactor.</p>
+                <input type="radio" name="q30" value="True" id="q30_true"><label for="q30_true">True</label>
+                <input type="radio" name="q30" value="False" id="q30_false"><label for="q30_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The most common radionuclide produced by this method (bombardment of stable nuclei by neutrons from reactor cores) is molybdenum-99 (99Mo), which is used in the production of technetium-99m (99Tcm). <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 58</span></p>
+                </details>
+            </div>
+
+            <!-- Question 31 -->
+            <div class="question" id="q31" data-correct-answer="True">
+                <p>31. Technetium-99m (99Tcm) decays to technetium-99 (99Tc) with the emission of 140 keV gamma rays, making it ideally suited as an imaging radionuclide due to pure gamma emission.</p>
+                <input type="radio" name="q31" value="True" id="q31_true"><label for="q31_true">True</label>
+                <input type="radio" name="q31" value="False" id="q31_false"><label for="q31_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: 99Tcm decays by isomeric transition with the emission of 140 keV gamma rays. This pure gamma emission makes 99Tcm ideally suited as an imaging radionuclide. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 62</span></p>
+                </details>
+            </div>
+
+            <!-- Question 32 -->
+            <div class="question" id="q32" data-correct-answer="False">
+                <p>32. The spectrum of beta-emitting radionuclides characteristically exhibits distinct photopeak(s).</p>
+                <input type="radio" name="q32" value="True" id="q32_true"><label for="q32_true">True</label>
+                <input type="radio" name="q32" value="False" id="q32_false"><label for="q32_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The spectrum of beta-emitting radionuclides does not exhibit the characteristic photopeak(s) of gamma-emitting radionuclides but instead covers a continuous spectrum. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 63</span></p>
+                </details>
+            </div>
+
+            <!-- Question 33 -->
+            <div class="question" id="q33" data-correct-answer="False">
+                <p>33. A positron-electron pair annihilation results in an energy equivalence of 511 keV.</p>
+                <input type="radio" name="q33" value="True" id="q33_true"><label for="q33_true">True</label>
+                <input type="radio" name="q33" value="False" id="q33_false"><label for="q33_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: A positron-electron pair has an energy equivalence of 1.02 MeV, which is emitted in the form of two 511 keV gamma rays. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 66</span></p>
+                </details>
+            </div>
+
+            <!-- Question 34 -->
+            <div class="question" id="q34" data-correct-answer="False">
+                <p>34. Radionuclides that undergo internal conversion are generally well-suited for diagnostic imaging applications.</p>
+                <input type="radio" name="q34" value="True" id="q34_true"><label for="q34_true">True</label>
+                <input type="radio" name="q34" value="False" id="q34_false"><label for="q34_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Radionuclides undergoing internal conversion are generally unsuitable for imaging as the X-rays are of insufficient energy to escape the body and only contribute unnecessary radiation dose to the patient. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 67</span></p>
+                </details>
+            </div>
+
+            <!-- Question 35 -->
+            <div class="question" id="q35" data-correct-answer="True">
+                <p>35. Radioactive decay is a random process for individual nuclei, but the rate of decay for a large number of nuclei is predictable.</p>
+                <input type="radio" name="q35" value="True" id="q35_true"><label for="q35_true">True</label>
+                <input type="radio" name="q35" value="False" id="q35_false"><label for="q35_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Radioactive decay is a random process which obeys Poisson statistics. It is impossible to determine when any particular unstable nucleus will disintegrate, but when there are large numbers of nuclei, the rate at which they will decay is predictable. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 68</span></p>
+                </details>
+            </div>
+
+            <!-- Question 36 -->
+            <div class="question" id="q36" data-correct-answer="False">
+                <p>36. The Becquerel (Bq), the SI unit of activity, is defined as one nuclear transformation per minute.</p>
+                <input type="radio" name="q36" value="True" id="q36_true"><label for="q36_true">True</label>
+                <input type="radio" name="q36" value="False" id="q36_false"><label for="q36_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The Becquerel (Bq) is the SI unit of activity, defined as the number of nuclear transformations per second. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 68</span></p>
+                </details>
+            </div>
+
+            <!-- Question 37 -->
+            <div class="question" id="q37" data-correct-answer="False">
+                <p>37. When the activity of a radionuclide is plotted on a linear scale, the resultant decay curve is a straight line.</p>
+                <input type="radio" name="q37" value="True" id="q37_true"><label for="q37_true">True</label>
+                <input type="radio" name="q37" value="False" id="q37_false"><label for="q37_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: If the activity is plotted on a logarithmic scale, the resultant decay curve is a straight line. On a linear scale, it demonstrates a characteristic exponential curve shape. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 71</span></p>
+                </details>
+            </div>
+
+            <!-- Question 38 -->
+            <div class="question" id="q38" data-correct-answer="False">
+                <p>38. The effective half-life (t_eff) of a radiopharmaceutical in the body is generally longer than both its physical half-life (t_phys) and biological half-life (t_biol) because both processes occur simultaneously.</p>
+                <input type="radio" name="q38" value="True" id="q38_true"><label for="q38_true">True</label>
+                <input type="radio" name="q38" value="False" id="q38_false"><label for="q38_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The combined clearance will be shorter than the physical or biological half-lives as both occur simultaneously. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 73</span></p>
+                </details>
+            </div>
+
+            <!-- Question 39 -->
+            <div class="question" id="q39" data-correct-answer="False">
+                <p>39. An ideal radionuclide for imaging should have a physical half-life significantly longer than the total time of the imaging examination to ensure sufficient activity throughout the procedure.</p>
+                <input type="radio" name="q39" value="True" id="q39_true"><label for="q39_true">True</label>
+                <input type="radio" name="q39" value="False" id="q39_false"><label for="q39_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: An ideal radionuclide should have a physical half-life which is similar in length to the total time of the imaging examination. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 74</span></p>
+                </details>
+            </div>
+
+            <!-- Question 40 -->
+            <div class="question" id="q40" data-correct-answer="True">
+                <p>40. An ideal radionuclide for imaging should emit only gamma rays, with no particulate emissions or low-energy gamma and X-rays, as these only contribute dose to the patient with no imaging benefit.</p>
+                <input type="radio" name="q40" value="True" id="q40_true"><label for="q40_true">True</label>
+                <input type="radio" name="q40" value="False" id="q40_false"><label for="q40_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Ideal radionuclides should emit gamma rays only, with no particulate emissions or low-energy gamma and X-rays, as these only contribute dose to the patient with no imaging benefit. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 75</span></p>
+                </details>
+            </div>
+
+            <!-- Question 41 -->
+            <div class="question" id="q41" data-correct-answer="False">
+                <p>41. The optimal gamma ray energy for imaging is around 400 keV.</p>
+                <input type="radio" name="q41" value="True" id="q41_true"><label for="q41_true">True</label>
+                <input type="radio" name="q41" value="False" id="q41_false"><label for="q41_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The optimal gamma ray energy is around 150 keV, but energies between 50-400 keV can be tolerated. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 75</span></p>
+                </details>
+            </div>
+
+            <!-- Question 42 -->
+            <div class="question" id="q42" data-correct-answer="True">
+                <p>42. Technetium-99m (99Tcm) is the most commonly used radionuclide in nuclear medicine due to its ideal characteristics, including a 6-hour half-life and production of monoenergetic 140 keV gamma rays.</p>
+                <input type="radio" name="q42" value="True" id="q42_true"><label for="q42_true">True</label>
+                <input type="radio" name="q42" value="False" id="q42_false"><label for="q42_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: 99Tcm decays by isomeric transition with a 6-hour half-life and produces monoenergetic 140 keV gamma rays. It is the most commonly used. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 77</span></p>
+                </details>
+            </div>
+
+            <!-- Question 43 -->
+            <div class="question" id="q43" data-correct-answer="True">
+                <p>43. Ideal radiopharmaceuticals should be non-toxic or of very low toxicity.</p>
+                <input type="radio" name="q43" value="True" id="q43_true"><label for="q43_true">True</label>
+                <input type="radio" name="q43" value="False" id="q43_false"><label for="q43_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The ideal radiopharmaceutical should be non-toxic or of very low toxicity. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 78</span></p>
+                </details>
+            </div>
+
+            <!-- Question 44 -->
+            <div class="question" id="q44" data-correct-answer="False">
+                <p>44. Substitution of a stable nuclide with a radionuclide is the most common method for the daily production of radiopharmaceuticals in nuclear medicine departments.</p>
+                <input type="radio" name="q44" value="True" id="q44_true"><label for="q44_true">True</label>
+                <input type="radio" name="q44" value="False" id="q44_false"><label for="q44_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Addition of a radionuclide to a chemical compound is the method used for the production of most radiopharmaceuticals in nuclear medicine departments. Substitution is usually done by commercial manufacturers. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 79</span></p>
+                </details>
+            </div>
+
+            <!-- Question 45 -->
+            <div class="question" id="q45" data-correct-answer="True">
+                <p>45. Sodium pertechnetate (NaTcO4), used for labelling radiopharmaceuticals, is obtained from a Technetium-99m generator.</p>
+                <input type="radio" name="q45" value="True" id="q45_true"><label for="q45_true">True</label>
+                <input type="radio" name="q45" value="False" id="q45_false"><label for="q45_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The user adds the required activity of sterile eluate (sodium pertechnetate, NaTcO4) from the 99Tcm generator to the kit vial. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 80</span></p>
+                </details>
+            </div>
+
+            <!-- Question 46 -->
+            <div class="question" id="q46" data-correct-answer="True">
+                <p>46. For imaging purposes, red blood cells are generally labelled in vivo with 99Tcm by prior injection of a reducing agent.</p>
+                <input type="radio" name="q46" value="True" id="q46_true"><label for="q46_true">True</label>
+                <input type="radio" name="q46" value="False" id="q46_false"><label for="q46_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: Red blood cells can be labelled in vitro, but for imaging purposes using 99Tcm are generally labelled in vivo by prior injection of a reducing agent, stannous chloride (SnCl2). <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 81</span></p>
+                </details>
+            </div>
+
+            <!-- Question 47 -->
+            <div class="question" id="q47" data-correct-answer="False">
+                <p>47. For radiopharmaceuticals, radiochemical purity should be less than 95%.</p>
+                <input type="radio" name="q47" value="True" id="q47_true"><label for="q47_true">True</label>
+                <input type="radio" name="q47" value="False" id="q47_false"><label for="q47_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: False</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: For radiopharmaceuticals, radiochemical purity should be >95%. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 87</span></p>
+                </details>
+            </div>
+
+            <!-- Question 48 -->
+            <div class="question" id="q48" data-correct-answer="True">
+                <p>48. The maximum permitted level of Molybdenum-99 (99Mo) in Technetium-99m eluate is one part per 1000.</p>
+                <input type="radio" name="q48" value="True" id="q48_true"><label for="q48_true">True</label>
+                <input type="radio" name="q48" value="False" id="q48_false"><label for="q48_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The maximum permitted level of 99Mo in the sample is one part per 1000. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 85</span></p>
+                </details>
+            </div>
+
+            <!-- Question 49 -->
+            <div class="question" id="q49" data-correct-answer="True">
+                <p>49. Iodine-131 (131I) is a common fission product extracted from spent fuel rods and used for therapeutic treatments.</p>
+                <input type="radio" name="q49" value="True" id="q49_true"><label for="q49_true">True</label>
+                <input type="radio" name="q49" value="False" id="q49_false"><label for="q49_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The commonest fission product is iodine-131 (131I) which is used for therapeutic treatments. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 57</span></p>
+                </details>
+            </div>
+
+            <!-- Question 50 -->
+            <div class="question" id="q50" data-correct-answer="True">
+                <p>50. The physiological clearance of a pharmaceutical compound from the body, known as biological half-life, can be described using an exponential model.</p>
+                <input type="radio" name="q50" value="True" id="q50_true"><label for="q50_true">True</label>
+                <input type="radio" name="q50" value="False" id="q50_false"><label for="q50_false">False</label>
+                <div class="feedback"></div>
+                <details closed>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer: True</strong>. Your answer was <span class="user-answer-status"></span>. Explanation: The physiological clearance of the pharmaceutical compound to which any radionuclide has been joined, known as labelling, can be described using an exponential model. <span class="citation">Source: Farr's Physics for Medical Imaging, 3rd ed., p. 72</span></p>
+                </details>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+            <div id="scoreDisplay">Score: 0/50</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const resetButton = document.getElementById('resetQuiz');
+            let score = 0;
+            const totalQuestions = 50;
+            const answeredQuestions = new Set(); // To track answered questions and prevent re-scoring
+
+            // Function to update the score display
+            function updateScoreDisplay() {
+                scoreDisplay.textContent = `Score: ${score}/${totalQuestions}`;
+            }
+
+            // Function to handle answer selection
+            function handleAnswer(event) {
+                const radio = event.target;
+                if (radio.type !== 'radio') return; // Ensure it's a radio button click
+
+                const questionDiv = radio.closest('.question');
+                const questionId = questionDiv.id;
+
+                // Prevent re-scoring if the question has already been answered
+                if (answeredQuestions.has(questionId)) {
+                    return;
+                }
+
+                answeredQuestions.add(questionId); // Mark question as answered
+                questionDiv.classList.add('answered'); // Add class to visually disable further input
+
+                const correctAnswer = questionDiv.dataset.correctAnswer;
+                const userAnswer = radio.value;
+                const feedbackDiv = questionDiv.querySelector('.feedback');
+                const userStatusSpan = questionDiv.querySelector('.user-answer-status');
+
+                feedbackDiv.style.display = 'block'; // Show the feedback div
+
+                if (userAnswer === correctAnswer) {
+                    score++;
+                    feedbackDiv.className = 'feedback correct';
+                    feedbackDiv.textContent = 'Correct!';
+                    userStatusSpan.textContent = 'Correct';
+                    userStatusSpan.style.color = 'var(--correct-color)'; // Set text color
+                } else {
+                    feedbackDiv.className = 'feedback incorrect';
+                    feedbackDiv.textContent = 'Incorrect!';
+                    userStatusSpan.textContent = 'Incorrect';
+                    userStatusSpan.style.color = 'var(--incorrect-color)'; // Set text color
+                }
+
+                updateScoreDisplay(); // Update the score display immediately
+
+                // Automatically open the explanation details for the answered question
+                const detailsElement = questionDiv.querySelector('details');
+                if (detailsElement) {
+                    detailsElement.setAttribute('open', '');
+                }
+            }
+
+            // Function to reset the quiz
+            function resetQuiz() {
+                quizForm.reset(); // Unchecks all radio buttons
+                score = 0;
+                answeredQuestions.clear(); // Clear the set of answered questions
+                updateScoreDisplay(); // Reset score display
+
+                // Iterate through all question divs to reset their state
+                document.querySelectorAll('.question').forEach(questionDiv => {
+                    questionDiv.classList.remove('answered'); // Remove the class that disables input
+                    questionDiv.querySelector('.feedback').style.display = 'none'; // Hide feedback messages
+                    
+                    const userStatusSpan = questionDiv.querySelector('.user-answer-status');
+                    if (userStatusSpan) {
+                        userStatusSpan.textContent = ''; // Clear correctness status text
+                        userStatusSpan.style.color = 'inherit'; // Reset text color
+                    }
+
+                    // Close all explanation details elements
+                    const detailsElement = questionDiv.querySelector('details');
+                    if (detailsElement) {
+                        detailsElement.removeAttribute('open'); // Close the details tag
+                    }
+                });
+            }
+
+            // Event Listeners
+            quizForm.addEventListener('change', handleAnswer); // Use 'change' event on the form for delegation
+            resetButton.addEventListener('click', resetQuiz);
+
+            updateScoreDisplay(); // Initialize score display on page load
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRCR Part 1 Physics Quiz</title>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000000; /* Black background */
+            color: #E0E0E0; /* Light-gray text */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top */
+            min-height: 100vh;
+            margin: 20px 0; /* Add some vertical margin */
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Quiz Container */
+        .quiz-container {
+            background-color: #1a1a1a; /* Dark gray for container */
+            padding: 30px;
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Soft shadow */
+            max-width: 800px;
+            width: 90%; /* Responsive width */
+            margin: 0 auto; /* Center the container */
+        }
+
+        /* Headings and Paragraphs */
+        h1 {
+            color: #FFFFFF; /* White heading */
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.2em;
+        }
+
+        .quiz-container > p {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            color: #BBBBBB;
+        }
+
+        /* Question Styling */
+        .question {
+            background-color: #2c2c2c; /* Slightly lighter gray for questions */
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 10px; /* Rounded corners for questions */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Softer shadow */
+            border: 1px solid #444444; /* Subtle border */
+        }
+
+        .question p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #DDDDDD;
+            line-height: 1.5;
+        }
+
+        /* Radio Buttons and Labels */
+        .question input[type="radio"] {
+            margin-right: 8px;
+            transform: scale(1.2); /* Slightly larger radio buttons */
+        }
+
+        .question label {
+            font-size: 1em;
+            cursor: pointer;
+            padding: 8px 0;
+            display: inline-block; /* Allows vertical margin/padding */
+            margin-right: 20px;
+            color: #CCCCCC;
+        }
+
+        /* Feedback Styling */
+        .feedback {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.95em;
+            display: none; /* Hidden by default */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .feedback.correct {
+            background-color: #004d00; /* Darker green */
+            color: #90EE90; /* Light green */
+        }
+
+        .feedback.incorrect {
+            background-color: #660000; /* Darker red */
+            color: #FFB6C1; /* Light red */
+        }
+
+        .feedback.already-answered {
+            background-color: #00004d; /* Darker blue */
+            color: #ADD8E6; /* Light blue */
+        }
+
+        /* Explanation Styling */
+        details {
+            margin-top: 20px;
+            background-color: #3a3a3a;
+            border-radius: 8px;
+            padding: 10px 15px;
+            border: 1px solid #555555;
+            transition: background-color 0.3s ease;
+        }
+
+        details summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #AAAAAA;
+            outline: none; /* Remove dotted outline on click */
+        }
+
+        details[open] summary {
+            color: #E0E0E0; /* White when open */
+        }
+
+        details p {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            color: #BBBBBB;
+            line-height: 1.4;
+        }
+
+        .citation {
+            font-style: italic;
+            color: #888888;
+            font-size: 0.85em;
+        }
+
+        /* Button Container and Buttons */
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #444444;
+        }
+
+        .button-container button {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-container button:hover {
+            background-color: #45a049; /* Darker green on hover */
+            transform: translateY(-2px); /* Lift effect */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .score-display {
+            margin-top: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #00BFFF; /* Deep sky blue for score */
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>FRCR Part 1 Radiology Physics Quiz</h1>
+        <p>Test your deep understanding of medical imaging physics. This quiz contains 40 challenging True/False questions.</p>
+
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question" data-correct-answer="False">
+                <p>1. The outermost electron shell, known as the valence shell, can hold up to 32 electrons, which largely determines the element's chemical properties.</p>
+                <label><input type="radio" name="q1" value="True"> True</label>
+                <label><input type="radio" name="q1" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        The outermost electron shell, the valence shell, can only ever have eight electrons within it, forming a complete outer shell octet based on subshells. It defines the chemical, thermal, optical, and electrical properties of the element.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" data-correct-answer="False">
+                <p>2. Characteristic X-rays are produced when a bombarding electron passes near the nucleus and is deflected, losing some energy as radiation.</p>
+                <label><input type="radio" name="q2" value="True"> True</label>
+                <label><input type="radio" name="q2" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        This description refers to the production of Bremsstrahlung (braking radiation), which accounts for 80% of produced X-rays. Characteristic X-rays are secondary to interactions with inner shell electrons, where a bombarding electron displaces an inner shell electron, and the vacancy is filled by an outer shell electron, releasing a photon.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" data-correct-answer="False">
+                <p>3. Increasing the kilovoltage (kV) in an X-ray tube increases the total number of photons produced but does not affect their maximum energy.</p>
+                <label><input type="radio" name="q3" value="True"> True</label>
+                <label><input type="radio" name="q3" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Increased kV shifts the X-ray spectrum upwards and to the right, leading to increased maximum and effective energy, as well as an increased total number of photons.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" data-correct-answer="False">
+                <p>4. The energy of an X-ray photon is directly proportional to its wavelength, as described by the equation E = h/λ.</p>
+                <label><input type="radio" name="q4" value="True"> True</label>
+                <label><input type="radio" name="q4" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        The equation E = h/λ shows that photon energy is inversely proportional to wavelength. As wavelength (λ) increases, photon energy (E) decreases, and vice versa.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" data-correct-answer="True">
+                <p>5. The maximum photon energy (keVmax) in an X-ray tube is numerically equal to the applied kilovoltage (kV).</p>
+                <label><input type="radio" name="q5" value="True"> True</label>
+                <label><input type="radio" name="q5" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        The maximum photon energy (keVmax) is simply numerically equal to the applied kV.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> True
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question" data-correct-answer="False">
+                <p>6. Modern X-ray equipment predominantly uses three-phase generators, which provide a steady high-voltage DC supply with minimal ripple.</p>
+                <label><input type="radio" name="q6" value="True"> True</label>
+                <label><input type="radio" name="q6" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Full wave-rectified and three-phase generators are no longer manufactured. Modern X-ray equipment uses high-frequency (HF) generators, which can be converted to a steady high-voltage DC supply with no more than 1% ripple.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question" data-correct-answer="False">
+                <p>7. Filtration of an X-ray beam primarily removes higher-energy photons, thereby increasing the patient dose from lower-energy components.</p>
+                <label><input type="radio" name="q7" value="True"> True</label>
+                <label><input type="radio" name="q7" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Filtration involves the removal of lower-energy photons before they reach the patient, as these mostly contribute to the dose with little impact on image formation. This reduces patient skin dose.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question" data-correct-answer="False">
+                <p>8. For general radiology, the total filtration for a system is typically equivalent to 1 mm of aluminium, including both inherent and additional filtration.</p>
+                <label><input type="radio" name="q8" value="True"> True</label>
+                <label><input type="radio" name="q8" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        For general radiology, the total filtration for a system is equivalent to 2.5 mm aluminium equivalent. Inherent filtration is typically 1 mm aluminium equivalent.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question" data-correct-answer="True">
+                <p>9. The outcome of any single photon interacting with matter is impossible to predict, but the overall outcome of a large beam with many photons can be accurately predicted.</p>
+                <label><input type="radio" name="q9" value="True"> True</label>
+                <label><input type="radio" name="q9" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Each of the outcomes (transmission, absorption, scatter) for a photon is a stochastic process governed by statistical laws of chance. The outcome of any given photon is impossible to predict, but the overall outcome of a beam with a large number of photons can be accurately predicted.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> True
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question" data-correct-answer="False">
+                <p>10. In photoelectric absorption, the probability of interaction increases with increased incident photon energy, making it predominant at higher energies.</p>
+                <label><input type="radio" name="q10" value="True"> True</label>
+                <label><input type="radio" name="q10" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        The probability of photoelectric absorption decreases with increased incident photon energy (1/E³) and increases with the increased atomic number of the material (Z³). It predominates at lower energies.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question" data-correct-answer="False">
+                <p>11. Alpha particles pose a significant hazard from external exposure due to their high linear energy transfer (LET), making them highly penetrating.</p>
+                <label><input type="radio" name="q11" value="True"> True</label>
+                <label><input type="radio" name="q11" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Alpha particles deposit their energy very rapidly and do not penetrate very far through skin, thus not presenting a great hazard from external exposure. However, they can cause considerable damage if ingested or inhaled.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question" data-correct-answer="False">
+                <p>12. The effective dose to a patient can be directly measured using devices like a dose-area product (DAP) meter for X-ray examinations.</p>
+                <label><input type="radio" name="q12" value="True"> True</label>
+                <label><input type="radio" name="q12" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        The effective dose can only be computed; it cannot be measured directly. Mathematical modeling techniques are used to derive coefficients that enable organ doses to be calculated from measurable quantities like DAP.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question" data-correct-answer="False">
+                <p>13. According to the linear non-threshold (LNT) model recommended by the ICRP, there is a safe dose of radiation below which no stochastic effects occur.</p>
+                <label><input type="radio" name="q13" value="True"> True</label>
+                <label><input type="radio" name="q13" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        The LNT model implies that there is no safe dose of radiation, as any exposure carries some risk, contradicting evidence of a threshold dose from atomic bomb data.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question" data-correct-answer="False">
+                <p>14. For an individual over 18 years of age, the annual whole-body effective dose limit is 1 mSv, consistent with the public dose limit.</p>
+                <label><input type="radio" name="q14" value="True"> True</label>
+                <label><input type="radio" name="q14" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        For employees over 18 years of age, the whole-body effective dose limit is 20 mSv per year. The 1 mSv per year limit applies to other persons (the public).
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question" data-correct-answer="False">
+                <p>15. Dose limits set by regulatory bodies apply universally to all individuals exposed to ionising radiation, including patients undergoing medical exposures.</p>
+                <label><input type="radio" name="q15" value="True"> True</label>
+                <label><input type="radio" name="q15" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Dose limits do not apply to patients undergoing medical exposures, or to those looking after them (carers and comforters). Exposures to patients are minimized through Diagnostic Reference Levels (DRLs).
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question" data-correct-answer="False">
+                <p>16. The Ionising Radiation (Medical Exposure) Regulations (IR(ME)R) 2017 primarily describe legislation to minimize exposures to the public and employees.</p>
+                <label><input type="radio" name="q16" value="True"> True</label>
+                <label><input type="radio" name="q16" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        The Ionising Radiations Regulations (IRR) 2017 describe the legislation to minimize exposures to the public and employees. IR(ME)R 2017 is the fundamental legislation for protecting the patient.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question" data-correct-answer="True">
+                <p>17. In the UK healthcare setting, a controlled area must have local rules, but a supervised area is not legally required to have them.</p>
+                <label><input type="radio" name="q17" value="True"> True</label>
+                <label><input type="radio" name="q17" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Controlled areas must have local rules that set out guidance for work and contingency plans. Supervised areas are not required to have local rules but it is generally considered best practice in healthcare.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> True
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question" data-correct-answer="False">
+                <p>18. In an X-ray tube, the effective focal spot size is the area over which heat is produced and determines the tube rating, while the actual focal spot size indicates the beam area exiting the tube.</p>
+                <label><input type="radio" name="q18" value="True"> True</label>
+                <label><input type="radio" name="q18" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        The actual focal spot is the area over which heat is produced and determines the tube rating. The effective focal spot indicates the beam area exiting the tube. The statement has these definitions swapped.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question" data-correct-answer="False">
+                <p>19. Increasing the anode diameter in a rotating anode X-ray tube reduces its heat rating due to increased surface area for cooling.</p>
+                <label><input type="radio" name="q19" value="True"> True</label>
+                <label><input type="radio" name="q19" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        The heat rating of an X-ray tube increases with increased anode diameter (increased focal track size).
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question" data-correct-answer="False">
+                <p>20. The anode heel effect causes the intensity of the X-ray beam to be greater towards the anode edge of the field compared to the cathode edge.</p>
+                <label><input type="radio" name="q20" value="True"> True</label>
+                <label><input type="radio" name="q20" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Due to the heel effect, X-rays travelling towards the anode edge of the field have more target material to cross and are attenuated more. Therefore, the intensity of the beam decreases across the field and is most apparent from the central ray towards the anode edge. The intensity is greater towards the cathode edge.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 21 -->
+            <div class="question" data-correct-answer="True">
+                <p>21. In Computed Radiography (CR) systems, the photostimulable phosphor plate used to store energy from incident X-rays is commonly composed of barium fluorohalide doped with europium.</p>
+                <label><input type="radio" name="q21" value="True"> True</label>
+                <label><input type="radio" name="q21" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        The storage cassette in CR systems contains a photostimulable phosphor plate commonly composed of barium fluorohalide doped with europium (BaFX:Eu).
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> True
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 22 -->
+            <div class="question" data-correct-answer="False">
+                <p>22. The spatial resolution of Computed Radiography (CR) systems is generally superior to analogue film-screen radiography.</p>
+                <label><input type="radio" name="q22" value="True"> True</label>
+                <label><input type="radio" name="q22" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        The spatial resolution of CR is less than analogue film-screen radiography. For example, CR pixel sizes yield 3.5-5.5 lp/mm, whereas film-screen resolution is 8-12 lp/mm.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 23 -->
+            <div class="question" data-correct-answer="False">
+                <p>23. A Moiré pattern artefact in Computed Radiography (CR) due to interference between grid and laser scan lines can be mitigated by using grids with low frequencies (e.g., 40-50 grid lines/cm).</p>
+                <label><input type="radio" name="q23" value="True"> True</label>
+                <label><input type="radio" name="q23" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        A Moiré pattern artefact can occur from interference between grid and laser scan lines. To mitigate this, grids with >60 lines/cm should be used.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 24 -->
+            <div class="question" data-correct-answer="False">
+                <p>24. Digital Radiography (DR) direct conversion detectors convert incident X-ray photons to light photons, which are then converted to an electrical signal.</p>
+                <label><input type="radio" name="q24" value="True"> True</label>
+                <label><input type="radio" name="q24" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Direct conversion detectors convert incident X-ray photons directly to an electronic signal using a photoconductor (e.g., amorphous selenium). Indirect conversion systems convert X-rays to light photons first, then to an electrical signal.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 25 -->
+            <div class="question" data-correct-answer="True">
+                <p>25. In mammography, the anode heel effect is intentionally utilized to align the higher-energy beam over the chest wall side of the breast.</p>
+                <label><input type="radio" name="q25" value="True"> True</label>
+                <label><input type="radio" name="q25" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        The anode heel effect is utilized to align the higher-energy beam over the chest wall side, which is typically thicker and denser, ensuring more uniform penetration.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> True
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 26 -->
+            <div class="question" data-correct-answer="False">
+                <p>26. Molybdenum filters are primarily used in mammography to completely remove characteristic X-rays from the target material, thus producing a broader energy spectrum.</p>
+                <label><input type="radio" name="q26" value="True"> True</label>
+                <label><input type="radio" name="q26" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        The filter in mammography is present to remove higher-energy X-ray photons, and trends towards monoenergetic beam production. For a molybdenum target, a molybdenum filter is used because its K-edge (20 keV) efficiently absorbs X-rays above and below the desired characteristic X-ray energies (17.4 keV and 19.6 keV) while allowing the characteristic X-rays to pass.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 27 -->
+            <div class="question" data-correct-answer="False">
+                <p>27. Pulsed fluoroscopy involves rapidly switching the X-ray generator on and off; if the pulse rate is too low, this often results in noticeable flickering due to insufficient image retention.</p>
+                <label><input type="radio" name="q27" value="True"> True</label>
+                <label><input type="radio" name="q27" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Despite the rapid switching, there is no flickering as each image is retained until a new image is generated, and the critical flicker frequency is not exceeded.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 28 -->
+            <div class="question" data-correct-answer="True">
+                <p>28. The Straton X-ray tube, developed by Siemens, allows for conductive heat loss from the anode, which is a departure from the usual radiation cooling in a vacuum.</p>
+                <label><input type="radio" name="q28" value="True"> True</label>
+                <label><input type="radio" name="q28" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        The Straton tube, developed by Siemens in the early 2000s, allows conductive heat loss from the anode rather than the usual radiation in a vacuum.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> True
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 29 -->
+            <div class="question" data-correct-answer="False">
+                <p>29. In a CT scanner, a bow-tie filter is primarily used to increase the dose at the periphery of the patient to compensate for greater attenuation in the center and improve image quality.</p>
+                <label><input type="radio" name="q29" value="True"> True</label>
+                <label><input type="radio" name="q29" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        A bow-tie filter is used to equalize transmitted intensities across the patient. Without it, the highest dose occurs at the peripheries, and the lowest dose and highest noise occur in the center. It aims to make the dose more uniform.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 30 -->
+            <div class="question" data-correct-answer="False">
+                <p>30. In multi-slice CT acquisition, the minimum slice thickness achievable is limited by the maximum row width of the detectors along the Z-axis.</p>
+                <label><input type="radio" name="q30" value="True"> True</label>
+                <label><input type="radio" name="q30" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Acquired slice thickness in multi-slice acquisition is determined by the individual detector width (minimum slice thickness possible) and row width (maximum slice thickness possible). The minimum is limited by the individual detector width.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 31 -->
+            <div class="question" data-correct-answer="False">
+                <p>31. Filtered Back Projection (FBP) is a computationally complex CT reconstruction method that significantly reduces image noise compared to iterative reconstruction.</p>
+                <label><input type="radio" name="q31" value="True"> True</label>
+                <label><input type="radio" name="q31" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        FBP is computationally simple and fast, but it is affected by noise and streak artefacts. Iterative reconstruction, while computationally complex, offers reduced image noise and dose.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 32 -->
+            <div class="question" data-correct-answer="False">
+                <p>32. In CT, the raw data acquired during a scan is typically transferred to PACS after reconstruction for long-term archival and future retrospective analyses.</p>
+                <label><input type="radio" name="q32" value="True"> True</label>
+                <label><input type="radio" name="q32" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        The raw data itself remains only on the scanner and is not transferred to PACS as it is a very large dataset. On busy scanners, raw data is often deleted weekly, making it paramount that any desired reconstruction is performed at the time of acquisition.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 33 -->
+            <div class="question" data-correct-answer="False">
+                <p>33. In CT imaging, quantum noise is directly proportional to the number of photons detected (M), meaning more photons lead to higher noise.</p>
+                <label><input type="radio" name="q33" value="True"> True</label>
+                <label><input type="radio" name="q33" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Quantum noise is caused by a lack of sufficient photons. The signal-to-noise ratio (SNR) is governed by M/sqrt(M), which simplifies to sqrt(M). Therefore, noise is determined by sqrt(M) and is inversely proportional to the square root of photon flux. To increase SNR (reduce noise), more X-rays (N) are required.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 34 -->
+            <div class="question" data-correct-answer="False">
+                <p>34. Dual-energy CT utilizes different kVp energies during acquisition to generate material-specific images, but it does not reduce beam-hardening artefacts from metal implants.</p>
+                <label><input type="radio" name="q34" value="True"> True</label>
+                <label><input type="radio" name="q34" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Dual-energy CT can generate material-specific images and varying color maps. One of its applications is artefact reduction, specifically it can reduce beam-hardening artefacts from metal implants.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 35 -->
+            <div class="question" data-correct-answer="True">
+                <p>35. In CT perfusion studies, dynamic image acquisition involves multiple repeated acquisitions of the volume of interest after contrast administration to identify regions of delayed contrast enhancement.</p>
+                <label><input type="radio" name="q35" value="True"> True</label>
+                <label><input type="radio" name="q35" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        CT perfusion involves dynamic image acquisition with multiple repeated acquisitions of the volume of interest after contrast administration. This allows for modeling the variation in attenuation of each voxel over time to identify regions of delayed contrast enhancement, indicating ischaemia.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> True
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 36 -->
+            <div class="question" data-correct-answer="True">
+                <p>36. The dose length product (DLP) in CT is inversely proportional to the pitch, meaning doubling the pitch halves the dose.</p>
+                <label><input type="radio" name="q36" value="True"> True</label>
+                <label><input type="radio" name="q36" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Dose is inversely proportional to pitch (doubling pitch, halves dose). Therefore, DLP, which incorporates dose, is also inversely proportional to pitch.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> True
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 37 -->
+            <div class="question" data-correct-answer="False">
+                <p>37. For optimal performance in a gamma camera, the thickness of the NaI(Tl) detector crystal should be maximized to increase stopping power for incident gamma rays, regardless of other effects.</p>
+                <label><input type="radio" name="q37" value="True"> True</label>
+                <label><input type="radio" name="q37" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        While increased thickness does increase stopping power, there is an optimal combination of stopping power for incident gamma rays while minimizing self-absorption of the generated light and the probability of scatter of the incident radiation. Typical modern systems use crystals around 9 mm thick. A thicker crystal also worsens spatial resolution due to greater variation in scintillation depth and higher probability of multiple Compton scatter.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 38 -->
+            <div class="question" data-correct-answer="True">
+                <p>38. The sensitivity of a parallel-hole collimator in a gamma camera remains approximately constant regardless of the distance between the source of radioactivity and the collimator face.</p>
+                <label><input type="radio" name="q38" value="True"> True</label>
+                <label><input type="radio" name="q38" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        The number of gamma photons passing through a particular collimator hole decreases with the square of the distance, but the number of holes through which the photons can pass increases as the square of the distance. These two effects cancel each other out, leading to the sensitivity being independent of distance.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> True
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 39 -->
+            <div class="question" data-correct-answer="False">
+                <p>39. In SPECT imaging, using a 360° acquisition range for cardiac imaging always improves image quality compared to a 180° range due to comprehensive data collection.</p>
+                <label><input type="radio" name="q39" value="True"> True</label>
+                <label><input type="radio" name="q39" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        For cardiac imaging, the use of 360° acquisition can actually degrade the quality in comparison to a 180° angular range due to the amount of scatter present in the projections from the posterior of the patient.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+
+            <!-- Question 40 -->
+            <div class="question" data-correct-answer="False">
+                <p>40. The fundamental limit to the spatial resolution of a PET imaging system is primarily determined by the size of the crystal detector elements.</p>
+                <label><input type="radio" name="q40" value="True"> True</label>
+                <label><input type="radio" name="q40" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        The fundamental limit to the spatial resolution of a PET imaging system is the positron range in tissue, which is the distance between the point of emission and the point of annihilation, typically a few millimeters. While crystal size is a factor, it is not the fundamental limit.
+                        <br><strong>Your answer:</strong> <span class="user-answer"></span><br><strong>Correct answer:</strong> False
+                    </p>
+                </details>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+            <div class="score-display" id="scoreDisplay">Score: 0/40</div>
+        </div>
+    </div>
+
+    <script>
+        const quizForm = document.getElementById('quizForm');
+        const questions = document.querySelectorAll('.question');
+        const resetButton = document.getElementById('resetQuiz');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        let correctCount = 0;
+        let answeredCount = 0;
+
+        // Function to update the score display
+        function updateScoreDisplay() {
+            scoreDisplay.textContent = `Score: ${correctCount}/${questions.length}`;
+        }
+
+        // Function to handle answer selection
+        function handleAnswer(event) {
+            const selectedRadio = event.target;
+            const questionDiv = selectedRadio.closest('.question');
+            const questionName = selectedRadio.name;
+
+            // Check if question has already been answered
+            if (questionDiv.classList.contains('answered')) {
+                const feedbackDiv = questionDiv.querySelector('.feedback');
+                feedbackDiv.textContent = "You've already answered this question.";
+                feedbackDiv.className = 'feedback already-answered';
+                feedbackDiv.style.display = 'block';
+                return; // Stop further processing
+            }
+
+            questionDiv.classList.add('answered'); // Mark as answered
+            answeredCount++;
+
+            const correctAnswer = questionDiv.dataset.correctAnswer;
+            const userAnswer = selectedRadio.value;
+            const feedbackDiv = questionDiv.querySelector('.feedback');
+            const explanationP = questionDiv.querySelector('details p');
+            const userAnswerSpan = questionDiv.querySelector('.user-answer');
+
+            userAnswerSpan.textContent = userAnswer; // Display user's answer in explanation
+
+            if (userAnswer === correctAnswer) {
+                feedbackDiv.textContent = "Correct!";
+                feedbackDiv.className = 'feedback correct';
+                correctCount++;
+            } else {
+                feedbackDiv.textContent = "Incorrect.";
+                feedbackDiv.className = 'feedback incorrect';
+            }
+            feedbackDiv.style.display = 'block';
+
+            // Update explanation text to show correct answer
+            const originalExplanation = explanationP.innerHTML;
+            if (!originalExplanation.includes('<strong>Correct answer:</strong>')) { // Prevent adding it multiple times
+                explanationP.innerHTML = originalExplanation.replace(
+                    /(<br><strong>Your answer:<\/strong> <span class="user-answer"><\/span>)/,
+                    `$1<br><strong>Correct answer:</strong> ${correctAnswer}`
+                );
+            }
+
+
+            // Disable all radio buttons for this question
+            const radios = questionDiv.querySelectorAll('input[type="radio"]');
+            radios.forEach(radio => radio.disabled = true);
+
+            updateScoreDisplay();
+        }
+
+        // Add event listeners to all radio buttons
+        questions.forEach(question => {
+            const radios = question.querySelectorAll('input[type="radio"]');
+            radios.forEach(radio => {
+                radio.addEventListener('change', handleAnswer);
+            });
+        });
+
+        // Function to reset the quiz
+        function resetQuiz() {
+            questions.forEach(question => {
+                question.classList.remove('answered');
+                const radios = question.querySelectorAll('input[type="radio"]');
+                radios.forEach(radio => {
+                    radio.checked = false;
+                    radio.disabled = false;
+                });
+
+                const feedbackDiv = question.querySelector('.feedback');
+                feedbackDiv.style.display = 'none';
+                feedbackDiv.className = 'feedback'; // Reset classes
+
+                const detailsElement = question.querySelector('details');
+                detailsElement.open = false; // Close explanation
+
+                const userAnswerSpan = question.querySelector('.user-answer');
+                userAnswerSpan.textContent = ''; // Clear user's answer in explanation
+            });
+
+            correctCount = 0;
+            answeredCount = 0;
+            updateScoreDisplay();
+        }
+
+        // Add event listener to the reset button
+        resetButton.addEventListener('click', resetQuiz);
+
+        // Initial score display
+        updateScoreDisplay();
+    </script>
+</body>
+</html>

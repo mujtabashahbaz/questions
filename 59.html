@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRCR Part 1 Radiology Physics Quiz</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .quiz-container {
+            background-color: #2b2b2b;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        .score-container {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #a0d6a0;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 8px;
+            display: inline-block;
+            min-width: 160px;
+        }
+        p.intro {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        .question {
+            background-color: #3a3a3a;
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            position: relative;
+        }
+        .question p {
+            font-size: 1.05em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .question label {
+            margin-right: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .question label:hover {
+            color: #cccccc;
+        }
+        .question input[type="radio"] {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+        .feedback {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none;
+        }
+        .feedback.correct {
+            background-color: #28a745;
+            color: white;
+        }
+        .feedback.incorrect {
+            background-color: #dc3545;
+            color: white;
+        }
+        .feedback.info {
+            background-color: #007bff;
+            color: white;
+        }
+        details {
+            margin-top: 10px;
+            background-color: #444444;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            line-height: 1.4;
+            color: #bbbbbb;
+            border: 1px solid #555555;
+        }
+        details summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #92e094;
+            outline: none;
+        }
+        details p {
+            margin-top: 10px;
+            padding-top: 5px;
+            border-top: 1px solid #555555;
+        }
+        .citation {
+            font-style: italic;
+            color: #888888;
+        }
+        .button-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .button-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+        .button-container button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+        }
+        @media (max-width: 768px) {
+            .quiz-container {
+                padding: 15px;
+            }
+            .question {
+                padding: 15px;
+            }
+            .question label {
+                margin-right: 15px;
+            }
+            .button-container button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>FRCR Part 1 Radiology Physics Quiz</h1>
+        <div class="score-container" id="scoreDisplay">Score: 0 / 0</div>
+        <p class="intro">Test your deep understanding of medical imaging physics. This quiz contains 40 challenging True/False questions based on "Farr's Physics for Medical Imaging, 3rd edition."</p>
+        <form id="quizForm">
+            <!-- Questions 1 to 40 (unchanged structure, only example shown) -->
+            <div class="question" data-correct-answer="False">
+                <p>1. The effective energy of the Bremsstrahlung X-ray spectrum for tungsten is typically 80% of the maximum photon energy.</p>
+                <label><input type="radio" name="q1" value="True"> True</label>
+                <label><input type="radio" name="q1" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    The effective energy of the Bremsstrahlung X-ray spectrum is the average energy, which is typically <strong>50%–60% of the maximum</strong>. The peak energy is the most common photon energy.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+                        <!-- Question 2 -->
+            <div class="question" data-correct-answer="True">
+                <p>2. In helical CT scanning, a pitch value greater than 1 results in a gap in data acquisition, reducing patient dose but potentially affecting image quality if not properly interpolated.</p>
+                <label><input type="radio" name="q2" value="True"> True</label>
+                <label><input type="radio" name="q2" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    A pitch of 1 means no overlap or separation of acquired data. A pitch >1 implies a gap in data acquisition, and <1 implies overlap. Pitch >1 reduces exposure time and dose, though most pitches above 1.5 are not clinically appropriate.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" data-correct-answer="False">
+                <p>3. Modern X-ray equipment primarily utilizes three-phase, six-pulse generators to achieve a near-constant waveform with minimal ripple, similar to those used in the past.</p>
+                <label><input type="radio" name="q3" value="True"> True</label>
+                <label><input type="radio" name="q3" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    Full-wave rectified and three-phase generators are <strong>no longer manufactured</strong>. Modern X-ray equipment uses high-frequency (HF) generators, converting mains AC to HF AC (1 kHz or higher), which can be converted to a steady high-voltage DC supply with no more than 1% ripple.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" data-correct-answer="True">
+                <p>4. The intensity of an X-ray beam decreases across the field towards the anode edge due to the heel effect, as X-rays travelling in that direction cross more target material.</p>
+                <label><input type="radio" name="q4" value="True"> True</label>
+                <label><input type="radio" name="q4" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    The heel effect causes the intensity of the beam to decrease across the field towards the anode edge (line A in Fig. 3.2), because X-rays travelling in that direction have more target material to cross and are thus attenuated more.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" data-correct-answer="False">
+                <p>5. In Computed Radiography (CR) systems, the main limiting factor for spatial resolution is the size of the photostimulable phosphor crystals, which should be as large as possible for optimal image quality.</p>
+                <label><input type="radio" name="q5" value="True"> True</label>
+                <label><input type="radio" name="q5" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    The main limiting factor for CR spatial resolution is the <strong>pixel size</strong>. Spatial resolution is improved with a thinner phosphor layer and <strong>smaller phosphor crystal size</strong>, as this decreases scatter.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question" data-correct-answer="True">
+                <p>6. The Mechanical Index (MI) in ultrasound provides an estimate of the likelihood of mechanical effects such as cavitation, with a threshold of 0.7 indicating potential for such effects.</p>
+                <label><input type="radio" name="q6" value="True"> True</label>
+                <label><input type="radio" name="q6" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    The Mechanical Index (MI) estimates mechanical effects, defined as the peak rarefaction (negative) pressure divided by the square root of the ultrasound frequency. When MI reaches the threshold of 0.7, mechanical effects are thought to occur, and exam times should be reduced.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question" data-correct-answer="False">
+                <p>7. For optimal T1-weighted MRI images, a long Echo Time (TE) and a long Repetition Time (TR) are recommended.</p>
+                <label><input type="radio" name="q7" value="True"> True</label>
+                <label><input type="radio" name="q7" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    For maximum T1 contrast, a <strong>short TE (<30 ms) and a short TR (300-800 ms)</strong> are used. Long TE and TR are for T2-weighted images [134, 134t].<br>
+                    <span class="citation">[134, 134t]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question" data-correct-answer="True">
+                <p>8. The use of a small compression paddle in mammography's spot views allows for increased tissue separation and higher resolution from decreased breast thickness.</p>
+                <label><input type="radio" name="q8" value="True"> True</label>
+                <label><input type="radio" name="q8" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    The small field size, used for spot views with a small compression paddle, allows for increased tissue separation, distinction between true lesions and tissue overlap, and increased resolution from decreased thickness.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question" data-correct-answer="False">
+                <p>9. A thicker light guide in a conventional gamma camera detector head is optimal for maximizing intrinsic spatial resolution.</p>
+                <label><input type="radio" name="q9" value="True"> True</label>
+                <label><input type="radio" name="q9" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    To maximise the intrinsic resolution, one wishes to maximise the light detected by the nearest PMT, so a <strong>thin light guide is optimal</strong>. However, to optimise spatial linearity, a thicker light guide is best to spread the light signal between the maximum number of PMTs. This represents a fundamental trade-off in gamma camera design.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question" data-correct-answer="True">
+                <p>10. The mass number of an atom is determined by the combined number of protons and neutrons in its nucleus.</p>
+                <label><input type="radio" name="q10" value="True"> True</label>
+                <label><input type="radio" name="q10" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    The nucleons (protons and neutrons) combine to yield the mass number of the atom.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question" data-correct-answer="False">
+                <p>11. The use of a wider photopeak acceptance window in PET imaging generally leads to improved image contrast due to better exclusion of scattered radiation.</p>
+                <label><input type="radio" name="q11" value="True"> True</label>
+                <label><input type="radio" name="q11" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary><strong>Correct Answer:</strong> False<br>
+                    A wider photopeak window <strong>increases scatter coincidences</strong>, which reduces image contrast, although it does improve sensitivity. For optimal contrast, scatter correction is important before reconstruction.
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question" data-correct-answer="True">
+                <p>12. The presence of a copper filter between two storage phosphor plates in single-exposure dual-energy radiography aims to filter lower keV X-rays for the rear plate, but results in lower SNR in the tissue-selective image due to fewer incident photons.</p>
+                <label><input type="radio" name="q12" value="True"> True</label>
+                <label><input type="radio" name="q12" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    In single-exposure dual-energy radiography, a copper filter separates the front and rear phosphor plates. The rear plate receives higher-energy photons, as the copper filters lower keV X-rays. Because there are fewer incident photons on the rear plate, this leads to a <strong>lower signal-to-noise ratio (SNR)</strong> in the tissue-selective image.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question" data-correct-answer="False">
+                <p>13. A higher acoustic impedance mismatch between two media leads to a greater fraction of sound energy being transmitted, facilitating better imaging across organ boundaries.</p>
+                <label><input type="radio" name="q13" value="True"> True</label>
+                <label><input type="radio" name="q13" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    The greater the difference in acoustic impedance (Z) between two media, the <strong>greater the fraction of sound energy reflected (R)</strong>, and thus less is transmitted. This is why total reflection occurs in air (negligible Z) and structures behind gas-filled organs cannot be imaged [154, 154t]. Small variations in soft tissues result in small fractions of reflection, enabling visualization of internal anatomical structures.
+                    <span class="citation">[154, 154t]</span></p>
+                </details>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question" data-correct-answer="True">
+                <p>14. In Diagnostic Reference Levels (DRLs) for CT, the Dose Length Product (DLP) is derived from the CT Dose Index (CTDI) multiplied by the scan length in centimeters.</p>
+                <label><input type="radio" name="q14" value="True"> True</label>
+                <label><input type="radio" name="q14" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    The Dose Length Product (DLP), measured in mGy.cm, is defined as <strong>DLP = CTDIvol × L</strong>, where L is the total scan length. This makes DLP more useful for comparing doses to individual patients than CTDI alone.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question" data-correct-answer="False">
+                <p>15. The linear non-threshold (LNT) model, recommended by the ICRP, is universally accepted as it accurately reflects direct evidence of harm at low-level radiation exposures from atomic bomb survivor studies.</p>
+                <label><input type="radio" name="q15" value="True"> True</label>
+                <label><input type="radio" name="q15" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    While the LNT model is recommended by the ICRP, there is <strong>considerable disagreement about its applicability</strong> for low-dose exposures, as direct evidence of harm at these levels is limited and the atomic bomb data shows a threshold of 100-200 mSv for statistically significant risk increase, well above most medical exposures.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question" data-correct-answer="True">
+                <p>16. In CT imaging, structural noise is related to the processing of collected data, where high-resolution kernels can amplify noise due to their effect on high spatial frequencies.</p>
+                <label><input type="radio" name="q16" value="True"> True</label>
+                <label><input type="radio" name="q16" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    Structural noise relates to the processing of the collected data. Individual reconstruction algorithms have different effects on the underlying data and its representation in the final image. For instance, <strong>high-resolution kernels amplify noise</strong> as it is a high frequency.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question" data-correct-answer="False">
+                <p>17. The primary reason a gamma camera's sensitivity remains approximately constant regardless of the distance between the source and the collimator face is that gamma photons increase in number with the square of the distance.</p>
+                <label><input type="radio" name="q17" value="True"> True</label>
+                <label><input type="radio" name="q17" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    The sensitivity of a parallel-hole collimator remains approximately constant because the number of gamma photons passing through a particular collimator hole <strong>decreases with the square of the distance</strong>, but the number of holes through which the photons can pass <strong>increases as the square of the distance</strong>. These two effects cancel each other out.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question" data-correct-answer="True">
+                <p>18. A 'cold' lesion or photopenic defect in nuclear medicine images represents negative contrast, with its limit theoretically being -1.</p>
+                <label><input type="radio" name="q18" value="True"> True</label>
+                <label><input type="radio" name="q18" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    Subject contrast (CS) is defined as (AL - AT) / AT, where AL and AT are activities in the lesion and healthy tissue, respectively. With this definition, a 'hot' lesion shows positive contrast whereas a 'cold' lesion, or photopenic defect, shows negative contrast. The limit of negative contrast is -1.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question" data-correct-answer="False">
+                <p>19. The use of a longer exposure time in X-ray production, while reducing the heat rating, generally leads to a decrease in geometric unsharpness.</p>
+                <label><input type="radio" name="q19" value="True"> True</label>
+                <label><input type="radio" name="q19" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    Geometric unsharpness is reduced by decreasing focal spot size, decreasing object-detector distance, and increasing focus-detector distance. <strong>Movement unsharpness</strong> is reduced with shorter exposure times, immobilisation, and breath holding, but not geometric unsharpness. Longer exposure time reduces heat rating, but it increases movement unsharpness.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question" data-correct-answer="True">
+                <p>20. In SPECT imaging, the detector-to-patient distance should always be minimized to maximize the resolution obtained, a process known as 'body contouring'.</p>
+                <label><input type="radio" name="q20" value="True"> True</label>
+                <label><input type="radio" name="q20" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    In SPECT, the detector-to-patient distance should always be minimized to maximize the resolution obtained. This is known as 'body contouring' and is achieved by autocontouring devices.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 21 -->
+            <div class="question" data-correct-answer="False">
+                <p>21. The K-shell binding energy for molybdenum is 20 keV, making it an ideal filter material for mammography as it effectively removes X-rays above this energy.</p>
+                <label><input type="radio" name="q21" value="True"> True</label>
+                <label><input type="radio" name="q21" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    Molybdenum has a <strong>K-edge of 20 keV</strong>, meaning it preferentially absorbs X-rays *above* this energy, and transmits those below. The filter is present to remove higher-energy X-ray photons, and trends towards monoenergetic beam production, thus the filter material (like Mo) attenuates X-rays with energy *above* its K-edge. The question implies it removes X-rays *above* 20 keV, which is correct in terms of filtering, but the goal is to transmit specific low-keV characteristic X-rays while removing higher-energy ones. The K-edge represents an abrupt increase in attenuation, meaning it becomes *more effective* at absorbing photons *just above* this energy, leading to a narrower spectrum.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 22 -->
+            <div class="question" data-correct-answer="True">
+                <p>22. In Computed Tomography, the automated tube current modulation can be impaired if only one scout image is used to determine the required mA for a patient, especially if the patient is not uniform in shape.</p>
+                <label><input type="radio" name="q22" value="True"> True</label>
+                <label><input type="radio" name="q22" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    Photon starvation can occur if the mA required during modulation is beyond accepted tolerances, especially in very large patients. Patients are often not uniform in shape (e.g., anteroposterior dimension less than width), and <strong>mA modulation can be impaired if only one scout image is used</strong> to determine the required mA.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 23 -->
+            <div class="question" data-correct-answer="False">
+                <p>23. For diagnostic purposes, all radiopharmaceuticals used in nuclear medicine, including those for 99Tcm, must be sterilized by terminal heat treatment prior to administration.</p>
+                <label><input type="radio" name="q23" value="True"> True</label>
+                <label><input type="radio" name="q23" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    Radiopharmaceuticals for injection must be produced in a sterile, pyrogen-free environment, but due to their short shelf life (e.g., 99Tcm), preparations often have to be released prior to the results of sterility testing being known. They are prepared aseptically rather than by terminal heat treatment (which might degrade the pharmaceutical). The statement says *must be sterilized by terminal heat treatment*, which is not always the case given their short shelf lives and specific preparation methods.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 24 -->
+            <div class="question" data-correct-answer="True">
+                <p>24. The fundamental problem with a PET/MRI system, leading to the development of digital PET/CT systems, is that Photomultiplier Tubes (PMTs) in PET detectors do not function correctly in large magnetic fields.</p>
+                <label><input type="radio" name="q24" value="True"> True</label>
+                <label><input type="radio" name="q24" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    The fundamental problem with a PET/MRI system is that <strong>PMTs in a PET detector do not function correctly in the presence of large magnetic fields</strong>. This issue drove the development of solid-state light detection solutions, which in turn led to digital PET/CT systems.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 25 -->
+            <div class="question" data-correct-answer="False">
+                <p>25. In the image intensifier of a fluoroscopy system, the output screen is typically composed of caesium iodide crystals with sodium to convert X-ray photons to light photons.</p>
+                <label><input type="radio" name="q25" value="True"> True</label>
+                <label><input type="radio" name="q25" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    The <strong>input screen</strong> converts X-ray photons to light photons, using caesium iodide crystals with sodium. The <strong>output screen</strong> converts electrons to light, using zinc cadmium sulphide doped with silver (ZnCdS:Ag).<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 26 -->
+            <div class="question" data-correct-answer="True">
+                <p>26. For a given element and shell level, each electron binding energy is fixed, and when an inner shell electron returns to its original shell after excitation, the excess energy is re-emitted as a photon, yielding characteristic X-rays.</p>
+                <label><input type="radio" name="q26" value="True"> True</label>
+                <label><input type="radio" name="q26" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    Each binding energy is fixed for a given element and shell level. When an inner shell electron is excited through the external deposition of energy, it can be raised to a higher electron shell. When the electron returns to its original shell, the excess energy is re-emitted as a photon. The energy value of the photon is consistent for each element, yielding characteristic photons (termed X-rays).<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 27 -->
+            <div class="question" data-correct-answer="False">
+                <p>27. The main role of the Medical Physics Expert (MPE) under IR(ME)R 2017 is to perform the justification of all individual medical exposures, ensuring patient benefit outweighs risk.</p>
+                <label><input type="radio" name="q27" value="True"> True</label>
+                <label><input type="radio" name="q27" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    The **practitioner** is required to justify all medical exposures. The MPE's role is to provide scientific advice, clarify the role, and assist with risk and hazard assessment, and contribute to optimization, but not to perform the justification of individual medical exposures.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 28 -->
+            <div class="question" data-correct-answer="True">
+                <p>28. The conversion factors for calculating effective doses from Dose-Area Product (DAP) or Dose Length Product (DLP) are generally highest for radiosensitive organs in the abdomen and chest.</p>
+                <label><input type="radio" name="q28" value="True"> True</label>
+                <label><input type="radio" name="q28" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    The conversion factors for calculation of effective doses are generally highest for the more radiosensitive organs in the abdomen and chest and lowest for the head and limbs.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 29 -->
+            <div class="question" data-correct-answer="False">
+                <p>29. For the purpose of dose limits under IRR 2017, trainees under 18 years of age are subject to the same effective dose limits as other persons (1 mSv per year).</p>
+                <label><input type="radio" name="q29" value="True"> True</label>
+                <label><input type="radio" name="q29" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    Trainees under 18 have a whole-body effective dose limit of <strong>6 mSv per year</strong>. Other persons have a limit of 1 mSv per year. Employees over 18 have a limit of 20 mSv per year.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 30 -->
+            <div class="question" data-correct-answer="True">
+                <p>30. The optimal working life of a 99Tcm generator is around seven to ten days, after which the activity extracted is unlikely to be sufficient for a full day’s activity in a busy nuclear medicine department.</p>
+                <label><input type="radio" name="q30" value="True"> True</label>
+                <label><input type="radio" name="q30" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    The optimal working life of a 99Tcm generator is around seven to ten days. Although some activity can be extracted beyond this time, it is unlikely to be sufficient for a full day’s activity in a busy nuclear medicine department.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 31 -->
+            <div class="question" data-correct-answer="False">
+                <p>31. Increasing the kV in X-ray production primarily increases the quantity of photons, without significantly affecting the maximum or effective energy of the spectrum.</p>
+                <label><input type="radio" name="q31" value="True"> True</label>
+                <label><input type="radio" name="q31" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    Increased kV <strong>shifts the spectrum upwards and to the right</strong>, leading to increased maximum and effective energy, and an increased total number of photons. Increased mA, on the other hand, increases *only* the quantity of photons.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 32 -->
+            <div class="question" data-correct-answer="True">
+                <p>32. In MRI, B1 inhomogeneities, also known as dielectric artefacts, are more problematic at higher field strengths, especially when imaging parts of the body with significant fluid content.</p>
+                <label><input type="radio" name="q32" value="True"> True</label>
+                <label><input type="radio" name="q32" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    Dielectric artefacts arise when the wavelength of the RF pulse is similar to the structure being imaged. This can be problematic at 3 T when imaging abdomens, particularly when there is lots of fluid present, making it advisable to scan pregnant patients and patients with ascites at 1.5 T.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 33 -->
+            <div class="question" data-correct-answer="False">
+                <p>33. The range of a secondary electron is directly proportional to the density of the material it travels through.</p>
+                <label><input type="radio" name="q33" value="True"> True</label>
+                <label><input type="radio" name="q33" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    The range of a secondary electron is the distance it can travel before losing its initial excitation energy and is <strong>inversely proportional to the density of the material</strong>.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 34 -->
+            <div class="question" data-correct-answer="True">
+                <p>34. In Computed Tomography, cupping artifact can result in CT numbers being lower in the center of the patient than they should be, and is partially correctable by beam-hardening algorithms or bow-tie filters.</p>
+                <label><input type="radio" name="q34" value="True"> True</label>
+                <label><input type="radio" name="q34" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    Cupping occurs because the center of the patient is invariably crossed by hardened beams, whereas tissues nearer the surface are crossed by less filtered beams for part of the rotation. This results in CT numbers being lower in the center. It can be corrected by beam-hardening algorithms or reduced with bow-tie filters.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 35 -->
+            <div class="question" data-correct-answer="False">
+                <p>35. The DQE (Detective Quantum Efficiency) of a Computed Radiography (CR) system is typically around 65%, which is superior to Digital Radiography (DR) systems.</p>
+                <label><input type="radio" name="q35" value="True"> True</label>
+                <label><input type="radio" name="q35" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    CR systems can achieve a DQE of <strong>~30%</strong>, while DR systems can achieve <strong>~65%</strong>. Therefore, DR systems have superior DQE.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 36 -->
+            <div class="question" data-correct-answer="True">
+                <p>36. In ultrasound, a high Q transducer produces a pure tone and is typically used in Continuous Wave (CW) Doppler applications.</p>
+                <label><input type="radio" name="q36" value="True"> True</label>
+                <label><input type="radio" name="q36" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    A high Q transducer produces a pure tone and only responds to a single frequency, as in CW. A low Q transducer has a short ring-down time, produces short pulses, and produces and responds to a wide range of frequencies, as in PW.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 37 -->
+            <div class="question" data-correct-answer="False">
+                <p>37. Radiologists are directly responsible for the day-to-day MRI safety by ensuring compliance with the MRI local rules, according to MHRA guidelines.</p>
+                <label><input type="radio" name="q37" value="True"> True</label>
+                <label><input type="radio" name="q37" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    The **MR Responsible Person** is responsible for day-to-day MRI safety. Radiologists play a key role in MRI safety by understanding risks to make informed choices on scan appropriateness, but they are not typically the MR Responsible Person.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 38 -->
+            <div class="question" data-correct-answer="True">
+                <p>38. Pulsed fluoroscopy, by supplying X-rays in pulses rather than continuously, is primarily used to reduce patient dose rate in angiographic imaging.</p>
+                <label><input type="radio" name="q38" value="True"> True</label>
+                <label><input type="radio" name="q38" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    Pulsed fluoroscopy is used to <strong>reduce dose rate in angiographic imaging</strong>. The X-ray generator is switched on and off to supply pulses of X-rays, which helps minimize patient dose.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 39 -->
+            <div class="question" data-correct-answer="False">
+                <p>39. In nuclear medicine, Parametric Images typically display the behaviour of the radiopharmaceutical averaged within the entire Region of Interest (ROI).</p>
+                <label><input type="radio" name="q39" value="True"> True</label>
+                <label><input type="radio" name="q39" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> False<br>
+                    Time Activity Curves (TACs) demonstrate the behaviour of the radiopharmaceutical <strong>averaged within the entire ROI</strong>. Parametric images are generated by deriving a parameter from TACs for *each pixel* and displaying this in an image form, replacing the counts in a pixel by this parameter.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+
+            <!-- Question 40 -->
+            <div class="question" data-correct-answer="True">
+                <p>40. The DICOM standard ensures consistent perceptible shades of grey across different medical display devices through the use of a lookup table (LUT) called the Greyscale Standard Display Function (GSDF).</p>
+                <label><input type="radio" name="q40" value="True"> True</label>
+                <label><input type="radio" name="q40" value="False"> False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p><strong>Correct Answer:</strong> True<br>
+                    DICOM (Digital Imaging and Communications in Medicine) ensures consistent perceptible shades of grey across devices via the DICOM greyscale standard display function (GSDF), which maps digital driving levels to consistent luminance output.<br>
+                    <span class="citation"></span></p>
+                </details>
+            </div>
+            <!-- Include all other questions (2 to 40) exactly as in original -->
+            <!-- For brevity, omitted here but should be included in final file -->
+        </form>
+        <div class="button-container">
+            <button id="resetQuiz">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const questions = quizForm.querySelectorAll('.question');
+            const resetButton = document.getElementById('resetQuiz');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+
+            let correctCount = 0;
+            let answeredCount = 0;
+
+            // Function to update score display
+            function updateScore() {
+                scoreDisplay.textContent = `Score: ${correctCount} / ${answeredCount}`;
+            }
+
+            // Function to handle answer selection
+            const handleAnswer = (event) => {
+                const questionDiv = event.target.closest('.question');
+                const selectedValue = event.target.value;
+                const correctAnswer = questionDiv.dataset.correctAnswer;
+                const feedbackDiv = questionDiv.querySelector('.feedback');
+                const detailsElement = questionDiv.querySelector('details');
+                const explanationParagraph = detailsElement.querySelector('p');
+
+                const isCorrect = (selectedValue === correctAnswer);
+
+                // Only count if this question wasn't answered before
+                if (!questionDiv.classList.contains('answered')) {
+                    answeredCount++;
+                    if (isCorrect) correctCount++;
+                    questionDiv.classList.add('answered');
+                }
+
+                // Update feedback
+                feedbackDiv.textContent = isCorrect ? 'Correct!' : 'Incorrect!';
+                feedbackDiv.classList.remove('correct', 'incorrect');
+                feedbackDiv.classList.add(isCorrect ? 'correct' : 'incorrect');
+                feedbackDiv.style.display = 'block';
+
+                // Update explanation with user result
+                let userResultText = isCorrect ? 'You were Right!' : 'You were Wrong.';
+                let existingContent = explanationParagraph.innerHTML;
+                if (!existingContent.includes('You were')) {
+                    explanationParagraph.innerHTML = `<strong>${userResultText}</strong><br>` + existingContent;
+                }
+
+                // Open explanation
+                detailsElement.open = true;
+
+                // Disable all radios in this question
+                const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                radioButtons.forEach(radio => radio.disabled = true);
+
+                // Update score
+                updateScore();
+            };
+
+            // Attach event listeners to all radio buttons
+            questions.forEach(questionDiv => {
+                const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', handleAnswer);
+                });
+            });
+
+            // Reset quiz
+            resetButton.addEventListener('click', () => {
+                correctCount = 0;
+                answeredCount = 0;
+                updateScore();
+
+                questions.forEach(questionDiv => {
+                    const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+                    radioButtons.forEach(radio => {
+                        radio.checked = false;
+                        radio.disabled = false;
+                    });
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.classList.remove('correct', 'incorrect');
+                    const detailsElement = questionDiv.querySelector('details');
+                    detailsElement.open = false;
+                    const explanationParagraph = detailsElement.querySelector('p');
+                    explanationParagraph.innerHTML = explanationParagraph.innerHTML.replace(/<strong>You were (Right|Wrong)!?<\/strong><br>/, '');
+                    questionDiv.classList.remove('answered');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
